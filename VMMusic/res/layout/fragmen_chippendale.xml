@@ -46,7 +46,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
                 android:layout_marginRight="13dp"
-                android:numColumns="2" />
+                android:horizontalSpacing="6dp"
+                android:numColumns="2"
+                android:verticalSpacing="13dp" />
         </LinearLayout>
 
     </ScrollView>

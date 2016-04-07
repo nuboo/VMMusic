@@ -28,12 +28,10 @@ public class ReWriteGridView extends GridView {
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        //下面这句话是关键
-        if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-            return true;
-        }
-        return super.dispatchTouchEvent(ev);//也有所不同哦
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // TODO Auto-generated method stub
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
+        super.onMeasure(widthMeasureSpec, expandSpec);
     }
 }
 

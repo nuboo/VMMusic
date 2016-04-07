@@ -18,12 +18,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="true"
             android:drawableTop="@drawable/public_button_chippendale"
             android:gravity="center"
             android:text="音乐馆"
             android:textColor="@drawable/public_button_text_color"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/special_btn"
@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="true"
             android:drawableTop="@drawable/public_button_special"
             android:gravity="center"
             android:text="专题"
@@ -53,7 +52,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="true"
             android:drawableTop="@drawable/public_button_channel"
             android:gravity="center"
             android:text="频道"
@@ -66,7 +64,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:checked="true"
             android:drawableTop="@drawable/public_button_mine"
             android:gravity="center"
             android:text="我的"
