@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!--公共底部菜单栏-->
+    <RadioGroup
+        android:id="@+id/public_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/chippendale_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/public_button_chippendale"
+            android:gravity="center"
+            android:text="音乐馆"
+            android:textColor="@drawable/public_button_text_color"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/special_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/public_button_special"
+            android:gravity="center"
+            android:text="专题"
+            android:textColor="@drawable/public_button_text_color"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/add_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:layout_weight="0.8"
+            android:background="@drawable/add" />
+
+        <RadioButton
+            android:id="@+id/channel_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/public_button_channel"
+            android:gravity="center"
+            android:text="频道"
+            android:textColor="@drawable/public_button_text_color"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/mine_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/public_button_mine"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@drawable/public_button_text_color"
+            android:textSize="12sp" />
+    </RadioGroup>
+</LinearLayout>
