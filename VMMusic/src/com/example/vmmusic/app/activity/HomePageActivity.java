@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.adapter.HomeViewPagerAdapter;
+import com.example.vmmusic.app.fragment.ChannelFragment;
 import com.example.vmmusic.app.fragment.ChippendaleFragment;
+import com.example.vmmusic.app.fragment.SpecialFragment;
 import com.example.vmmusic.app.utils.T;
 
 import java.util.ArrayList;
@@ -33,9 +35,11 @@ public class HomePageActivity extends FragmentActivity {
     HomeViewPagerAdapter homeViewPagerAdapter;
     ArrayList<Fragment> list = new ArrayList<>();
     /**
-     * 音乐馆fragment
+     * fragment
      */
     ChippendaleFragment chippendaleFragment = new ChippendaleFragment();
+    SpecialFragment specialFragment = new SpecialFragment();
+    ChannelFragment channelFragment = new ChannelFragment();
     ViewPager viewPager;
 
     /**
@@ -71,8 +75,8 @@ public class HomePageActivity extends FragmentActivity {
 
 
         list.add(chippendaleFragment);// 音乐馆
-
-
+        list.add(specialFragment);//专题
+        list.add(channelFragment);//频道
         homeViewPagerAdapter = new HomeViewPagerAdapter(fragmentManager, list);
         viewPager.setAdapter(homeViewPagerAdapter);
         viewPager.setOnPageChangeListener(onPageChangeListener);
