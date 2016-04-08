@@ -4,5 +4,16 @@
     <string name="app_name">VMMusic</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+      
+    
+    
+    <!--选择音乐列表-->
+    <string name="music_list_all">全部</string>
 
+    <string name="music_list_local">本地</string>
+    <!--搜索-->
+    <string name="search_hot">热门</string>
+    <string name="search_history">历史</string>
+    <string name="search_hint">请输入</string>
+    <string name="search_blank_history">历史搜索</string>
 </resources>

@@ -43,7 +43,7 @@ public class ChippendaleFragment extends Fragment {
     }
 
     private List<Chippendale> getdate() {
-        List<Chippendale> list = new ArrayList<>();
+        List<Chippendale> list = new ArrayList<Chippendale>();
         for (int i = 0; i < 20; i++) {
             Chippendale chippendale = new Chippendale();
             chippendale.setImg(R.drawable.pci);

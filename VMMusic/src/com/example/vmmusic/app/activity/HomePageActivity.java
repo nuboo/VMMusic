@@ -1,5 +1,6 @@
 package com.example.vmmusic.app.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -31,7 +32,7 @@ public class HomePageActivity extends FragmentActivity {
      * ViewPager适配器
      */
     HomeViewPagerAdapter homeViewPagerAdapter;
-    ArrayList<Fragment> list = new ArrayList<>();
+    ArrayList<Fragment> list = new ArrayList<Fragment>();
     /**
      * 音乐馆fragment
      */
@@ -51,6 +52,7 @@ public class HomePageActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home_page);
         initView();
     }

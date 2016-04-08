@@ -39,7 +39,8 @@
         android:gravity="center"
         android:text="U n i q u e   d e s i g n   y o u   c a n   f e e l"
         android:textColor="@color/gray"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        android:id="@+id/guide_done" />
 
     <LinearLayout
         android:id="@+id/guide_linear"

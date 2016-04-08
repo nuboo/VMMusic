@@ -1,8 +1,11 @@
 package com.example.vmmusic.app.activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,6 +36,7 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
 
     TextView title;
     TextView text;
+    TextView done;
 
 
     /**
@@ -44,7 +48,7 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
         setContentView(R.layout.activity_guide_page);
         title = (TextView) findViewById(R.id.guide_title);
         text = (TextView) findViewById(R.id.guide_text);
-
+        done=(TextView)findViewById(R.id.guide_done);//底部文字
         views = new ArrayList<View>();
         LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -105,6 +109,7 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
             return;
         }
         vp.setCurrentItem(position);
+
     }
 
     /**
@@ -117,6 +122,12 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
         dots[positon].setEnabled(false);
         dots[currentIndex].setEnabled(true);
         currentIndex = positon;
+        if(positon==(pics.length-1)){//设置底部文字
+            done.setText("开 启 体 验");
+            done.setGravity(Gravity.CENTER);
+            done.setTextColor(getResources().getColor(R.color.green));
+            done.setOnClickListener(listener);
+        }
     }
 
     //当滑动状态改变时调用
@@ -148,5 +159,19 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
         setCurDot(position);
 
     }
+
+
+    View.OnClickListener listener =new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //跳转登陆注册页面  并且设置sharedprefenrece不为第一次登陆
+            SharedPreferences sp=getApplicationContext().getSharedPreferences(FirstPage.IS_FIRST, MODE_PRIVATE);
+            SharedPreferences.Editor editor=sp.edit();
+            editor.putBoolean(FirstPage.IS_FIRST,false);
+            editor.commit();
+            Intent intent=new Intent(GuidePage.this,RegisterLoginActivity.class);
+            startActivity(intent);
+        }
+    };
 }
 

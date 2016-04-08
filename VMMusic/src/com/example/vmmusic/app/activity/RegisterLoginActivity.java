@@ -1,6 +1,7 @@
 package com.example.vmmusic.app.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -174,9 +175,13 @@ public class RegisterLoginActivity extends Activity {
      * 登录
      */
     private void login() {
-        if (checkEdit_login()) {//判断是否为空
 
-        }
+        //跳转
+        Intent intent =new Intent(RegisterLoginActivity.this,HomePageActivity.class);
+        startActivity(intent);
+     /*   if (checkEdit_login()) {//判断是否为空
+
+        }*/
     }
 
     /**

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:background="@color/white"
+    android:padding="15dp"
+    android:layout_height="wrap_content">
+  <!--顶部共用-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/public_top_title"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:text="我的"
+        />
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/public_top_radio"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        >
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/music_list_all"
+            android:textSize="25sp"
+            android:textColor="@drawable/public_button_text_color"
+            android:button="@null"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:id="@+id/public_top_radio_left" />
+
+        <TextView
+            android:layout_width="0.5dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/green"/>
+        <RadioButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/music_list_local"
+            android:textSize="25sp"
+            android:textColor="@drawable/public_button_text_color"
+            android:button="@null"
+            android:layout_height="wrap_content"
+            android:id="@+id/public_top_radio_right"/>
+    </RadioGroup>
+    <TextView
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:id="@+id/public_top_left"
+        android:gravity="center"
+       android:layout_centerVertical="true"
+        android:background="@drawable/top_left_diamond"/>
+
+    <TextView
+        android:id="@+id/public_top_right"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:background="@drawable/top_right_cd"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
