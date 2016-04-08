@@ -4,22 +4,17 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical">
-    <!--音乐馆-->
-
-    <ListView
-        android:id="@+id/chippendale_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+    <!--我的页面-->
 
 
-    <!--推荐-->
     <com.example.vmmusic.app.customview.HeaderGridView
-        android:id="@+id/chippendale_grid"
+        android:id="@+id/mine_rewrite_grid_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:horizontalSpacing="-13dp"
         android:listSelector="#00000000"
         android:numColumns="2"
-        android:horizontalSpacing="-13dp"/>
+        />
 
 </LinearLayout>

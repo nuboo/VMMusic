@@ -8,31 +8,36 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.adapter.ChannelGridAdapter;
 import com.example.vmmusic.app.adapter.ChippendaleAdapter;
+import com.example.vmmusic.app.customview.HeaderGridView;
 import com.example.vmmusic.app.customview.ReWriteGridView;
 import com.example.vmmusic.app.model.Channel;
 import com.example.vmmusic.app.model.Chippendale;
+import com.example.vmmusic.app.utils.T;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 频道
  * Created by awx19 on 2016/4/8.
  */
 public class ChannelFragment extends Fragment {
     GridView gridView;
-    Activity activity = getActivity();
+    Activity activity;
     ReWriteGridView reWriteGridView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_channel, null);
+        activity = getActivity();
         setGridView(view);
         return view;
     }
@@ -68,8 +73,19 @@ public class ChannelFragment extends Fragment {
         reWriteGridView = (ReWriteGridView) view.findViewById(R.id.channel_grid);
         ChippendaleAdapter chippendaleAdapter = new ChippendaleAdapter(view.getContext(), getdate());
         reWriteGridView.setAdapter(chippendaleAdapter);
+        reWriteGridView.setOnItemClickListener(onItemClickListener);
 
     }
+
+    /**
+     * gridView item监听
+     */
+    AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            T.showShort(getContext(), "点击了" + parent);
+        }
+    };
 
     /**
      * 假数据

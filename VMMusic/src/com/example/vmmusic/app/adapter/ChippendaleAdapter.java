@@ -15,6 +15,7 @@ import com.example.vmmusic.app.model.Chippendale;
 import java.util.List;
 
 /**
+ * 推荐adapter
  * Created by awx19 on 2016/4/7.
  */
 public class ChippendaleAdapter extends BaseAdapter {

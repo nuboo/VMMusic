@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical">
-
+    <!--频道分类grid item-->
     <com.example.vmmusic.app.customview.RoundImageView
         android:id="@+id/item_channel_grid_img"
         android:layout_width="wrap_content"

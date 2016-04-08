@@ -8,10 +8,7 @@ import android.view.View;
 import java.util.List;
 
 /**
- *
- *
- *
- *
+ * 引导页viewPager adapter
  * Created by awx19 on 2016/4/7.
  */
 public class ViewPagerAdapter extends PagerAdapter {

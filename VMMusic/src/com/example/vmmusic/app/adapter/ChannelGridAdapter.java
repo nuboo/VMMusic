@@ -14,6 +14,8 @@ import com.example.vmmusic.app.model.Channel;
 import java.util.List;
 
 /**
+ *
+ * 频道分类adapter
  * Created by awx19 on 2016/4/8.
  */
 public class ChannelGridAdapter extends BaseAdapter {

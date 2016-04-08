@@ -15,6 +15,7 @@ import com.example.vmmusic.R;
 import com.example.vmmusic.app.adapter.HomeViewPagerAdapter;
 import com.example.vmmusic.app.fragment.ChannelFragment;
 import com.example.vmmusic.app.fragment.ChippendaleFragment;
+import com.example.vmmusic.app.fragment.MineFragment;
 import com.example.vmmusic.app.fragment.SpecialFragment;
 import com.example.vmmusic.app.utils.T;
 
@@ -40,6 +41,7 @@ public class HomePageActivity extends FragmentActivity {
     ChippendaleFragment chippendaleFragment = new ChippendaleFragment();
     SpecialFragment specialFragment = new SpecialFragment();
     ChannelFragment channelFragment = new ChannelFragment();
+    MineFragment mineFragment = new MineFragment();
     ViewPager viewPager;
 
     /**
@@ -72,11 +74,10 @@ public class HomePageActivity extends FragmentActivity {
         mine_btn = (RadioButton) findViewById(R.id.mine_btn);
         public_radio_group.setOnCheckedChangeListener(onCheckedChangeListener);
         add_btn.setOnClickListener(onClickListener);
-
-
         list.add(chippendaleFragment);// 音乐馆
         list.add(specialFragment);//专题
         list.add(channelFragment);//频道
+        list.add(mineFragment);//我的
         homeViewPagerAdapter = new HomeViewPagerAdapter(fragmentManager, list);
         viewPager.setAdapter(homeViewPagerAdapter);
         viewPager.setOnPageChangeListener(onPageChangeListener);

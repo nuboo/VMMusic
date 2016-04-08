@@ -16,10 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 专题
  * Created by awx19 on 2016/4/7.
  */
 public class SpecialFragment extends Fragment {
-    ListView listView;
+
 
     @Nullable
     @Override
@@ -29,12 +30,22 @@ public class SpecialFragment extends Fragment {
         return view;
     }
 
+    /**
+     * 初始化控件
+     *
+     * @param view
+     */
     private void initView(View view) {
-        listView = (ListView) view.findViewById(R.id.special_list_view);
+        ListView listView = (ListView) view.findViewById(R.id.special_list_view);
         SpecialAdapter specialAdapter = new SpecialAdapter(view.getContext(), getDate());
         listView.setAdapter(specialAdapter);
     }
 
+    /**
+     * 假数据
+     *
+     * @return
+     */
     private List<Special> getDate() {
         List<Special> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {

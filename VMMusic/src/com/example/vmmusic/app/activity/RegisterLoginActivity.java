@@ -15,6 +15,7 @@ import com.example.vmmusic.R;
 import com.example.vmmusic.app.utils.T;
 
 /**
+ * 注册登录页面
  * Created by awx19 on 2016/4/7.
  */
 public class RegisterLoginActivity extends Activity {
