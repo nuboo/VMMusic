@@ -1,6 +1,7 @@
 package com.example.vmmusic.app.model;
 
 /**
+ * 推荐结构体
  * Created by awx19 on 2016/4/7.
  */
 public class Chippendale {

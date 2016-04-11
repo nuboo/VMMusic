@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 /**
+ *
+ * 主页ViewPager adapter
  * Created by awx19 on 2016/4/7.
  */
 public class HomeViewPagerAdapter extends FragmentPagerAdapter {

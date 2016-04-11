@@ -2,7 +2,9 @@ package com.example.vmmusic.app.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+
 import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
@@ -10,8 +12,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.adapter.ViewPagerAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +52,31 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
         setContentView(R.layout.activity_guide_page);
         title = (TextView) findViewById(R.id.guide_title);
         text = (TextView) findViewById(R.id.guide_text);
+
         done=(TextView)findViewById(R.id.guide_done);//底部文字
         views = new ArrayList<View>();
         LinearLayout.LayoutParams mParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
+
+
+        // 停留2秒跳转到主页面
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(GuidePage.this, HomePageActivity.class);
+                startActivity(intent);
+            }
+
+        }).start();
+
+
 
         //初始化引导图片列表
         for (int i = 0; i < pics.length; i++) {
@@ -85,8 +110,12 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
         dots[currentIndex].setEnabled(false);//设置选中状态
     }
 
+    /**
+     * 设置当前页面的文字
+     *
+     * @param position
+     */
     private void setText(int position) {
-
         if (position == 0) {
             title.setText("VM微享音乐");
             text.setText("这是一个分享声音的App拒绝枯燥乏味的文字心情，用音乐来表达你的内心吧");
@@ -149,6 +178,7 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
     public void onPageSelected(int arg0) {
         //设置底部小点选中状态
         setCurDot(arg0);
+        //设置文字变换
         setText(arg0);
     }
 
