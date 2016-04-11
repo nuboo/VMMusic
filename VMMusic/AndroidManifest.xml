@@ -27,6 +27,12 @@
         <activity android:name=".app.activity.HomePageActivity" />
         <!--登录注册-->
         <activity android:name=".app.activity.RegisterLoginActivity" />
+        <!--选择音乐-->
+        <activity android:name=".app.activity.ChooseMusicActivity" />
+        <!--搜索-->
+        <activity android:name=".app.activity.SearchActivity" />
+        <!--更多-->
+        <activity android:name=".app.activity.MoreAndMoreActivity" />
     </application>
 
 </manifest>
