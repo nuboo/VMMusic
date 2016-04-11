@@ -1,6 +1,10 @@
 package com.example.vmmusic.app.utils;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.Cursor;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import com.example.vmmusic.app.model.Music;
@@ -15,6 +19,7 @@ public class FileUtils {
     String fileName = null;
     String filePath = null;
     Music music;
+
 
 
 
@@ -84,6 +89,35 @@ public class FileUtils {
         return music;
     }
 
+    /**
+     * 获取音乐文件
+     * @param list 用于存储内容
+     * @return
+     */
+    public void getMediaInfo(Context context,ArrayList<Music> list){
+        Log.e("success", "11111");
+        ContentResolver contentResolver=context.getContentResolver();
+        Log.e("success", "11222221");
+        Cursor cursor =contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
+        Log.e("success", cursor.toString());
+           if(cursor!=null){
+               Log.e("success", "");
+               while (cursor.moveToNext()){
+                   music =new Music();
+                   int titleNum=cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
+                   String title=cursor.getString(titleNum);
+                   int albumNum=cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
+                   String album=cursor.getString(albumNum);
+                   int singerNum=cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+                   String singer=cursor.getString(singerNum);
 
+                   music.setName(title);
+                   music.setAlbum(album);
+                   music.setSinger(singer);
+                   list.add(music);
+               }
+           }
+
+    }
 
 }
