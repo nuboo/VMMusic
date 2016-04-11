@@ -1,7 +1,9 @@
 package com.example.vmmusic.app.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RadioButton;
@@ -15,22 +17,23 @@ import com.example.vmmusic.R;
  */
 public class TopSettiings {
     private Context context;
-    private LayoutInflater inflater;
+   private Activity activity;
     private View view;
     private TextView title,right,left;
     private RadioGroup choice;
     private RadioButton choiceLeft,choiceRight;
      public TopSettiings(Context context){
          this.context=context;
-         inflater=LayoutInflater.from(context);
-         view=inflater.inflate(R.layout.public_top,null);
-         title=(TextView)view.findViewById(R.id.public_top_title);
-         right=(TextView)view.findViewById(R.id.public_top_right);
-         left=(TextView)view.findViewById(R.id.public_top_left);
-         choice=(RadioGroup)view.findViewById(R.id.public_radio_group);
-         choiceLeft=(RadioButton)view.findViewById(R.id.public_top_radio_left);
-         choiceRight=(RadioButton)view.findViewById(R.id.public_top_radio_right);
+          activity=(Activity)context;
+
+         title=(TextView)activity.findViewById(R.id.public_top_title);
+         right=(TextView)activity.findViewById(R.id.public_top_right);
+         left=(TextView)activity.findViewById(R.id.public_top_left);
+         choice=(RadioGroup)activity.findViewById(R.id.public_top_radio);
+         choiceLeft=(RadioButton)activity.findViewById(R.id.public_top_radio_left);
+         choiceRight=(RadioButton)activity.findViewById(R.id.public_top_radio_right);
      }
+
 
 
 
@@ -39,6 +42,8 @@ public class TopSettiings {
      * @param title
      */
     public void setTitle(String title){
+
+
         this.title.setText(title);
     }
 
@@ -49,6 +54,7 @@ public class TopSettiings {
      * @return  TextView
      */
     public TextView setRight(String rightTitle,Drawable drawRight){
+
         if(rightTitle!=null&&!rightTitle.equals("")) {
             right.setText(rightTitle);
         }
@@ -65,6 +71,7 @@ public class TopSettiings {
      * @return  TextView
      */
     public TextView setLeft(String leftTitle,Drawable drawLeft){
+
         if(leftTitle!=null&&!leftTitle.equals("")) {
             left.setText(leftTitle);
         }
@@ -80,7 +87,11 @@ public class TopSettiings {
      * @param right
      */
     public void setTopRadioGroup(String left,String right){
+
         title.setVisibility(View.GONE);
+
+        choice.setVisibility(View.VISIBLE);
+
         if(left!=null&&!left.equals("")){
             choiceLeft.setText(left);
         }
@@ -94,6 +105,7 @@ public class TopSettiings {
      * @return
      */
     public RadioButton getChoiceRight(){
+
         return  choiceRight;
     }
     /**
@@ -101,6 +113,7 @@ public class TopSettiings {
      * @return
      */
     public RadioButton getChoiceLeft(){
+
         return  choiceLeft;
     }
 }

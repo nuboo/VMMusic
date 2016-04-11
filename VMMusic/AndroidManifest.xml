@@ -10,7 +10,9 @@
 
 
         android:targetSdkVersion="21" />
-
+    <!--读写SD卡权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -20,11 +22,11 @@
         <!--空白页入口-->
         <activity android:name=".app.activity.FirstPage"
             android:launchMode="singleInstance">
-            <intent-filter>
+         <!--   <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
             </activity>
 
 
@@ -46,10 +48,21 @@
         <!--登录注册-->
         <activity android:name=".app.activity.RegisterLoginActivity"
             android:launchMode="singleTop" />
+        <!--音乐列表-->
         <activity android:name=".app.activity.MusicListActivity"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            </activity>
      <!--   <activity android:name=".app.fragment.SearchMusicFragment"
             android:launchMode="singleTop"></activity>-->
+        <!--音乐播放界面-->
+        <activity android:name=".app.activity.MusicPlayActivity"
+            android:launchMode="singleInstance"></activity>
+        <service android:name=".app.utils.MusicService"></service>
     </application>
 
 </manifest>

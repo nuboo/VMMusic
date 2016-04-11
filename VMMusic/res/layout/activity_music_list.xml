@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/white"
+        android:id="@+id/music_list_group"
         android:layout_marginTop="0.5dp">
         <RadioButton
             android:layout_width="0dp"
@@ -50,9 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         </RadioGroup>
+
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingLeft="20dp"
             android:background="@color/white"
             android:scrollbars="none"

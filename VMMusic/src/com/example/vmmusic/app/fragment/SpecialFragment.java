@@ -47,7 +47,7 @@ public class SpecialFragment extends Fragment {
      * @return
      */
     private List<Special> getDate() {
-        List<Special> list = new ArrayList<>();
+        List<Special> list = new ArrayList<Special>();
         for (int i = 0; i < 10; i++) {
             Special special = new Special();
             special.setSpecial_img(R.drawable.topic);

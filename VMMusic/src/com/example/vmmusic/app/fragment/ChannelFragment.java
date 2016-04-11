@@ -93,7 +93,7 @@ public class ChannelFragment extends Fragment {
      * @return
      */
     private List<Chippendale> getdate() {
-        List<Chippendale> list = new ArrayList<>();
+        List<Chippendale> list = new ArrayList<Chippendale>();
         for (int i = 0; i < 20; i++) {
             Chippendale chippendale = new Chippendale();
             chippendale.setImg(R.drawable.pci);
@@ -110,7 +110,7 @@ public class ChannelFragment extends Fragment {
      * @return
      */
     private List<Channel> getDate() {
-        List<Channel> list = new ArrayList<>();
+        List<Channel> list = new ArrayList<Channel>();
         for (int i = 0; i < 6; i++) {
             Channel channel = new Channel();
             channel.setItem_channel_grid_img(R.drawable.proxy);

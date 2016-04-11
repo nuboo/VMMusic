@@ -15,56 +15,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf59ecca-a969-48ce-9c95-8b6a4a12caea" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/download.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/green_background.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/guess_you_like.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/i_like.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/lately.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/left_of_the_line.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/like.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/more.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/next.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/proxy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/rectangular_line.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/topic.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/vip.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Administrator.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Channel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/ChannelFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/ChannelGridAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/customview/HeaderGridView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/MineFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/customview/RoundImageView.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Special.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/SpecialAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/layout/fragment_channel.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/layout/fragment_mine.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/layout/hander_chippendale.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/layout/header_mine.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/values/imageview_attribute.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/layout/item_channel_horizontal_grid_view.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/res/layout/item_special_list_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/pci.png" afterPath="$PROJECT_DIR$/VMMusic/res/drawable-hdpi/pci.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/FileUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/LocalSQLHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MusicPlayActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/MusicService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/SQLUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/ServiceHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/VMMusic/.settings/org.eclipse.core.resources.prefs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/.classpath" afterPath="$PROJECT_DIR$/VMMusic/.classpath" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/AndroidManifest.xml" afterPath="$PROJECT_DIR$/VMMusic/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Chippendale.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Chippendale.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/ChippendaleAdapter.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/ChippendaleAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/ChippendaleFragment.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/ChippendaleFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/GuidePage.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/GuidePage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/HomePageActivity.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/HomePageActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/HomeViewPagerAdapter.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/HomeViewPagerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/customview/ReWriteGridView.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/customview/ReWriteGridView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/RegisterLoginActivity.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/RegisterLoginActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/ChannelFragment.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/ChannelFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/MineFragment.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/MineFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Music.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Music.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MusicListActivity.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MusicListActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/SpecialFragment.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/SpecialFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/VMMusic.iml" afterPath="$PROJECT_DIR$/VMMusic/VMMusic.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/ViewPagerAdapter.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/ViewPagerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/res/values/color.xml" afterPath="$PROJECT_DIR$/VMMusic/res/values/color.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/res/layout/fragmen_chippendale.xml" afterPath="$PROJECT_DIR$/VMMusic/res/layout/fragmen_chippendale.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/res/layout/fragment_special.xml" afterPath="$PROJECT_DIR$/VMMusic/res/layout/fragment_special.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/res/layout/item_chippendale_grid_view.xml" afterPath="$PROJECT_DIR$/VMMusic/res/layout/item_chippendale_grid_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/TopSettiings.java" afterPath="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/TopSettiings.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/res/layout/activity_music_list.xml" afterPath="$PROJECT_DIR$/VMMusic/res/layout/activity_music_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/project.properties" afterPath="$PROJECT_DIR$/VMMusic/project.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VMMusic/.idea/workspace.xml" afterPath="$PROJECT_DIR$/VMMusic/.idea/workspace.xml" />
     </list>
     <ignored path="VMMusicapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,94 +54,7 @@
     <favorites_list name="VMMusicapp" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="GuidePage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/GuidePage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3591">
-              <caret line="49" column="53" selection-start-line="49" selection-start-column="53" selection-end-line="49" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VMMusic.iml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/VMMusic/VMMusic.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.8044692" vertical-offset="0" max-vertical-offset="1216">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RoundImage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/customview/RoundImage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="753" max-vertical-offset="3401">
-              <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_search_music.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/fragment_search_music.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.7142856" vertical-offset="399" max-vertical-offset="1881">
-              <caret line="25" column="68" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_comment.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/activity_comment.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="1007">
-              <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Music.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Music.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="1273">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="color.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VMMusic/res/values/color.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="437">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FirstPage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/FirstPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="1254">
-              <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -196,13 +77,9 @@
         <option value="$PROJECT_DIR$/VMMusic/gen/com/example/vmmusic/R.java" />
         <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/customview/RoundImage.java" />
         <option value="$PROJECT_DIR$/VMMusic/res/layout/fragment_my_center.xml" />
-        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/TopSettiings.java" />
         <option value="$PROJECT_DIR$/VMMusic/res/layout/public_top.xml" />
-        <option value="$PROJECT_DIR$/VMMusic/res/layout/activity_music_list.xml" />
-        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Music.java" />
         <option value="$PROJECT_DIR$/VMMusic/res/layout/activity_music_list_items.xml" />
         <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/MusicListAdapter.java" />
-        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MusicListActivity.java" />
         <option value="$PROJECT_DIR$/VMMusic/res/layout/activity_search_musci.xml" />
         <option value="$PROJECT_DIR$/VMMusic/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/VMMusic/res/layout/activity_search_music.xml" />
@@ -214,13 +91,27 @@
         <option value="$PROJECT_DIR$/VMMusic/res/layout/activity_comment.xml" />
         <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/GuidePage.java" />
         <option value="$PROJECT_DIR$/VMMusic/VMMusic.iml" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/SQLUtils.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/LocalSQLHelper.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MusicPlayActivity.java" />
         <option value="$PROJECT_DIR$/VMMusic/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/MineFragment.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/SpecialFragment.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/ChannelFragment.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/FileUtils.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/MusicService.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/ServiceHelper.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/TopSettiings.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/MusciViewPagerAdapter.java" />
+        <option value="$PROJECT_DIR$/VMMusic/res/layout/activity_music_list.xml" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MusicListActivity.java" />
+        <option value="$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Music.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="160" />
-    <option name="y" value="51" />
+    <option name="x" value="324" />
+    <option name="y" value="53" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -308,6 +199,10 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -327,7 +222,83 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="fragment" />
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMMusicapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMMusic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMMusicapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMMusic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="adapter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMMusicapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMMusic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMMusicapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VMMusic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -342,7 +313,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="reference.settingsdialog.project.gant" />
+    <property name="options.lastSelected" value="File.Encoding" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -533,26 +504,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="160" y="51" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
+    <frame x="324" y="53" width="1400" height="1000" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977462" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977462" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32858837" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32977462" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32910448" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977462" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977462" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32977462" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3084223" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -560,9 +533,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32977462" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30923247" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -611,97 +582,11 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/SpecialFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="361" max-vertical-offset="475">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/fragment_special.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/customview/RoundImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="3705">
-          <caret line="62" column="7" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/gen/com/example/vmmusic/R.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="1463">
-          <caret line="18" column="52" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/public_top.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="722">
-          <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/RegisterLoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3629" max-vertical-offset="4617">
-          <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/FirstPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="1254">
-          <caret line="39" column="9" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/HomePageActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3249">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/activity_home_page.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="786">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MyApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3544776" vertical-offset="0" max-vertical-offset="536">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/res/drawable/code_shape.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07089552" vertical-offset="0" max-vertical-offset="536">
-          <caret line="2" column="38" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/activity_first_page.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1496063" vertical-offset="0" max-vertical-offset="508">
@@ -736,27 +621,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/SpecialFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/activity_register_and_login.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8976378" vertical-offset="2907" max-vertical-offset="4180">
           <caret line="177" column="44" selection-start-line="177" selection-start-column="44" selection-end-line="177" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/public_button.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1482">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -855,23 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/TopSettiings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2090">
-          <caret line="99" column="11" selection-start-line="99" selection-start-column="11" selection-end-line="99" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/activity_music_list.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.714286" vertical-offset="727" max-vertical-offset="1292">
-          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="jar://E:/sdk/platforms/android-18/android.jar!/android/widget/BaseAdapter.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7048904" vertical-offset="57" max-vertical-offset="665">
@@ -889,35 +740,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/MusicListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1368">
-          <caret line="58" column="47" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/public_top.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18664047" vertical-offset="209" max-vertical-offset="1406">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="51" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VMMusic/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="475">
           <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MusicListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="718" max-vertical-offset="1311">
-          <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -934,14 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="437">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Music.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="1273">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -984,11 +802,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/VMMusic/VMMusic.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8044692" vertical-offset="0" max-vertical-offset="1140">
-          <caret line="51" column="57" selection-start-line="50" selection-start-column="5" selection-end-line="51" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1216">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/SQLUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="427" max-vertical-offset="950">
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#365#366#0" expanded="true" />
+            <element signature="e#401#402#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/LocalSQLHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="684">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#458#459#0" expanded="true" />
+            <element signature="e#516#517#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/sdk/platforms/android-18/android.jar!/android/content/ContextWrapper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.332696" vertical-offset="2372" max-vertical-offset="3553">
+          <caret line="135" column="19" selection-start-line="135" selection-start-column="19" selection-end-line="135" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/sdk/platforms/android-18/android.jar!/android/media/MediaPlayer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.332696" vertical-offset="643" max-vertical-offset="3477">
+          <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MusicPlayActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="205" max-vertical-offset="741">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1000,11 +868,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VMMusic/VMMusic.iml">
+    <entry file="file://$PROJECT_DIR$/VMMusic/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8044692" vertical-offset="0" max-vertical-offset="1216">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="851" max-vertical-offset="1387">
+          <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
+          <folding>
+            <element signature="e#626#644#0" expanded="true" />
+            <element signature="e#1190#1208#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/MineFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="927" max-vertical-offset="2147">
+          <caret line="115" column="58" selection-start-line="115" selection-start-column="58" selection-end-line="115" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/SpecialFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1007">
+          <caret line="49" column="50" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/fragment/ChannelFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1421" max-vertical-offset="1957">
+          <caret line="116" column="54" selection-start-line="116" selection-start-column="54" selection-end-line="116" selection-end-column="54" />
+          <folding>
+            <element signature="e#3270#3283#0" expanded="false" />
+            <element signature="e#3725#3734#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/ServiceHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39738807" vertical-offset="376" max-vertical-offset="1767">
+          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#517#518#0" expanded="true" />
+            <element signature="e#553#554#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/public_button.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26181102" vertical-offset="0" max-vertical-offset="1482">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/public_top.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.392857" vertical-offset="40" max-vertical-offset="1406">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/TopSettiings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1649" max-vertical-offset="2185">
+          <caret line="104" column="14" selection-start-line="104" selection-start-column="14" selection-end-line="104" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/res/layout/activity_music_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.285714" vertical-offset="803" max-vertical-offset="1330">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/adapter/MusicListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="1064">
+          <caret line="58" column="47" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/activity/MusicListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2485" max-vertical-offset="3249">
+          <caret line="151" column="43" selection-start-line="151" selection-start-column="43" selection-end-line="151" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1224#1231#0" expanded="true" />
+            <element signature="e#2445#2806#0" expanded="true" />
+            <element signature="e#2799#2800#0" expanded="true" />
+            <element signature="e#3362#3794#0" expanded="true" />
+            <element signature="e#3787#3788#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/model/Music.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1862">
+          <caret line="108" column="41" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#521#546#0" expanded="true" />
+            <element signature="e#580#581#0" expanded="true" />
+            <element signature="e#608#609#0" expanded="true" />
+            <element signature="e#650#651#0" expanded="true" />
+            <element signature="e#684#685#0" expanded="true" />
+            <element signature="e#1993#2000#0" expanded="true" />
+            <element signature="e#2601#2608#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/MusicService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.1548507" vertical-offset="0" max-vertical-offset="1881">
+          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#742#743#0" expanded="true" />
+            <element signature="e#2100#2312#0" expanded="true" />
+            <element signature="e#2295#2296#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMMusic/src/com/example/vmmusic/app/utils/FileUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5671642" vertical-offset="186" max-vertical-offset="1786">
+          <caret line="54" column="21" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

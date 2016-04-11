@@ -113,7 +113,7 @@ public class MineFragment extends Fragment {
      * @return
      */
     private List<Chippendale> getdate() {
-        List<Chippendale> list = new ArrayList<>();
+        List<Chippendale> list = new ArrayList<Chippendale>();
         for (int i = 0; i < 6; i++) {
             Chippendale chippendale = new Chippendale();
             chippendale.setImg(R.drawable.pci);
