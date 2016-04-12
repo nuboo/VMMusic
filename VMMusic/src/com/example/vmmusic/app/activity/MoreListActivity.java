@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.adapter.MusicListAdapter;
 import com.example.vmmusic.app.model.Music;
+import com.example.vmmusic.app.utils.MusicService;
 import com.example.vmmusic.app.utils.ServiceHelper;
 import com.example.vmmusic.app.utils.TopSettiings;
 
@@ -63,7 +64,10 @@ public class MoreListActivity extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             Music music=musics.get(i);
            ServiceHelper serviceHelper=new ServiceHelper(MoreListActivity.this);
-            serviceHelper.startMyService(music);
+            Bundle bundle=new Bundle();
+            bundle.putSerializable(MusicService.VMMUSIC,music);
+            bundle.putInt(MusicService.LISTSIZE,musics.size());
+            serviceHelper.startMyService(bundle);
 
         }
     };

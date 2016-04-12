@@ -30,13 +30,12 @@ public class ServiceHelper {
 
     /**
      * 开启服务
-     * @param music
+     * @param bundle
      */
-    public void startMyService(Music music){
+    public void startMyService(Bundle bundle){
         Intent intent =new Intent(context,MusicService.class);
 
-        Bundle bundle=new Bundle();
-        bundle.putSerializable(MusicService.VMMUSIC,music);
+
         intent.putExtras(bundle);
         context.startService(intent);
     }

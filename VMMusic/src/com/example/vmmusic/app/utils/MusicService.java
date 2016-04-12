@@ -1,11 +1,14 @@
 package com.example.vmmusic.app.utils;
 
 import android.app.Service;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import com.example.vmmusic.app.model.Music;
@@ -21,6 +24,8 @@ public class MusicService extends Service {
     private Music music;
     private MediaPlayer mediaPlayer;//音乐播放器
     private String path=null;
+    private int listSize=0;
+    public static  final String LISTSIZE="listSize";
     MyServiceBinder myServiceBinder=new MyServiceBinder();
 
 
@@ -51,8 +56,8 @@ public class MusicService extends Service {
         Bundle bundle=intent.getExtras();
         if(bundle!=null){
             music=(Music)bundle.getSerializable(VMMUSIC);
-
-            if(music!=null){
+            listSize=bundle.getInt(LISTSIZE,0);
+            if(music!=null&&listSize!=0){
                 if(!music.getPath().equals(path)) {//如果不是同一首歌，则播放
 
 
@@ -101,6 +106,7 @@ public class MusicService extends Service {
                   @Override
                   public void onCompletion(MediaPlayer player) {
                     mediaPlayer.release();
+
 
                   }
               });

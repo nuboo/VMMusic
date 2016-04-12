@@ -18,8 +18,17 @@ public class Music  implements Serializable {
     private String downTime;//下载时间
     private boolean collection;//是否收藏
     private String album;
-    private int time;
-    private int id;
+    private String time;
+    private int id;//数据库ID
+    private int sid;//系统ID
+
+    public int getSid() {
+        return sid;
+    }
+
+    public void setSid(int sid) {
+        this.sid = sid;
+    }
 
     public int getId() {
         return id;
@@ -29,11 +38,11 @@ public class Music  implements Serializable {
         this.id = id;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

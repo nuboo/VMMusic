@@ -3,6 +3,7 @@ package com.example.vmmusic.app.utils;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -24,21 +25,23 @@ public class FileUtils {
 
     /**
      * 获取音乐文件信息    歌曲名，歌手，专辑，文件大小，文件路径，播放时长
-     * @param  contentResolver context.getgetContentResolver();
+     * @param  context    context.getContentResolver();
      * @param list ArrayList<Music>用于存储music
      *
      */
-    public void getMediaInfo( ContentResolver contentResolver,ArrayList<Music> list){
+    public void getMediaInfo( Context context,ArrayList<Music> list){
         int i=0;
-
-        Cursor cursor =contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
-
+        ContentResolver contentResolver=context.getContentResolver();
+        Cursor cursor =contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Audio.Media._ID);
+        SQLUtils sqlUtils=new SQLUtils(context);
         if(cursor!=null){
 
             while (cursor.moveToNext()){
                 music =new Music();
 
                 int id=i;
+                int sidNum=cursor.getColumnIndex(MediaStore.Audio.Media._ID);
+                int sid=cursor.getInt(sidNum);
                 int titleNum=cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
                 String title=cursor.getString(titleNum);
                 int albumNum=cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
@@ -47,16 +50,67 @@ public class FileUtils {
                 String singer=cursor.getString(singerNum);
                 int urlNum=cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
                 String url=cursor.getString(urlNum);
+                int duNum=cursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
+                String du=cursor.getString(duNum);
                 music.setId(id);
                 i++;
-                Log.i("id",id+"");
+                //系统ID  歌名   专辑  歌手  时长  路径
+                music.setSid(sid);
                 music.setName(title);
                 music.setAlbum(album);
                 music.setSinger(singer);
-                Log.w("url",url);
+                music.setTime(du);
                 music.setPath(url);
                 list.add(music);
+                sqlUtils.addData(music);
+
             }
+            cursor.close();
+        }
+
+    }
+
+    /**
+     * 从数据库获取信息
+     * @param context
+     * @param list
+     */
+    public void getMediaInfoFromSql( Context context,ArrayList<Music> list){
+        SQLUtils sqlUtils=new SQLUtils(context);
+        SQLiteDatabase database= sqlUtils.getDatabase();
+       Cursor cursor= database.query(LocalSQLHelper.TABLE_NAME,null,null,null,null,LocalSQLHelper.MUSIC_ID,null);
+        if(cursor!=null){
+
+            while (cursor.moveToNext()){
+                music =new Music();
+                int idNum=cursor.getColumnIndex(LocalSQLHelper.MUSIC_ID);
+                int id=cursor.getInt(idNum);
+
+                int sidNum=cursor.getColumnIndex(LocalSQLHelper.MUSIC_SID);
+                int sid=cursor.getInt(sidNum);
+                int titleNum=cursor.getColumnIndex(LocalSQLHelper.MUSIC_NAME);
+                String title=cursor.getString(titleNum);
+                int albumNum=cursor.getColumnIndex(LocalSQLHelper.MUSIC_ALBUM);
+                String album=cursor.getString(albumNum);
+                int singerNum=cursor.getColumnIndex(LocalSQLHelper.MUSIC_SINGER);
+                String singer=cursor.getString(singerNum);
+                int urlNum=cursor.getColumnIndex(LocalSQLHelper.MUSIC_PATH);
+                String url=cursor.getString(urlNum);
+                int duNum=cursor.getColumnIndex(LocalSQLHelper.MUSIC_DURATION);
+                String du=cursor.getString(duNum);
+                music.setId(id);
+
+                //系统ID  歌名   专辑  歌手  时长  路径
+                music.setSid(sid);
+                music.setName(title);
+                music.setAlbum(album);
+                music.setSinger(singer);
+                music.setTime(du);
+                music.setPath(url);
+                list.add(music);
+
+            }
+            cursor.close();
         }
 
     }

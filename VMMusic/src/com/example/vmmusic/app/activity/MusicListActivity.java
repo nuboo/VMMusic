@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -24,6 +25,7 @@ import com.example.vmmusic.app.adapter.MusicListAdapter;
 import com.example.vmmusic.app.adapter.ViewPagerAdapter;
 import com.example.vmmusic.app.model.Music;
 import com.example.vmmusic.app.utils.FileUtils;
+import com.example.vmmusic.app.utils.MusicService;
 import com.example.vmmusic.app.utils.ServiceHelper;
 
 import com.example.vmmusic.app.utils.T;
@@ -55,7 +57,8 @@ public class MusicListActivity extends Activity {
     private  ArrayList<Music> sortlist =new ArrayList<Music>();//单个分类下的歌曲
     public static  final String MUSICLIST="Albums and Songs";
     public static  final String TITLE="title";
-    public static  final String HIDE="songOrAlbum";
+
+    public static final String FIRSTLOAD="newList";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +80,7 @@ public class MusicListActivity extends Activity {
         topLeft.setChecked(true);
 
 
-      //  listView=(ListView)findViewById(R.id.music_list_view);
-       // albumlist=(ListView)findViewById(R.id.music_list_view_albumsinger);
+
         topGroup=(RadioGroup)findViewById(R.id.music_list_group);
         songs=(RadioButton)findViewById(R.id.music_list_single);
         singers=(RadioButton)findViewById(R.id.music_list_singer);
@@ -166,10 +168,10 @@ public class MusicListActivity extends Activity {
 
             for (String album : map.keySet()) {
                 music = new Music();
-                //   if(album!=null&&!album.equals("")) {
+
                 music.setName(album);
                 aList.add(music);
-                //  }
+
             }
 
         albumAdapter=new MusicListAdapter(this,aList,false);
@@ -189,11 +191,11 @@ public class MusicListActivity extends Activity {
 
             for (String singer : sMap.keySet()) {
                 music = new Music();
-                //   if(album!=null&&!album.equals("")) {
+
                 Log.i("singer",singer);
                 music.setName(singer);
                 sList.add(music);
-                //  }
+
             }
 
         singerAdapter=new MusicListAdapter(this,sList,false);
@@ -215,12 +217,13 @@ public class MusicListActivity extends Activity {
 
 
                             music=list.get(i);
-                          /*  inni();
-                            MusicListAdapter.getMap().put(i,true);
-                            song.setSelected(MusicListAdapter.getMap().get(i));*/
-                            songAdapter.notifyDataSetChanged();
+
+
                             serviceHelper=new ServiceHelper(MusicListActivity.this);
-                            serviceHelper.startMyService(music);
+                            Bundle bundle=new Bundle();
+                            bundle.putSerializable(MusicService.VMMUSIC,music);
+                            bundle.putInt(MusicService.LISTSIZE,list.size());
+                            serviceHelper.startMyService(bundle);
 
 
             songAdapter.notifyDataSetChanged();
@@ -286,10 +289,13 @@ public class MusicListActivity extends Activity {
     /**
      * 获取本地mp3文件存入ArrayList中  获取单曲数量
      */
-    private void getLocalFile(){
-        fileUtils=new FileUtils();
+    private void getLocalFile() {
+        fileUtils = new FileUtils();
 
-        fileUtils.getMediaInfo(getContentResolver(),list);
+
+        fileUtils.getMediaInfo(this, list);
+
+
         songs.setText("单曲"+list.size());
         songs.setChecked(true);
 
