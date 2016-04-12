@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:text="光辉岁月"
             android:textColor="@color/font_name"
-            android:textSize="17sp" />
+            android:textSize="17sp"
+            android:maxLines="1"/>
 
         <TextView
             android:id="@+id/item_choose_music_singer"
