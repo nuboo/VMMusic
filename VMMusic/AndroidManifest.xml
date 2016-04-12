@@ -63,6 +63,8 @@
         <activity android:name=".app.activity.MusicPlayActivity"
             android:launchMode="singleInstance"></activity>
         <service android:name=".app.utils.MusicService"></service>
+        <activity android:name=".app.activity.MoreListActivity"
+            android:launchMode="singleTop"></activity>
     </application>
 
 </manifest>

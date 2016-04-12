@@ -1,5 +1,8 @@
 package com.example.vmmusic.app.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +10,7 @@ import java.util.HashMap;
 /** 歌曲属性
  * Created by Administrator on 2016/4/8 0008.
  */
-public class Music implements Serializable{
+public class Music  implements Serializable {
     private String singer;//歌手
     private String name;//歌曲名
     private String path;//本地路径
@@ -15,7 +18,24 @@ public class Music implements Serializable{
     private String downTime;//下载时间
     private boolean collection;//是否收藏
     private String album;
-    private  static  HashMap<String,ArrayList<Music>> musics =new HashMap<String,ArrayList<Music>>();
+    private int time;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
 
     public String getAlbum() {
         return album;
@@ -79,6 +99,7 @@ public class Music implements Serializable{
      * @return  HashMap<String,ArrayList<Music>>;
      */
     public static   HashMap<String,ArrayList<Music>> sortByAlbum(ArrayList<Music> list){
+        HashMap<String,ArrayList<Music>> musics =new HashMap<String,ArrayList<Music>>();
         for(Music music:list){
            String album =music.getAlbum();
             if(musics.containsKey(album)){
@@ -99,6 +120,7 @@ public class Music implements Serializable{
      * @return  HashMap<String,ArrayList<Music>>;
      */
     public static   HashMap<String,ArrayList<Music>> sortBySinger(ArrayList<Music> list){
+        HashMap<String,ArrayList<Music>> musics =new HashMap<String,ArrayList<Music>>();
         for(Music music:list){
             String singer =music.getSinger();
             if(musics.containsKey(singer)){

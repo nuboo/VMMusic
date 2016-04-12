@@ -45,21 +45,26 @@ public class TopSettiings {
 
 
         this.title.setText(title);
+        this.title.setSelected(true);
     }
 
     /**
      * 设置右上角
      * @param rightTitle 右上角文字 default null;
      * @param drawRight 右上角背景   default null;
+     * @param change 是否改变背景图片设置为空  true;false
      * @return  TextView
      */
-    public TextView setRight(String rightTitle,Drawable drawRight){
+    public TextView setRight(String rightTitle,Drawable drawRight,Boolean change){
 
         if(rightTitle!=null&&!rightTitle.equals("")) {
             right.setText(rightTitle);
         }
         if(drawRight!=null) {
             right.setBackgroundDrawable(drawRight);
+        }
+        if(change==true){
+            right.setBackgroundDrawable(null);
         }
         return  right;
     }
@@ -68,15 +73,19 @@ public class TopSettiings {
      * 设置右上角
      * @param leftTitle 右上角文字 default null;
      * @param drawLeft 右上角背景   default null;
+     * @param change 是否改变背景图片设置为空  true;false/null
      * @return  TextView
      */
-    public TextView setLeft(String leftTitle,Drawable drawLeft){
+    public TextView setLeft(String leftTitle,Drawable drawLeft,Boolean change){
 
         if(leftTitle!=null&&!leftTitle.equals("")) {
             left.setText(leftTitle);
         }
         if(drawLeft!=null) {
             left.setBackgroundDrawable(drawLeft);
+        }
+        if(change==true){
+            left.setBackgroundDrawable(null);
         }
         return  left;
     }

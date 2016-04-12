@@ -16,9 +16,50 @@ import java.util.ArrayList;
  * Created by Administrator on 2016/4/11 0011.
  */
 public class FileUtils {
-    String fileName = null;
-    String filePath = null;
-    Music music;
+    private String fileName = null;
+    private String filePath = null;
+    private Music music;
+
+
+
+    /**
+     * 获取音乐文件信息    歌曲名，歌手，专辑，文件大小，文件路径，播放时长
+     * @param  contentResolver context.getgetContentResolver();
+     * @param list ArrayList<Music>用于存储music
+     *
+     */
+    public void getMediaInfo( ContentResolver contentResolver,ArrayList<Music> list){
+        int i=0;
+
+        Cursor cursor =contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
+
+        if(cursor!=null){
+
+            while (cursor.moveToNext()){
+                music =new Music();
+
+                int id=i;
+                int titleNum=cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
+                String title=cursor.getString(titleNum);
+                int albumNum=cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
+                String album=cursor.getString(albumNum);
+                int singerNum=cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+                String singer=cursor.getString(singerNum);
+                int urlNum=cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+                String url=cursor.getString(urlNum);
+                music.setId(id);
+                i++;
+                Log.i("id",id+"");
+                music.setName(title);
+                music.setAlbum(album);
+                music.setSinger(singer);
+                Log.w("url",url);
+                music.setPath(url);
+                list.add(music);
+            }
+        }
+
+    }
 
 
 
@@ -89,35 +130,5 @@ public class FileUtils {
         return music;
     }
 
-    /**
-     * 获取音乐文件
-     * @param list 用于存储内容
-     * @return
-     */
-    public void getMediaInfo(Context context,ArrayList<Music> list){
-        Log.e("success", "11111");
-        ContentResolver contentResolver=context.getContentResolver();
-        Log.e("success", "11222221");
-        Cursor cursor =contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
-        Log.e("success", cursor.toString());
-           if(cursor!=null){
-               Log.e("success", "");
-               while (cursor.moveToNext()){
-                   music =new Music();
-                   int titleNum=cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
-                   String title=cursor.getString(titleNum);
-                   int albumNum=cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
-                   String album=cursor.getString(albumNum);
-                   int singerNum=cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
-                   String singer=cursor.getString(singerNum);
-
-                   music.setName(title);
-                   music.setAlbum(album);
-                   music.setSinger(singer);
-                   list.add(music);
-               }
-           }
-
-    }
 
 }

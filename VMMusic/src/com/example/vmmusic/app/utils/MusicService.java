@@ -20,7 +20,7 @@ public class MusicService extends Service {
     public static final String VMMUSIC="VmMusic";
     private Music music;
     private MediaPlayer mediaPlayer;//音乐播放器
-
+    private String path=null;
     MyServiceBinder myServiceBinder=new MyServiceBinder();
 
 
@@ -51,10 +51,22 @@ public class MusicService extends Service {
         Bundle bundle=intent.getExtras();
         if(bundle!=null){
             music=(Music)bundle.getSerializable(VMMUSIC);
-            Log.w("path",music.getPath().toString());
+
             if(music!=null){
-                playMusic(music.getPath());
-            }
+                if(!music.getPath().equals(path)) {//如果不是同一首歌，则播放
+
+
+                        playMusic(music.getPath());
+
+
+                }/*else{
+                    if(mediaPlayer.isPlaying()){//如果正在播放，则暂停
+                        mediaPlayer.pause();
+                    }else{
+                        mediaPlayer.start();////如果暂停，则播放
+                    }
+                }*/
+             }
         }
 
         super.onStart(intent, startId);
@@ -71,6 +83,7 @@ public class MusicService extends Service {
      * @param path
      */
     private void playMusic(String path){
+        this.path = path;
           if(path!=null&&!path.equals("")) {
 
               mediaPlayer.reset();
@@ -78,7 +91,9 @@ public class MusicService extends Service {
               try {
                   mediaPlayer.setDataSource(path);
                   mediaPlayer.prepare();
+
                   mediaPlayer.start();
+
               } catch (IOException e) {
                   e.printStackTrace();
               }
@@ -86,6 +101,7 @@ public class MusicService extends Service {
                   @Override
                   public void onCompletion(MediaPlayer player) {
                     mediaPlayer.release();
+
                   }
               });
           }
