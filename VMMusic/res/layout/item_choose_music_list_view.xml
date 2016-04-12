@@ -9,7 +9,7 @@
     android:paddingLeft="13dp"
     android:paddingRight="13dp"
     android:paddingTop="10dp">
-
+    <!--音乐选择item-->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
