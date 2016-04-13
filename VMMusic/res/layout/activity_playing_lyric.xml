@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
 
-    android:padding="15dp"
-    android:layout_height="wrap_content">
-    <!--顶部共用-->
+    <!-- 顶部共用 -->
+
     <TextView
+        android:id="@+id/playing_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:id="@+id/playing_title"
         android:gravity="center"
-        android:textSize="25sp"
         android:text="我的"
-        />
+        android:textSize="25sp" />
 
     <TextView
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
         android:id="@+id/playing_right"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:background="@drawable/top_left_diamond"/>
+        android:background="@drawable/top_left_diamond"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/playing_left"
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
-        android:background="@drawable/top_right_cd"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_height="wrap_content" />
+        android:background="@drawable/top_right_cd" />
+
 </RelativeLayout>

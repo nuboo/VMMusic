@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.adapter.SpecialAdapter;
 import com.example.vmmusic.app.model.Special;
+import com.example.vmmusic.app.utils.TopSettiings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class SpecialFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_special, null);
         initView(view);
+        topSetting(view);
         return view;
     }
 
@@ -40,6 +42,28 @@ public class SpecialFragment extends Fragment {
         SpecialAdapter specialAdapter = new SpecialAdapter(view.getContext(), getDate());
         listView.setAdapter(specialAdapter);
     }
+
+    /**
+     * 顶部设置
+     *
+     * @param view
+     */
+    private void topSetting(View view) {
+        TopSettiings topSettiings = new TopSettiings(view);
+        topSettiings.getTextLeft().setVisibility(View.GONE);
+        topSettiings.setTitle("热门专题");
+        topSettiings.getTextRight().setOnClickListener(onClickListener);
+    }
+
+    /**
+     * 顶部监听
+     */
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
 
     /**
      * 假数据

@@ -15,9 +15,9 @@ import java.util.List;
 public class XCFlowLayout extends ViewGroup {
 
     //存储所有子View
-    private List<List<View>> mAllChildViews = new ArrayList<>();
+    private List<List<View>> mAllChildViews = new ArrayList<List<View>>();
     //每一行的高度
-    private List<Integer> mLineHeight = new ArrayList<>();
+    private List<Integer> mLineHeight = new ArrayList<Integer>();
 
     public XCFlowLayout(Context context) {
         this(context, null);

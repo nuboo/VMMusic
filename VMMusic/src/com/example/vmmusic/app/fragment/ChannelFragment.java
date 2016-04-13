@@ -20,6 +20,7 @@ import com.example.vmmusic.app.customview.ReWriteGridView;
 import com.example.vmmusic.app.model.Channel;
 import com.example.vmmusic.app.model.Chippendale;
 import com.example.vmmusic.app.utils.T;
+import com.example.vmmusic.app.utils.TopSettiings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,27 @@ public class ChannelFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_channel, null);
         activity = getActivity();
         setGridView(view);
+        topSetting(view);
         return view;
     }
+
+    /**
+     * 顶部设置
+     * @param view
+     */
+    private void topSetting(View view) {
+        TopSettiings topSettiings = new TopSettiings(view);
+        topSettiings.getTextLeft().setVisibility(View.GONE);
+        topSettiings.setTitle("频道");
+        topSettiings.getTextRight().setOnClickListener(onClickListener);
+    }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    };
 
     /**
      * 横向gridView

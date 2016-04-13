@@ -71,7 +71,6 @@ public class MusicListActivity extends Activity {
      */
     private  void inni(){
         topSettiings=new TopSettiings(this);
-
         topSettiings.setTopRadioGroup(null,null);
         topRight=topSettiings.getChoiceRight();
         topLeft=topSettiings.getChoiceLeft();
@@ -107,9 +106,6 @@ public class MusicListActivity extends Activity {
 
         albumlist.setOnItemClickListener(albumClickListener);
         singerlist.setOnItemClickListener(singerClickListener);
-
-
-
     }
 
     /**
@@ -132,7 +128,6 @@ public class MusicListActivity extends Activity {
             public void onPageScrolled(int i, float v, int i2) {
 
             }
-
             @Override
             public void onPageSelected(int i) {
                    viewPager.setCurrentItem(i);
@@ -158,53 +153,34 @@ public class MusicListActivity extends Activity {
         });
     }
 
-
     /**
      * 专辑分类
      */
     private void byAlbums(){
-
             aList = new ArrayList<Music>();
-
             for (String album : map.keySet()) {
                 music = new Music();
-
                 music.setName(album);
                 aList.add(music);
-
             }
-
         albumAdapter=new MusicListAdapter(this,aList,false);
         albumlist.setAdapter(albumAdapter);
-
-
-
-
     }
 
     /**
      * 歌手分类
      */
     private void bySingers(){
-
             sList = new ArrayList<Music>();
-
             for (String singer : sMap.keySet()) {
                 music = new Music();
-
                 Log.i("singer",singer);
                 music.setName(singer);
                 sList.add(music);
-
             }
-
         singerAdapter=new MusicListAdapter(this,sList,false);
         singerlist.setAdapter(singerAdapter);
-
-
-
     }
-
 
     /**
      * 歌曲点击播放音乐
@@ -212,30 +188,16 @@ public class MusicListActivity extends Activity {
     AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-
-
-
                             music=list.get(i);
-
-
                             serviceHelper=new ServiceHelper(MusicListActivity.this);
                             Bundle bundle=new Bundle();
                             bundle.putSerializable(MusicService.VMMUSIC,music);
                             bundle.putInt(MusicService.LISTSIZE,list.size());
                             serviceHelper.startMyService(bundle);
-
-
             songAdapter.notifyDataSetChanged();
-
-
-
-
 
         }
     };
-
-
 
     /**
      * 歌手的点击事件
@@ -284,24 +246,14 @@ public class MusicListActivity extends Activity {
         }
     };
 
-
-
     /**
      * 获取本地mp3文件存入ArrayList中  获取单曲数量
      */
     private void getLocalFile() {
         fileUtils = new FileUtils();
-
-
         fileUtils.getMediaInfo(this, list);
-
-
         songs.setText("单曲"+list.size());
         songs.setChecked(true);
-
-
-
-
 
         }
 

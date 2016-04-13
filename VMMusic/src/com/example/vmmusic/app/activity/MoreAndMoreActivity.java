@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.customview.RoundImageView;
+import com.example.vmmusic.app.utils.TopSettiings;
 
 /**
  * 更多
@@ -32,6 +33,7 @@ public class MoreAndMoreActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_and_more);
         initView();
+        topSetting();
     }
 
     /**
@@ -44,7 +46,6 @@ public class MoreAndMoreActivity extends Activity {
         more_fans = (TextView) findViewById(R.id.more_fans);
         more_attention = (TextView) findViewById(R.id.more_attention);
         more_voice = (TextView) findViewById(R.id.more_voice);
-
         more_theme = (TextView) findViewById(R.id.more_theme);
         more_collect = (TextView) findViewById(R.id.more_collect);
         more_setting = (TextView) findViewById(R.id.more_setting);
@@ -62,23 +63,34 @@ public class MoreAndMoreActivity extends Activity {
     }
 
     /**
+     * 顶部设置
+     */
+    private void topSetting() {
+        TopSettiings topSettiings = new TopSettiings(this);
+        topSettiings.setTitle("更多");
+        topSettiings.getTextRight().setOnClickListener(onClickListener);
+    }
+
+    /**
      * 监听
      */
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.more_theme:
+                case R.id.public_top_right:
                     break;
-                case R.id.more_collect:
+                case R.id.more_theme://主题
                     break;
-                case R.id.more_setting:
+                case R.id.more_collect://收藏
                     break;
-                case R.id.more_about_vm:
+                case R.id.more_setting://设置
                     break;
-                case R.id.more_update:
+                case R.id.more_about_vm://关于VM
                     break;
-                case R.id.more_login_out:
+                case R.id.more_update://更新
+                    break;
+                case R.id.more_login_out://退出登录
                     break;
 
 
