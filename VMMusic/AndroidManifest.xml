@@ -2,40 +2,38 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.vmmusic"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="21" />
     <!-- 读写SD卡权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
-    </uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar" >
+        android:theme="@android:style/Theme.NoTitleBar">
 
         <!-- 空白页入口 -->
         <activity
             android:name=".app.activity.FirstPage"
-            android:launchMode="singleInstance" >
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- 主页面 -->
         <activity
             android:name=".app.activity.HomePageActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:launchMode="singleTop">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!-- 引导页面 -->
@@ -49,22 +47,16 @@
         <!-- 音乐列表 -->
         <activity
             android:name=".app.activity.MusicListActivity"
-            android:launchMode="singleTop" >
-        </activity>
-        <!-- 音乐播放界面 -->
-        <activity
-            android:name=".app.activity.MusicPlayActivity"
-            android:launchMode="singleInstance" >
-        </activity>
-        <!--  -->
-        <service android:name=".app.utils.MusicService" >
-        </service>
-
+            android:launchMode="singleTop"></activity>
+        <service android:name=".app.utils.MusicService"></service>
         <activity
             android:name=".app.activity.MoreListActivity"
-            android:launchMode="singleTop" >
-        </activity>
-        <!-- 搜索 -->
+            android:launchMode="singleTop"></activity>
+        <!--音乐播放界面-->
+        <activity
+            android:name=".app.activity.MusicLyricPlayActivity"
+            android:launchMode="singleTop"></activity>
+        <!--搜索-->
         <activity android:name=".app.activity.SearchActivity" />
         <!-- 更多 -->
         <activity android:name=".app.activity.MoreAndMoreActivity" />

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <ListView
         android:id="@+id/music_list_view"
         android:layout_width="match_parent"
@@ -14,5 +15,7 @@
         android:dividerHeight="0.5dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:scrollbars="none"></ListView>
+        android:scrollbars="none" />
+
+
 </LinearLayout>

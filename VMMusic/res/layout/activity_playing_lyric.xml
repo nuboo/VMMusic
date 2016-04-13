@@ -1,33 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/background_color"
+    android:orientation="vertical"
     android:padding="15dp">
 
     <!-- 顶部共用 -->
-
-    <TextView
-        android:id="@+id/playing_title"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="19dp">
+
+        <TextView
+            android:id="@+id/lyrics_song"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/playing_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/back"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/playing_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/lyrics_top_right" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/lyrics_singer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
         android:gravity="center"
-        android:text="我的"
+        android:padding="10dp"
+        android:text="111"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+    <!--歌词-->
+    <com.example.vmmusic.app.customview.LrcTextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="45dp"
+        android:layout_weight="1"
+        android:ellipsize="marquee"
+        android:gravity="center_horizontal"
+        android:singleLine="false"
+        android:text="lyrics"
+        android:textColor="@color/font_name"
         android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/playing_right"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:background="@drawable/top_left_diamond"
-        android:gravity="center" />
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+        <!--收藏-->
+        <TextView
+            android:id="@+id/lyrics_collection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/public_collect"
+            android:gravity="center"
+            android:padding="10dp" />
+        <!--分享-->
+        <TextView
+            android:id="@+id/lyrics_share"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/public_vm_share"
+            android:gravity="center"
+            android:padding="10dp" />
+        <!--下载-->
+        <TextView
+            android:id="@+id/lyrics_download"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/public_download"
+            android:gravity="center"
+            android:padding="10dp" />
+        <!--随机播放-->
+        <TextView
+            android:id="@+id/lyrics_play_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/lyrics_play"
+            android:gravity="center"
+            android:padding="10dp" />
+    </LinearLayout>
+</LinearLayout>
 
-    <TextView
-        android:id="@+id/playing_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/top_right_cd" />
-
-</RelativeLayout>
