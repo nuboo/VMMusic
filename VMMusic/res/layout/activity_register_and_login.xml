@@ -6,7 +6,7 @@
     <!--登录注册页面-->
     <!--登录注册选择-->
     <RadioGroup
-        android:id="@+id/login_radio_group"
+        android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

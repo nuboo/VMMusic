@@ -129,8 +129,7 @@ public class HomePageActivity extends FragmentActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(HomePageActivity.this, SearchActivity.class);
-            startActivity(intent);
+
         }
     };
 

@@ -65,14 +65,13 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
             public void run() {
                 // TODO Auto-generated method stub
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
                 Intent intent = new Intent(GuidePage.this, HomePageActivity.class);
                 startActivity(intent);
-                finish();
             }
 
         }).start();
