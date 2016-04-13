@@ -41,11 +41,11 @@
             android:name=".app.activity.HomePageActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
 
         <!--引导页面-->
@@ -60,11 +60,11 @@
         <!--音乐列表-->
         <activity android:name=".app.activity.MusicListActivity"
             android:launchMode="singleTop">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
             </activity>
      <!--   <activity android:name=".app.fragment.SearchMusicFragment"
             android:launchMode="singleTop"></activity>-->

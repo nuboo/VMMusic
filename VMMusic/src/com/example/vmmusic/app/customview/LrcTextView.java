@@ -2,12 +2,13 @@ package com.example.vmmusic.app.customview;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
+
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import com.example.vmmusic.R;
 import com.example.vmmusic.app.model.LrcContent;
 
 import java.util.ArrayList;
@@ -21,10 +22,10 @@ public class LrcTextView extends TextView {
     private float height;       //歌词视图高度
     private Paint currentPaint; //当前画笔对象
     private Paint notCurrentPaint;  //非当前画笔对象
-    private float textHeight = 25;  //文本高度
-    private float textSize = 18;        //文本大小
-    private int index = 0;      //list集合下标
 
+    private float textSize = 26;        //文本大小
+    private int index = 0;      //list集合下标
+    private  int DY = 50; // 每一行的间隔
 
     private List<LrcContent> mLrcList = new ArrayList<LrcContent>();
 
@@ -70,10 +71,10 @@ public class LrcTextView extends TextView {
             return;
         }
 
-        currentPaint.setColor(Color.argb(210, 251, 248, 29));
-        notCurrentPaint.setColor(Color.argb(140, 255, 255, 255));
+        currentPaint.setColor(getResources().getColor(R.color.green));//播放中文字
+        notCurrentPaint.setColor(getResources().getColor(R.color.font_name));
 
-        currentPaint.setTextSize(24);
+        currentPaint.setTextSize(textSize);
         currentPaint.setTypeface(Typeface.SERIF);
 
         notCurrentPaint.setTextSize(textSize);
@@ -87,18 +88,19 @@ public class LrcTextView extends TextView {
             //画出本句之前的句子
             for(int i = index - 1; i >= 0; i--) {
                 //向上推移
-                tempY = tempY - textHeight;
+                tempY = tempY - DY;
                 canvas.drawText(mLrcList.get(i).getLrcStr(), width / 2, tempY, notCurrentPaint);
             }
             tempY = height / 2;
             //画出本句之后的句子
             for(int i = index + 1; i < mLrcList.size(); i++) {
                 //往下推移
-                tempY = tempY + textHeight;
+                tempY = tempY + DY;
+
                 canvas.drawText(mLrcList.get(i).getLrcStr(), width / 2, tempY, notCurrentPaint);
             }
         } catch (Exception e) {
-            setText("...木有歌词文件，赶紧去下载...");
+            setText("未找到歌词文件");
         }
     }
 
@@ -116,4 +118,11 @@ public class LrcTextView extends TextView {
         this.index = index;
     }
 
+    public  int getDy() {
+        return DY;
+    }
+
+    public void setDY(int DY) {
+        this.DY = DY;
+    }
 }

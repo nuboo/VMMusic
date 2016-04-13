@@ -37,6 +37,7 @@ import com.example.vmmusic.app.utils.TopSettiings;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Handler;
 
 /**选择音乐
  * Created by Administrator on 2016/4/8 0008.
@@ -348,12 +349,17 @@ public class MusicListActivity extends Activity {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.public_top_left:
+                    finish();
+                    break;
+                case R.id.public_top_right:
+                    Intent playLyric=new Intent(MusicListActivity.this,MusicLyricPlayActivity.class);
+                    startActivity(playLyric);//跳转歌词页面
                     break;
                 default:
                     break;
 
             }
-            finish();
+
         }
     };
     /**
