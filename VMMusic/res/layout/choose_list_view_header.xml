@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/choose_music_radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/choose_music_single"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableBottom="@drawable/choose_music_button_dawable"
+            android:drawablePadding="14dp"
+            android:gravity="center"
+            android:paddingTop="14dp"
+            android:text="单曲47"
+            android:textColor="@drawable/choose_music_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/choose_music_singer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="14dp"
+            android:text="歌手27"
+            android:textColor="@drawable/choose_music_text_color"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/choose_music_special"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="14dp"
+            android:text="专辑35"
+            android:textColor="@drawable/choose_music_text_color"
+            android:textSize="14sp" />
+    </RadioGroup>
+</LinearLayout>
