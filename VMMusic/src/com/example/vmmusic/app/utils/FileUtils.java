@@ -70,6 +70,54 @@ public class FileUtils {
 
     }
 
+
+    /**
+     * 获取音乐文件信息    歌曲名，歌手，专辑，文件大小，文件路径，播放时长
+     * @param  contentResolver    context.getContentResolver();
+     * @param list ArrayList<Music>用于存储music
+     *
+     */
+    public void getMediaInfoByResolver(  ContentResolver contentResolver,ArrayList<Music> list){
+        int i=0;
+
+        Cursor cursor =contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Audio.Media._ID);
+
+        if(cursor!=null){
+
+            while (cursor.moveToNext()){
+                music =new Music();
+
+                int id=i;
+                int sidNum=cursor.getColumnIndex(MediaStore.Audio.Media._ID);
+                int sid=cursor.getInt(sidNum);
+                int titleNum=cursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
+                String title=cursor.getString(titleNum);
+                int albumNum=cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM);
+                String album=cursor.getString(albumNum);
+                int singerNum=cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+                String singer=cursor.getString(singerNum);
+                int urlNum=cursor.getColumnIndex(MediaStore.Audio.Media.DATA);
+                String url=cursor.getString(urlNum);
+                int duNum=cursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
+                String du=cursor.getString(duNum);
+                music.setId(id);
+                i++;
+                //系统ID  歌名   专辑  歌手  时长  路径
+                music.setSid(sid);
+                music.setName(title);
+                music.setAlbum(album);
+                music.setSinger(singer);
+                music.setTime(du);
+                music.setPath(url);
+                list.add(music);
+
+
+            }
+            cursor.close();
+        }
+
+    }
+
     /**
      * 从数据库获取信息
      * @param context

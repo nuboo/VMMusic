@@ -1,9 +1,11 @@
 package com.example.vmmusic.app.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -45,6 +47,7 @@ public class MusicListActivity extends Activity {
     private RadioButton topRight,topLeft;//全部,本地
     private RadioButton songs,singers,albums;//歌曲，歌手，专辑
     private  Music music;
+    private int listPostion;//播放位置
     private ServiceHelper serviceHelper;
     private MusicListAdapter songAdapter,singerAdapter,albumAdapter;
     private FileUtils fileUtils;
@@ -63,6 +66,10 @@ public class MusicListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_list);
+
+        IntentFilter intentFilter=new IntentFilter();
+        intentFilter.addAction(MusicService.NEXTSONG);
+        registerReceiver(musicListReceiver, intentFilter);
         inni();
     }
 
@@ -76,6 +83,8 @@ public class MusicListActivity extends Activity {
         topRight=topSettiings.getChoiceRight();
         topLeft=topSettiings.getChoiceLeft();
         TextView back=topSettiings.setLeft(null, null,false);
+        TextView right=topSettiings.setRight(null,null,false);
+        right.setOnClickListener(onClickListener);
         back.setOnClickListener(onClickListener);
         topLeft.setChecked(true);
 
@@ -214,19 +223,11 @@ public class MusicListActivity extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
+            listPostion=i;
+        playMusic(i);
 
 
-                            music=list.get(i);
 
-
-                            serviceHelper=new ServiceHelper(MusicListActivity.this);
-                            Bundle bundle=new Bundle();
-                            bundle.putSerializable(MusicService.VMMUSIC,music);
-                            bundle.putInt(MusicService.LISTSIZE,list.size());
-                            serviceHelper.startMyService(bundle);
-
-
-            songAdapter.notifyDataSetChanged();
 
 
 
@@ -235,7 +236,21 @@ public class MusicListActivity extends Activity {
         }
     };
 
+    /**
+     * 播放音乐
+     * @param postion 点击的位置
+     */
+    private  void playMusic(int postion){
 
+        music=list.get(postion);
+
+
+        serviceHelper=new ServiceHelper(MusicListActivity.this);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(MusicService.VMMUSIC,music);
+        bundle.putInt(MusicService.LISTSIZE,list.size());
+        serviceHelper.startMyService(bundle);
+    }
 
     /**
      * 歌手的点击事件
@@ -331,7 +346,42 @@ public class MusicListActivity extends Activity {
     View.OnClickListener onClickListener=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.public_top_left:
+                    break;
+                default:
+                    break;
+
+            }
             finish();
         }
     };
+    /**
+     * broadcastReceiver  自动播放下一曲
+     */
+    BroadcastReceiver musicListReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (intent.getAction().equals(MusicService.NEXTSONG)) {
+                listPostion++;
+                playMusic(intent.getIntExtra(MusicService.NEXTSONG, listPostion));
+                Log.e("re",listPostion+"~~~~~~~~~~~"+intent.getIntExtra(MusicService.NEXTSONG,0));
+            }
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+
+        unregisterReceiver(musicListReceiver);
+        Log.i("destroy","unregi");
+        serviceHelper=new ServiceHelper(MusicListActivity.this);
+        Bundle bundle=new Bundle();
+
+        bundle.putBoolean(MusicService.ISFINISH,true);
+        serviceHelper.startMyService(bundle);
+        super.onDestroy();
+
+    }
 }

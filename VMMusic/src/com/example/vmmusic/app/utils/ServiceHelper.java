@@ -43,7 +43,7 @@ public class ServiceHelper {
 
     /**
      * 绑定服务
-     * @param music  music对象
+     * @param bundle  music对象
      */
     public void bindMyservice(Bundle bundle){
         Intent intent =new Intent(context,MusicService.class);

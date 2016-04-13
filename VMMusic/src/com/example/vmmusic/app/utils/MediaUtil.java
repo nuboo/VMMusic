@@ -65,7 +65,7 @@ public class MediaUtil {
         向List集合里添加Map对象，每个Map对象存放一首音乐的所有属性
     */
     public static List<Map<String, Mp3Info>> getMusicMaps(List mp3Infos) {
-        List<Map<String, Mp3Info>> mp3list = new ArrayList<>();
+        List<Map<String, Mp3Info>> mp3list = new ArrayList<Map<String, Mp3Info>>();
         for (Iterator iterator = mp3Infos.iterator(); iterator.hasNext(); ) {
             Mp3Info mp3Info = (Mp3Info) iterator.next();
             HashMap map = new HashMap();

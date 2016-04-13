@@ -111,7 +111,7 @@ public class ChippendaleFragment extends Fragment {
     private List<Attention> getListDate() {
         SimpleDateFormat format = new SimpleDateFormat("MM-dd  HH-mm");
         Date date = new Date();
-        List<Attention> list = new ArrayList<>();
+        List<Attention> list = new ArrayList<Attention>();
         for (int i = 0; i < 20; i++) {
             Attention attention = new Attention();
             attention.setIcon(R.drawable.icon);

@@ -1,8 +1,11 @@
 package com.example.vmmusic.app.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,7 +27,8 @@ import java.util.ArrayList;
 public class MoreListActivity extends Activity {
     private TopSettiings topSettiings;
     private ArrayList<Music> musics;
-    private Boolean aBoolean;
+    private int where;//当前播放位置
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,13 +66,37 @@ public class MoreListActivity extends Activity {
     AdapterView.OnItemClickListener itemClickListener=new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            Music music=musics.get(i);
-           ServiceHelper serviceHelper=new ServiceHelper(MoreListActivity.this);
-            Bundle bundle=new Bundle();
-            bundle.putSerializable(MusicService.VMMUSIC,music);
-            bundle.putInt(MusicService.LISTSIZE,musics.size());
-            serviceHelper.startMyService(bundle);
+
+            playByPostion(i);
 
         }
     };
+
+    /**
+     * 播放选中位置
+     * @param postion
+     */
+    private void playByPostion(int postion){
+        Music music=musics.get(postion);
+        ServiceHelper serviceHelper=new ServiceHelper(MoreListActivity.this);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(MusicService.VMMUSIC,music);
+        bundle.putInt(MusicService.LISTSIZE, musics.size());
+        bundle.putBoolean(MusicService.ISSONGLIST,false);
+        serviceHelper.startMyService(bundle);
+    }
+
+
+    BroadcastReceiver moreListReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(MusicService.NEXT)){
+               where++;
+
+                playByPostion(intent.getIntExtra(MusicService.NEXTSONG, where));
+            }
+        }
+    };
+
+
 }
