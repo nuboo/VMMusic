@@ -5,12 +5,68 @@
     android:background="@color/background_color"
     android:orientation="vertical">
     <!--音乐馆-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
+        <RadioGroup
+            android:id="@+id/chippendale_radio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/chippendale_attention"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:checked="true"
+                android:text="关注"
+                android:textColor="@drawable/choose_music_text_color" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="21dp"
+                android:layout_marginRight="21dp"
+                android:background="@color/green" />
+
+            <RadioButton
+                android:id="@+id/chippendale_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:checked="true"
+                android:text="推荐"
+                android:textColor="@drawable/choose_music_text_color" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/optical_disk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/optical_disk" />
+    </RelativeLayout>
+
+
+    <!--关注-->
     <ListView
         android:id="@+id/chippendale_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:divider="@color/background_color"
+        android:dividerHeight="10dp"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"/>
 
 
     <!--推荐-->
@@ -18,8 +74,8 @@
         android:id="@+id/chippendale_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:horizontalSpacing="-13dp"
         android:listSelector="#00000000"
-        android:numColumns="2"
-        android:horizontalSpacing="-13dp"/>
+        android:numColumns="2" />
 
 </LinearLayout>

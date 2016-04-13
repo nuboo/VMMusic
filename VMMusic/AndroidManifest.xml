@@ -6,6 +6,7 @@
 
     <uses-sdk
 
+
         android:minSdkVersion="14"
 
 
@@ -13,6 +14,8 @@
     <!--读写SD卡权限-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -34,6 +37,7 @@
 
         <!--主页面-->
         <activity
+
             android:name=".app.activity.HomePageActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop">
@@ -65,6 +69,17 @@
         <service android:name=".app.utils.MusicService"></service>
         <activity android:name=".app.activity.MoreListActivity"
             android:launchMode="singleTop"></activity>
+
+
+        <!--选择音乐-->
+        <activity android:name=".app.activity.ChooseMusicActivity">
+
+        </activity>
+        <!--搜索-->
+        <activity android:name=".app.activity.SearchActivity" />
+        <!--更多-->
+        <activity android:name=".app.activity.MoreAndMoreActivity" />
+
     </application>
 
 </manifest>

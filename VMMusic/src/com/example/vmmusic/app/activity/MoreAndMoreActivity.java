@@ -1,0 +1,88 @@
+package com.example.vmmusic.app.activity;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import com.example.vmmusic.R;
+import com.example.vmmusic.app.customview.RoundImageView;
+
+/**
+ * 更多
+ * Created by awx19 on 2016/4/11.
+ */
+public class MoreAndMoreActivity extends Activity {
+    RoundImageView more_img;//用户头像
+    TextView more_name;//用户名
+    TextView more_vip;//会员
+    TextView more_fans;//粉丝
+    TextView more_attention;//关注
+    TextView more_voice;//声音
+
+    TextView more_theme;//主题
+    TextView more_collect;//收藏
+    TextView more_setting;//设置
+    TextView more_about_vm;//关于VM
+    TextView more_update;//版本更新
+    TextView more_login_out;//退出登录
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_more_and_more);
+        initView();
+    }
+
+    /**
+     * 初始化控件
+     */
+    private void initView() {
+        more_img = (RoundImageView) findViewById(R.id.more_img);
+        more_name = (TextView) findViewById(R.id.more_name);
+        more_vip = (TextView) findViewById(R.id.more_vip);
+        more_fans = (TextView) findViewById(R.id.more_fans);
+        more_attention = (TextView) findViewById(R.id.more_attention);
+        more_voice = (TextView) findViewById(R.id.more_voice);
+
+        more_theme = (TextView) findViewById(R.id.more_theme);
+        more_collect = (TextView) findViewById(R.id.more_collect);
+        more_setting = (TextView) findViewById(R.id.more_setting);
+        more_about_vm = (TextView) findViewById(R.id.more_about_vm);
+        more_update = (TextView) findViewById(R.id.more_update);
+        more_login_out = (TextView) findViewById(R.id.more_login_out);
+        more_theme.setOnClickListener(onClickListener);
+        more_collect.setOnClickListener(onClickListener);
+        more_setting.setOnClickListener(onClickListener);
+        more_about_vm.setOnClickListener(onClickListener);
+        more_update.setOnClickListener(onClickListener);
+        more_login_out.setOnClickListener(onClickListener);
+
+
+    }
+
+    /**
+     * 监听
+     */
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.more_theme:
+                    break;
+                case R.id.more_collect:
+                    break;
+                case R.id.more_setting:
+                    break;
+                case R.id.more_about_vm:
+                    break;
+                case R.id.more_update:
+                    break;
+                case R.id.more_login_out:
+                    break;
+
+
+            }
+        }
+    };
+}

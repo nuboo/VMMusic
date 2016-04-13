@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
     android:background="@color/white"
     android:padding="15dp"
     android:layout_height="wrap_content">
   <!--顶部共用-->
+    <!--标题-->
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+       android:layout_centerInParent="true"
         android:id="@+id/public_top_title"
         android:gravity="center"
         android:textSize="25sp"
@@ -17,6 +19,7 @@
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         />
+    <!--RadionGroup-->
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +27,7 @@
         android:id="@+id/public_top_radio"
         android:gravity="center"
         android:visibility="gone"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         >
         <RadioButton
             android:layout_width="0dp"
@@ -53,6 +56,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/public_top_radio_right"/>
     </RadioGroup>
+    <!--左上-->
     <TextView
         android:layout_width="wrap_content"
 
@@ -61,7 +65,7 @@
         android:gravity="center"
        android:layout_centerVertical="true"
         android:background="@drawable/top_left_diamond"/>
-
+    <!--右上-->
     <TextView
         android:id="@+id/public_top_right"
         android:layout_alignParentRight="true"
@@ -69,4 +73,15 @@
         android:background="@drawable/top_right_cd"
         android:layout_centerVertical="true"
         android:layout_height="wrap_content" />
+
+
+
+
+
+
+
+
+
+
 </RelativeLayout>
+
