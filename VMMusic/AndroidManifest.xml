@@ -60,6 +60,8 @@
         <activity android:name=".app.activity.SearchActivity" />
         <!-- 更多 -->
         <activity android:name=".app.activity.MoreAndMoreActivity" />
+        <!--频道分类-->
+        <activity android:name=".app.activity.ChannelClassificationActivity" />
     </application>
 
 </manifest>
