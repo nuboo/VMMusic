@@ -80,7 +80,7 @@ public class RegisterLoginActivity extends Activity {
      * 初始化控件
      */
     private void initView() {
-        radioGroup = (RadioGroup) findViewById(R.id.radio_group);
+        radioGroup = (RadioGroup) findViewById(R.id.login_radio_group);
         radioButton_login = (RadioButton) findViewById(R.id.login);
         radioButton_register = (RadioButton) findViewById(R.id.register);
         editText_phone = (EditText) findViewById(R.id.register_phone);
