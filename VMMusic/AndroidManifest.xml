@@ -19,7 +19,7 @@
 
         <!-- 空白页入口 -->
         <activity
-            android:name=".app.activity.FirstPage"
+            android:name="com.example.vmmusic.app.activity.FirstPage"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,7 @@
 
         <!-- 主页面 -->
         <activity
-            android:name=".app.activity.HomePageActivity"
+            android:name="com.example.vmmusic.app.activity.HomePageActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop">
 
@@ -38,30 +38,41 @@
 
         <!-- 引导页面 -->
         <activity
-            android:name=".app.activity.GuidePage"
+            android:name="com.example.vmmusic.app.activity.GuidePage"
             android:launchMode="singleTop" />
         <!-- 登录注册 -->
         <activity
-            android:name=".app.activity.RegisterLoginActivity"
+            android:name="com.example.vmmusic.app.activity.RegisterLoginActivity"
             android:launchMode="singleTop" />
         <!-- 音乐列表 -->
         <activity
-            android:name=".app.activity.MusicListActivity"
+            android:name="com.example.vmmusic.app.activity.MusicListActivity"
             android:launchMode="singleTop"></activity>
+        <!--播放音乐服务-->
         <service android:name=".app.utils.MusicService"></service>
+
+        <!--专辑歌手分类详细-->
+
+
         <activity
-            android:name=".app.activity.MoreListActivity"
+            android:name="com.example.vmmusic.app.activity.MoreListActivity"
             android:launchMode="singleTop"></activity>
         <!--音乐播放界面-->
         <activity
-            android:name=".app.activity.MusicLyricPlayActivity"
+            android:name="com.example.vmmusic.app.activity.MusicLyricPlayActivity"
+
             android:launchMode="singleTop"></activity>
         <!--搜索-->
-        <activity android:name=".app.activity.SearchActivity" />
-        <!-- 更多 -->
-        <activity android:name=".app.activity.MoreAndMoreActivity" />
-        <!--频道分类-->
-        <activity android:name=".app.activity.ChannelClassificationActivity" />
+
+        <activity android:name="com.example.vmmusic.app.activity.SearchActivity"
+            android:launchMode="singleTop"/>
+        <!--更多-->
+        <activity android:name="com.example.vmmusic.app.activity.MoreAndMoreActivity"
+            android:launchMode="singleTop"/>
+
+        <activity android:name="com.example.vmmusic.app.activity.ChannelClassificationActivity"
+            android:launchMode="singleTop" />
+		
     </application>
 
 </manifest>

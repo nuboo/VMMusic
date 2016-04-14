@@ -1,5 +1,6 @@
 package com.example.vmmusic.app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.activity.MusicListActivity;
 import com.example.vmmusic.app.adapter.SpecialAdapter;
 import com.example.vmmusic.app.model.Special;
 import com.example.vmmusic.app.utils.TopSettiings;
@@ -61,7 +63,8 @@ public class SpecialFragment extends Fragment {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+        	Intent intent = new Intent(getActivity(), MusicListActivity.class);
+        	getActivity().startActivity(intent);
         }
     };
 

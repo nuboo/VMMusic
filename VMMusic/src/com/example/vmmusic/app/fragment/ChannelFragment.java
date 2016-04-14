@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.activity.ChannelClassificationActivity;
+import com.example.vmmusic.app.activity.MusicListActivity;
 import com.example.vmmusic.app.adapter.ChannelGridAdapter;
 import com.example.vmmusic.app.adapter.ChippendaleAdapter;
 import com.example.vmmusic.app.customview.HeaderGridView;
@@ -61,7 +62,8 @@ public class ChannelFragment extends Fragment {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+        	Intent intent = new Intent(getActivity(), MusicListActivity.class);
+        	getActivity().startActivity(intent);
         }
     };
 

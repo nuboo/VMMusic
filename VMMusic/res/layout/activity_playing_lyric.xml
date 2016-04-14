@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/background_color"
+    android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical"
     android:padding="15dp">
 
@@ -14,15 +14,19 @@
 
         <TextView
             android:id="@+id/lyrics_song"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="我的"
+           	android:singleLine="true"
+           	android:ellipsize="marquee"
+           	android:layout_centerInParent="true"
+           	android:marqueeRepeatLimit="marquee_forever"
             android:textColor="@color/white"
+            
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/playing_right"
+            android:id="@+id/lyrics_top_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -30,7 +34,7 @@
             android:gravity="center" />
 
         <TextView
-            android:id="@+id/playing_left"
+            android:id="@+id/lyrics_top_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -45,21 +49,21 @@
         android:alpha="0.7"
         android:gravity="center"
         android:padding="10dp"
-        android:text="111"
+        	android:singleLine="true"
+           	android:ellipsize="marquee"
+           	android:marqueeRepeatLimit="marquee_forever"
         android:textColor="@color/white"
         android:textSize="20sp" />
     <!--歌词-->
     <com.example.vmmusic.app.customview.LrcTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="35dp"
+        android:id="@+id/playing_lyrics"
+       
         android:layout_weight="1"
-        android:ellipsize="marquee"
-        android:gravity="center_horizontal"
-        android:singleLine="false"
-        android:text="lyrics"
-        android:textColor="@color/font_name"
-        android:textSize="25sp" />
+       	android:layout_marginBottom="25dp"
+       	 />
 
     <LinearLayout
         android:layout_width="match_parent"

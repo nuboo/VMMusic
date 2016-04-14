@@ -1,43 +1,32 @@
 package com.example.vmmusic.app.activity;
 
-import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.os.Bundle;
-
-import android.provider.MediaStore;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.example.vmmusic.R;
-
 import com.example.vmmusic.app.adapter.MusicListAdapter;
 import com.example.vmmusic.app.adapter.ViewPagerAdapter;
+import com.example.vmmusic.app.fragment.MineFragment;
 import com.example.vmmusic.app.model.Music;
 import com.example.vmmusic.app.utils.FileUtils;
 import com.example.vmmusic.app.utils.MusicService;
 import com.example.vmmusic.app.utils.ServiceHelper;
-
-import com.example.vmmusic.app.utils.T;
 import com.example.vmmusic.app.utils.TopSettiings;
 
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Handler;
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 /**
  * 选择音乐
@@ -56,14 +45,18 @@ public class MusicListActivity extends Activity {
     private RadioGroup topGroup;
     private ArrayList<Music> aList, sList;//专辑，歌手
     private ViewPager viewPager;
+    private boolean local;
+
+    public static final int FROM=1000;
+
+
     private HashMap<String, ArrayList<Music>> map, sMap;//专辑，歌手
     private ArrayList<View> viewList = new ArrayList<View>();
     private ArrayList<Music> list = new ArrayList<Music>();//所有歌曲
     private ArrayList<Music> sortlist = new ArrayList<Music>();//单个分类下的歌曲
     public static final String MUSICLIST = "Albums and Songs";
-    public static final String TITLE = "title";
+    public static final String TITLE = "new title";
 
-    public static final String FIRSTLOAD = "newList";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +81,15 @@ public class MusicListActivity extends Activity {
         TextView right = topSettiings.setRight(null, null, false);
         right.setOnClickListener(onClickListener);
         back.setOnClickListener(onClickListener);
+        Intent intent=getIntent();
+        if(intent!=null){
+        	local=intent.getBooleanExtra(MineFragment.LOCAL, false);
+        	if(local){
+        		topRight.setChecked(true);
+        	}
+        }else{
         topLeft.setChecked(true);
-
+        }
 
         topGroup = (RadioGroup) findViewById(R.id.music_list_group);
         songs = (RadioButton) findViewById(R.id.music_list_single);
@@ -223,10 +223,12 @@ public class MusicListActivity extends Activity {
         music = list.get(postion);
 
 
-        serviceHelper = new ServiceHelper(MusicListActivity.this);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(MusicService.VMMUSIC, music);
-        bundle.putInt(MusicService.LISTSIZE, list.size());
+        serviceHelper=new ServiceHelper(MusicListActivity.this);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(MusicService.VMMUSIC,music);
+        bundle.putInt(MusicService.LISTSIZE,list.size());
+        bundle.putInt(MusicService.FROMWHERE,FROM);
+
         serviceHelper.startMyService(bundle);
     }
 
@@ -236,20 +238,24 @@ public class MusicListActivity extends Activity {
     AdapterView.OnItemClickListener singerClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            Music music = sList.get(i);
 
-            String singer = music.getName();//歌手名
+                    Music music=sList.get(i);
 
-            if (sMap.containsKey(singer)) {
-                Intent intent = new Intent(MusicListActivity.this, MoreListActivity.class);
-                Bundle bundle = new Bundle();
-                ArrayList<Music> singerList = sMap.get(singer);
-                //     bundle.putParcelableArrayList(MUSICLIST, singerList);
-                bundle.putString(TITLE, singer);
-                bundle.putSerializable(MUSICLIST, singerList);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
+                    String singer =music.getName();//歌手名
+
+                    if(sMap.containsKey(singer)) {
+                        Intent intent =new Intent(MusicListActivity.this,MoreListActivity.class);
+                        Bundle bundle=new Bundle();
+                        ArrayList<Music> singerList = sMap.get(singer);
+
+                        bundle.putString(TITLE, singer);
+                        bundle.putSerializable(MUSICLIST,singerList);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+
+
+
         }
     };
 
@@ -339,7 +345,7 @@ public class MusicListActivity extends Activity {
             if (intent.getAction().equals(MusicService.NEXTSONG)) {
                 listPostion++;
                 playMusic(intent.getIntExtra(MusicService.NEXTSONG, listPostion));
-                Log.e("re", listPostion + "~~~~~~~~~~~" + intent.getIntExtra(MusicService.NEXTSONG, 0));
+
             }
         }
     };
@@ -348,9 +354,13 @@ public class MusicListActivity extends Activity {
     protected void onDestroy() {
 
         unregisterReceiver(musicListReceiver);
-        Log.i("destroy", "unregi");
-        serviceHelper = new ServiceHelper(MusicListActivity.this);
-        Bundle bundle = new Bundle();
+
+
+        serviceHelper=new ServiceHelper(MusicListActivity.this);
+        Bundle bundle=new Bundle();
+
+
+
 
         bundle.putBoolean(MusicService.ISFINISH, true);
         serviceHelper.startMyService(bundle);

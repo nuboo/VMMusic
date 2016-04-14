@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.activity.MoreAndMoreActivity;
+import com.example.vmmusic.app.activity.MusicListActivity;
+import com.example.vmmusic.app.activity.MusicLyricPlayActivity;
 import com.example.vmmusic.app.adapter.ChippendaleAdapter;
 import com.example.vmmusic.app.customview.HeaderGridView;
 import com.example.vmmusic.app.customview.ReWriteGridView;
@@ -39,7 +41,8 @@ public class MineFragment extends Fragment {
     TextView mine_lately;//最近播放
     TableRow mine_guess_you_like;//猜你喜欢
     Intent intent;
-
+    public static final String LOCAL="local music";
+   
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -102,10 +105,13 @@ public class MineFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.public_top_right:
-
+                	Intent intent = new Intent(getActivity(), MusicLyricPlayActivity.class);
+                	getActivity().startActivity(intent);
                     break;
                 case R.id.local_music://本地音乐
-
+                	Intent local = new Intent(getActivity(), MusicListActivity.class);
+                	local.putExtra(LOCAL, true);
+                	getActivity().startActivity(local);	
                     break;
                 case R.id.download_music://下载音乐
 

@@ -28,9 +28,10 @@ public class MusicLyricPlayActivity extends Activity {
     private ServiceHelper serviceHelper;
     private MusicService myService;
     private  LrcTextView lrcView;
-    private TextView title,singer,back;
+    private TextView title,singer,back,more;
     private TextView collect ,share,donwLoad,playType;//收藏，分享，下载，随机播放
     private IntentFilter intentFilter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,33 +42,48 @@ public class MusicLyricPlayActivity extends Activity {
     }
 
     private void inni(){
+
         intentFilter=new IntentFilter();
         intentFilter.addAction(MusicService.NEWSONG);
-        registerReceiver(updateReceiver,intentFilter);//注册广播，更新
+        registerReceiver(updateReceiver, intentFilter);//注册广播，更新
         lrcView=(LrcTextView)findViewById(R.id.playing_lyrics);
+        more=(TextView)findViewById(R.id.lyrics_top_right);
         title=(TextView)findViewById(R.id.lyrics_song);
         title.setSelected(true);//设置标题滚动
-        singer.setSelected(true);
+
         singer=(TextView)findViewById(R.id.lyrics_singer);
+        singer.setSelected(true);
         back=(TextView)findViewById(R.id.lyrics_top_left);
-
+        bindMyservice();
         back.setOnClickListener(clickListener);
-
+        more.setOnClickListener(clickListener);
         collect=(TextView)findViewById(R.id.lyrics_collection);
         share=(TextView)findViewById(R.id.lyrics_share);
         donwLoad=(TextView)findViewById(R.id.lyrics_download);
         playType=(TextView)findViewById(R.id.lyrics_play_type);
 
+        collect.setSelected(true);
+        share.setSelected(true);
 
 
-        bindMyservice();
+
     }
 
 
     View.OnClickListener clickListener=new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            finish();
+            switch (view.getId()){
+                case R.id.lyrics_top_left:
+                    finish();
+                    break;
+                case R.id.lyrics_top_right:
+                    Intent intent=new Intent(MusicLyricPlayActivity.this,MoreAndMoreActivity.class);
+                    startActivity(intent);
+                    break;
+                default:
+                    break;
+            }
         }
     };
     /**
@@ -79,6 +95,7 @@ public class MusicLyricPlayActivity extends Activity {
 
         Bundle bundle=new Bundle();
         bundle.putBoolean(MusicService.LYRICS,true);
+
         Log.e("null","not");
 
         intent.putExtras(bundle);

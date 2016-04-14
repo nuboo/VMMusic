@@ -1,5 +1,6 @@
 package com.example.vmmusic.app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.activity.MusicListActivity;
 import com.example.vmmusic.app.adapter.ChippendaleAdapter;
 import com.example.vmmusic.app.adapter.ChippendaleListAdapter;
 import com.example.vmmusic.app.customview.HeaderGridView;
@@ -95,7 +97,8 @@ public class ChippendaleFragment extends Fragment {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+        	Intent intent = new Intent(getActivity(), MusicListActivity.class);
+        	getActivity().startActivity(intent);
         }
     };
 
