@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VMMusic/VMMusic.iml" filepath="$PROJECT_DIR$/VMMusic/VMMusic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VMMusicapp.iml" filepath="$PROJECT_DIR$/VMMusicapp.iml" />
     </modules>
   </component>
 </project>

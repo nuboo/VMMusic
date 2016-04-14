@@ -1,23 +1,16 @@
-package com.example.vmmusic.app.fragment;
+package com.example.vmmusic.app.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.example.vmmusic.R;
-import com.example.vmmusic.app.activity.ChannelClassificationActivity;
-import com.example.vmmusic.app.adapter.ChannelGridAdapter;
+import com.example.vmmusic.app.adapter.ChannelClassificationAdapter;
 import com.example.vmmusic.app.adapter.ChippendaleAdapter;
-import com.example.vmmusic.app.customview.HeaderGridView;
 import com.example.vmmusic.app.customview.ReWriteGridView;
 import com.example.vmmusic.app.model.Channel;
 import com.example.vmmusic.app.model.Chippendale;
@@ -28,34 +21,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 频道
- * Created by awx19 on 2016/4/8.
+ * 频道分类
+ * Created by awx19 on 2016/4/13.
  */
-public class ChannelFragment extends Fragment {
+public class ChannelClassificationActivity extends Activity {
     GridView gridView;
-    Activity activity;
     ReWriteGridView reWriteGridView;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_channel, null);
-        activity = getActivity();
-        setGridView(view);
-        topSetting(view);
-        return view;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_channel_classification);
+        setGridView();
+        topSetting();
+
     }
 
     /**
      * 顶部设置
-     *
-     * @param view
      */
-    private void topSetting(View view) {
-        TopSettiings topSettiings = new TopSettiings(view);
-        topSettiings.getTextLeft().setVisibility(View.GONE);
-        topSettiings.setTitle("频道");
+    private void topSetting() {
+        TopSettiings topSettiings = new TopSettiings(this);
+        topSettiings.getTextLeft().setBackgroundResource(R.drawable.back);
+        topSettiings.setTitle(getIntent().getStringExtra("name"));
         topSettiings.getTextRight().setOnClickListener(onClickListener);
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -67,59 +57,43 @@ public class ChannelFragment extends Fragment {
 
     /**
      * 横向gridView
-     *
-     * @param view
      */
-    private void setGridView(View view) {
-        gridView = (GridView) view.findViewById(R.id.horizontal_grid);
+    private void setGridView() {
+        gridView = (GridView) findViewById(R.id.classification_horizontal_grid);
         List<Channel> list = getDate();
         int size = list.size();
         int length = 100;
         DisplayMetrics dm = new DisplayMetrics();
-        activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
         float density = dm.density;
         int gridviewWidth = (int) (size * (length + 4) * density);
         int itemWidth = (int) (length * density);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(gridviewWidth,
-                LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(gridviewWidth, LinearLayout.LayoutParams.MATCH_PARENT);
         gridView.setLayoutParams(params); // 设置GirdView布局参数,横向布局的关键
         gridView.setColumnWidth(itemWidth); // 设置列表项宽
-        gridView.setHorizontalSpacing(5); // 设置列表项水平间距
+        gridView.setHorizontalSpacing(-105); // 设置列表项水平间距
         gridView.setStretchMode(GridView.NO_STRETCH);
         gridView.setNumColumns(size); // 设置列数量=列表集合数
-        ChannelGridAdapter channelGridAdapter = new ChannelGridAdapter(list, activity);
-        gridView.setAdapter(channelGridAdapter);
-        gridView.setOnItemClickListener(listener);
+        ChannelClassificationAdapter channelClassificationAdapter = new ChannelClassificationAdapter(list, getApplicationContext());
+        gridView.setAdapter(channelClassificationAdapter);
+
 /**
- * 全部分类gridView
+ * gridView
  */
-        reWriteGridView = (ReWriteGridView) view.findViewById(R.id.channel_grid);
-        ChippendaleAdapter chippendaleAdapter = new ChippendaleAdapter(view.getContext(), getdate());
+        reWriteGridView = (ReWriteGridView) findViewById(R.id.classification_grid);
+        ChippendaleAdapter chippendaleAdapter = new ChippendaleAdapter(getApplicationContext(), getdate());
         reWriteGridView.setAdapter(chippendaleAdapter);
         reWriteGridView.setOnItemClickListener(onItemClickListener);
 
     }
 
-
     /**
-     * 横向gridView item监听
-     */
-    AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent intent = new Intent(getActivity(), ChannelClassificationActivity.class);
-            intent.putExtra("name", getDate().get(position).getItem_channel_grid_name());
-            startActivity(intent);
-        }
-    };
-
-    /**
-     * 全部分类gridView item监听
+     * gridView item监听
      */
     AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            T.showShort(getContext(), "点击了" + position);
+            T.showShort(getApplicationContext(), "点击了" + parent);
         }
     };
 
@@ -147,10 +121,9 @@ public class ChannelFragment extends Fragment {
      */
     private List<Channel> getDate() {
         List<Channel> list = new ArrayList<Channel>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 10; i++) {
             Channel channel = new Channel();
-            channel.setItem_channel_grid_img(R.drawable.proxy);
-            channel.setItem_channel_grid_name("音乐分类");
+            channel.setItem_channel_grid_name("思恋");
             list.add(channel);
         }
         return list;
