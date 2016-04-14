@@ -233,7 +233,7 @@ public class RegisterLoginActivity extends Activity {
         	map=new HashMap<String, String>();
         	
         	map.put(user, password);
-        	type=1;
+        	type=0;
         	task=new MyTask();
         	task.execute(LOGIN);
          
@@ -344,7 +344,7 @@ public class RegisterLoginActivity extends Activity {
 					   Intent intent =new Intent(RegisterLoginActivity.this,HomePageActivity.class);
 			            startActivity(intent);
 				}else{
-					T.showShort(RegisterLoginActivity.this, "登录失败");
+					T.showShort(RegisterLoginActivity.this, "注册失败");
 				}
 				break;
 			case 2://验证码
