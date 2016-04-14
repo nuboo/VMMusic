@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+    <!--频道分类-->
+    <include
+        layout="@layout/public_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="10dp">
+
+                    <GridView
+                        android:id="@+id/classification_horizontal_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:listSelector="#00000000"
+                        android:numColumns="auto_fit"
+                        android:scrollbars="none"
+                        android:stretchMode="spacingWidthUniform" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <com.example.vmmusic.app.customview.ReWriteGridView
+                android:id="@+id/classification_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="-13dp"
+                android:listSelector="#00000000"
+                android:numColumns="2"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

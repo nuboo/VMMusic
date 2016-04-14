@@ -1,64 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@color/gray"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
-    <include layout="@layout/public_top"
+    android:background="@color/gray"
+    android:orientation="vertical" >
+
+    <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-      ></include>
+        layout="@layout/public_top" >
+    </include>
+
     <RadioGroup
+        android:id="@+id/music_list_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginTop="0.5dp"
         android:background="@color/white"
-        android:id="@+id/music_list_group"
-        android:layout_marginTop="0.5dp">
+        android:orientation="horizontal" >
+
         <RadioButton
-            android:layout_width="0dp"
-            android:button="@null"
-            android:text="单曲"
-            android:textSize="20sp"
-            android:textColor="@drawable/public_button_text_color"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="21dp"
             android:id="@+id/music_list_single"
-            android:layout_weight="1"/>
-        <RadioButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:button="@null"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:padding="21dp"
-
-            android:textColor="@drawable/public_button_text_color"
-            android:text="歌手"
             android:layout_weight="1"
-            android:checked="false"
-            android:id="@+id/music_list_singer" />
-        <RadioButton
-            android:layout_width="0dp"
             android:button="@null"
             android:gravity="center"
             android:padding="21dp"
-            android:textSize="20sp"
+            android:text="单曲"
             android:textColor="@drawable/public_button_text_color"
-            android:text="专辑"
-            android:id="@+id/music_list_cd"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/music_list_singer"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        </RadioGroup>
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:padding="21dp"
+            android:text="歌手"
+            android:textColor="@drawable/public_button_text_color"
+            android:textSize="20sp" />
 
-        <android.support.v4.view.ViewPager
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:id="@+id/music_list_viewpager"
-            ></android.support.v4.view.ViewPager>
+        <RadioButton
+            android:id="@+id/music_list_cd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="21dp"
+            android:text="专辑"
+            android:textColor="@drawable/public_button_text_color"
+            android:textSize="20sp" />
+    </RadioGroup>
 
-
-
+    <android.support.v4.view.ViewPager
+        android:id="@+id/music_list_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </android.support.v4.view.ViewPager>
 
 </LinearLayout>

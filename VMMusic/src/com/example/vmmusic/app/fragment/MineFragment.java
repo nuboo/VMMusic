@@ -1,5 +1,6 @@
 package com.example.vmmusic.app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,11 +11,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.activity.MoreAndMoreActivity;
 import com.example.vmmusic.app.adapter.ChippendaleAdapter;
 import com.example.vmmusic.app.customview.HeaderGridView;
 import com.example.vmmusic.app.customview.ReWriteGridView;
 import com.example.vmmusic.app.customview.RoundImageView;
 import com.example.vmmusic.app.model.Chippendale;
+import com.example.vmmusic.app.utils.TopSettiings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +38,26 @@ public class MineFragment extends Fragment {
     TextView mine_more_and_more;//更多
     TextView mine_lately;//最近播放
     TableRow mine_guess_you_like;//猜你喜欢
+    Intent intent;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, null);
         initView(view);
+        topSetting(view);
         return view;
+    }
+
+    /**
+     * 顶部设置
+     *
+     * @param view
+     */
+    private void topSetting(View view) {
+        TopSettiings topSettiings = new TopSettiings(view);
+        topSettiings.setTitle("我的");
+        topSettiings.getTextRight().setOnClickListener(onClickListener);
     }
 
     /**
@@ -85,6 +101,9 @@ public class MineFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
+                case R.id.public_top_right:
+
+                    break;
                 case R.id.local_music://本地音乐
 
                     break;
@@ -95,7 +114,8 @@ public class MineFragment extends Fragment {
 
                     break;
                 case R.id.mine_more_and_more://更多
-
+                    intent = new Intent(getActivity(), MoreAndMoreActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.mine_lately://最近播放
 
@@ -106,6 +126,7 @@ public class MineFragment extends Fragment {
             }
         }
     };
+
 
     /**
      * 假数据

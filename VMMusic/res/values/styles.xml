@@ -17,4 +17,14 @@
            All customizations that are NOT specific to a particular API-level can go here.
        </style> -->
 
+    <!--dialog style-->
+    <style name="Transparent" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent_background</item><!--背景透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    </style>
 </resources>

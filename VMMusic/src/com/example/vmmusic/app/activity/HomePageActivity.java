@@ -1,13 +1,17 @@
 package com.example.vmmusic.app.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -55,10 +59,10 @@ public class HomePageActivity extends FragmentActivity {
     RadioButton channel_btn;//频道
     RadioButton mine_btn;//我的
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_home_page);
         initView();
     }
@@ -123,17 +127,79 @@ public class HomePageActivity extends FragmentActivity {
 
         }
     };
+
     /**
-     * 添加音乐监听
+     * 监听弹出Dialog
      */
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(HomePageActivity.this, SearchActivity.class);
-            startActivity(intent);
+            Dialog dialog = new Dialog(HomePageActivity.this, R.style.Transparent);
+            dialog.setContentView(R.layout.dielog_upload_search);
+            WindowManager.LayoutParams lay = dialog.getWindow().getAttributes();
+            setParams(lay);
+            dialog.show();
+            dialogInitView(dialog);
         }
     };
 
+    /**
+     * 初始化弹出框里面的控件
+     *
+     * @param dialog
+     */
+    private void dialogInitView(Dialog dialog) {
+        TextView dialog_upload = (TextView) dialog.findViewById(R.id.dialog_upload);
+        TextView dialog_search = (TextView) dialog.findViewById(R.id.dialog_search);
+        TextView dialog_cancel = (TextView) dialog.findViewById(R.id.dialog_cancel);
+        dialog_upload.setOnClickListener(new Listener(dialog));
+        dialog_search.setOnClickListener(new Listener(dialog));
+        dialog_cancel.setOnClickListener(new Listener(dialog));
+    }
+
+    /**
+     * 弹出框监听
+     */
+    class Listener implements View.OnClickListener {
+        Dialog mDialog;
+
+        public Listener(Dialog dialog) {
+            mDialog = dialog;
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.dialog_upload:
+                    break;
+                case R.id.dialog_search:
+                    Intent intent = new Intent(HomePageActivity.this, SearchActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.dialog_cancel:
+                    mDialog.dismiss();
+                    break;
+            }
+        }
+
+    }
+
+    /**
+     * 设置控件宽高
+     *
+     * @param lay
+     */
+    private void setParams(WindowManager.LayoutParams lay) {
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        Rect rect = new Rect();
+        View view = getWindow().getDecorView();
+        view.getWindowVisibleDisplayFrame(rect);
+        lay.height = dm.heightPixels - rect.top;
+        lay.width = dm.widthPixels;
+    }
 
     /**
      * 菜单切换监听

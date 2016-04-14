@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    >
 
     <ListView
+        android:id="@+id/music_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:addStatesFromChildren="true"
         android:background="@color/white"
-        android:scrollbars="none"
-
         android:divider="@color/gray"
         android:dividerHeight="0.5dp"
-        android:addStatesFromChildren="true"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:scrollbars="none" />
 
-        android:id="@+id/music_list_view"></ListView>
+
 </LinearLayout>

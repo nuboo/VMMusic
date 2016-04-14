@@ -4,8 +4,12 @@
     android:layout_height="match_parent"
     android:background="@color/background_color"
     android:orientation="vertical">
-    <!--我的页面-->
 
+    <!-- 我的页面 -->
+    <include
+        layout="@layout/public_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <com.example.vmmusic.app.customview.HeaderGridView
         android:id="@+id/mine_rewrite_grid_view"
@@ -14,7 +18,6 @@
         android:background="@color/white"
         android:horizontalSpacing="-13dp"
         android:listSelector="#00000000"
-        android:numColumns="2"
-        />
+        android:numColumns="2" />
 
 </LinearLayout>
