@@ -70,8 +70,9 @@
         <activity android:name=".app.activity.MoreAndMoreActivity"
             android:launchMode="singleTop"/>
 
-        <activity android:name=".app.activity.ChannelClassificationActivity" />
-
+        <activity android:name=".app.activity.ChannelClassificationActivity"
+            android:launchMode="singleTop" />
+		
     </application>
 
 </manifest>
