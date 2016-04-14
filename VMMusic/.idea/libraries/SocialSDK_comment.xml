@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="SocialSDK_twitter">
+  <library name="SocialSDK_comment">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_twitter.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_comment.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

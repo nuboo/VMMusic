@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="mta-sdk-1.6.2">
+  <library name="SocialSDK_instagram">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/mta-sdk-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_instagram.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

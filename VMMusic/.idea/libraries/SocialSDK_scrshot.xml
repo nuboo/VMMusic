@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="weiboSDKCore_3.1.4">
+  <library name="SocialSDK_scrshot">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/weiboSDKCore_3.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_scrshot.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
