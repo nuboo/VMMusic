@@ -61,7 +61,7 @@ public class MusicListActivity extends Activity {
     private  ArrayList<Music> sortlist =new ArrayList<Music>();//单个分类下的歌曲
     public static  final String MUSICLIST="Albums and Songs";
     public static  final String TITLE="title";
-
+    public static final int FROM=1000;
     public static final String FIRSTLOAD="newList";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,6 +250,7 @@ public class MusicListActivity extends Activity {
         Bundle bundle=new Bundle();
         bundle.putSerializable(MusicService.VMMUSIC,music);
         bundle.putInt(MusicService.LISTSIZE,list.size());
+        bundle.putInt(MusicService.FROMWHERE,FROM);
         serviceHelper.startMyService(bundle);
     }
 
@@ -267,7 +268,7 @@ public class MusicListActivity extends Activity {
                         Intent intent =new Intent(MusicListActivity.this,MoreListActivity.class);
                         Bundle bundle=new Bundle();
                         ArrayList<Music> singerList = sMap.get(singer);
-                   //     bundle.putParcelableArrayList(MUSICLIST, singerList);
+
                         bundle.putString(TITLE, singer);
                         bundle.putSerializable(MUSICLIST,singerList);
                         intent.putExtras(bundle);
@@ -372,7 +373,7 @@ public class MusicListActivity extends Activity {
             if (intent.getAction().equals(MusicService.NEXTSONG)) {
                 listPostion++;
                 playMusic(intent.getIntExtra(MusicService.NEXTSONG, listPostion));
-                Log.e("re",listPostion+"~~~~~~~~~~~"+intent.getIntExtra(MusicService.NEXTSONG,0));
+
             }
         }
     };
@@ -381,7 +382,7 @@ public class MusicListActivity extends Activity {
     protected void onDestroy() {
 
         unregisterReceiver(musicListReceiver);
-        Log.i("destroy","unregi");
+
         serviceHelper=new ServiceHelper(MusicListActivity.this);
         Bundle bundle=new Bundle();
 

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.customview.RoundImageView;
+import com.example.vmmusic.app.utils.TopSettiings;
 
 /**
  * 更多
@@ -19,7 +20,7 @@ public class MoreAndMoreActivity extends Activity {
     TextView more_fans;//粉丝
     TextView more_attention;//关注
     TextView more_voice;//声音
-
+    private TopSettiings topSettiings;
     TextView more_theme;//主题
     TextView more_collect;//收藏
     TextView more_setting;//设置
@@ -38,6 +39,9 @@ public class MoreAndMoreActivity extends Activity {
      * 初始化控件
      */
     private void initView() {
+        topSettiings=new TopSettiings(this);
+        topSettiings.setTitle("更多");
+        topSettiings.setRight(null, getResources().getDrawable(R.drawable.back),false);
         more_img = (RoundImageView) findViewById(R.id.more_img);
         more_name = (TextView) findViewById(R.id.more_name);
         more_vip = (TextView) findViewById(R.id.more_vip);

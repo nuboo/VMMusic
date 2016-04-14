@@ -17,6 +17,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.activity.MoreListActivity;
+import com.example.vmmusic.app.activity.MusicListActivity;
 import com.example.vmmusic.app.activity.MusicLyricPlayActivity;
 import com.example.vmmusic.app.customview.LrcTextView;
 import com.example.vmmusic.app.model.LrcContent;
@@ -41,15 +43,18 @@ public class MusicService extends Service {
     public static final String VMMUSIC="VmMusic";//开启service
     public static  final String LISTSIZE="listSize";
     public static  final String LYRICS="forLyric";//查看歌词
-    public static final String ISSONGLIST="isSongList";//是否是单曲列表
+    public static final String FROMWHERE="isSongList";//来自于哪个activity
+    private int where;
     private  android.os.Handler handler;
     private Music music;// 当前播放的music
     private MediaPlayer mediaPlayer;//音乐播放器
     private String path=null;//当前播放文件路径  用于判断点击歌曲是否是播放中歌曲 也可以使用sid判断
     private int listSize;//当前播放的list大小
     private int postion;//播放歌曲在list当中的位置
-    private boolean isSongList,isFinish,isBinded;//是否为单曲列表,Activity是否已经关闭,是否已绑定
+    private boolean isFinish,isBinded;//是否为单曲列表,Activity是否已经关闭,是否已绑定
     private ArrayList<Music> list;//用于后台播放
+
+
     private FileUtils fileUtils;//用于后台播放
     private LrcTextView lrcView;
 
@@ -103,12 +108,12 @@ public class MusicService extends Service {
                     music=(Music)bundle.getSerializable(VMMUSIC);
                     postion=music.getId();//ID和listView中位置一致
                     listSize=bundle.getInt(LISTSIZE,1);//默认为1
-                    isSongList=bundle.getBoolean(ISSONGLIST,true);//默认为是
+                    where=bundle.getInt(FROMWHERE, MusicListActivity.FROM);//默认为是
                     if(music!=null&&listSize!=0){
                         if(!music.getPath().equals(path)) {//如果不是同一首歌，则播放
 
 
-                            playMusic(music.getPath());
+                           playMusic(music.getPath());
 
 
                         }/*else{
@@ -163,7 +168,7 @@ public class MusicService extends Service {
               mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                   @Override
                   public void onCompletion(MediaPlayer player) {
-                      inniPosition();//刷新播放位置
+
                         sendNextSong();
 
 
@@ -189,16 +194,25 @@ public class MusicService extends Service {
      */
     private void sendNextSong(){
         if(!isFinish){//如果activity还在运行
-
+            inniPosition();//刷新播放位置
             Intent intent =new Intent();
-            if(isSongList==true) {
-                intent.setAction(NEXTSONG);
-                intent.putExtra(NEXTSONG, postion);
-            }else {
-                intent.setAction(NEXT);
-                intent.putExtra(NEXT, postion);
+
+            switch (where){
+                case MusicListActivity.FROM://来自音乐单曲
+                    intent.setAction(NEXTSONG);
+                    intent.putExtra(NEXTSONG, postion);
+                    sendBroadcast(intent);
+                    break;
+                case MoreListActivity.FROM://专辑歌手
+                    intent.setAction(NEXT);
+                    intent.putExtra(NEXT, postion);
+                    sendBroadcast(intent);
+                    break;
+                default:
+                    break;
             }
-            sendBroadcast(intent);
+
+
         }else{//如果activity还在不存在，进行后台播放
             inniMusic();
             playBackground();

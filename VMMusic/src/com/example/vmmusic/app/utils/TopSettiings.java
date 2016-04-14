@@ -2,6 +2,7 @@ package com.example.vmmusic.app.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.activity.MusicListActivity;
 
 /**
  * Created by Administrator on 2016/4/8 0008.
@@ -22,6 +24,7 @@ public class TopSettiings {
     private TextView title,right,left;
     private RadioGroup choice;
     private RadioButton choiceLeft,choiceRight;
+
      public TopSettiings(Context context){
          this.context=context;
           activity=(Activity)context;
@@ -38,7 +41,7 @@ public class TopSettiings {
 
 
     /**
-     * 设置标题
+     * 设置标题  并默认设置左上角跳转选择音乐界面  如需添加其他点击事件，可以通过setLeft获得textView对象
      * @param title
      */
     public void setTitle(String title){
@@ -46,6 +49,13 @@ public class TopSettiings {
 
         this.title.setText(title);
         this.title.setSelected(true);
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, MusicListActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     /**

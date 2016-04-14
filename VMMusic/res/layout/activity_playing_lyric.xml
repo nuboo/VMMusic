@@ -58,11 +58,12 @@
     <!--歌词-->
     <com.example.vmmusic.app.customview.LrcTextView
         android:layout_marginTop="35dp"
+        android:layout_marginBottom="25dp"
         android:text="lyrics"
-        android:textColor="@color/font_name"
-        android:textSize="25sp"
-        android:singleLine="false"
-        android:ellipsize="marquee"
+
+
+
+
         android:id="@+id/playing_lyrics"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
@@ -85,7 +86,7 @@
             android:id="@+id/lyrics_collection"
 
             android:drawableTop="@drawable/public_collect"
-            android:button="@null"/>
+           />
         <!--分享-->
         <TextView
             android:layout_width="0dp"
@@ -95,7 +96,7 @@
             android:padding="10dp"
             android:id="@+id/lyrics_share"
             android:drawableTop="@drawable/public_vm_share"
-            android:button="@null"/>
+            />
         <!--下载-->
         <TextView
             android:layout_width="0dp"
@@ -106,7 +107,7 @@
             android:id="@+id/lyrics_download"
 
             android:drawableTop="@drawable/public_download"
-            android:button="@null"/>
+            />
         <!--随机播放-->
         <TextView
             android:layout_width="0dp"
@@ -115,7 +116,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:id="@+id/lyrics_play_type"
-            android:drawableTop="@drawable/lyrics_play"
-            android:button="@null"/>
+            android:drawableTop="@drawable/public_play_type"
+            />
         </LinearLayout>
 </LinearLayout>
