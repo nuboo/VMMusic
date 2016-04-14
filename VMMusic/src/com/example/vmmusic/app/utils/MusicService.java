@@ -284,7 +284,7 @@ public class MusicService extends Service {
         if(music==null){
             music=new Music();
             music.setName("当前没有播放音乐");
-
+            music.setSinger("unknow");
         }
         title.setText(music.getName());//设置标题
         singer.setText(music.getSinger());//设置歌手
