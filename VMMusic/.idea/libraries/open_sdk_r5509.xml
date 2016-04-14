@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="SocialSDK_email">
+  <library name="open_sdk_r5509">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/SocialSDK_email.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/open_sdk_r5509.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
