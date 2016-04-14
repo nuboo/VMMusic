@@ -257,7 +257,7 @@ public class RegisterLoginActivity extends Activity {
     			map.put("tel", phoneNum);
     			map.put("verify", code);
     			map.put("password", password);
-    			type=0;
+    			type=1;
     			task=new MyTask();
     			task.execute(REGISTER);       
         }
@@ -323,7 +323,7 @@ public class RegisterLoginActivity extends Activity {
     	@Override
     	protected void onPostExecute(String result) {
     		// TODO Auto-generated method stub
-    		
+    		T.showShort(RegisterLoginActivity.this, result);
     		switch (type) {
 			case 0://登录
 				success=jsonRegisterAndLogin(result);
@@ -378,7 +378,7 @@ public class RegisterLoginActivity extends Activity {
 			
 			switch (status) {
 			case 1://成功
-				editText_code.setText(orignJSON.getString("radoms"));;
+				editText_code.setText(orignJSON.getString("mobile_code"));;
 				break;
 			case 2:
 				T.showShort(RegisterLoginActivity.this, "网络连接超时,请重新获取");
