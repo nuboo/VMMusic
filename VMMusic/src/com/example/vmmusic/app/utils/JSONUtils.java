@@ -3,36 +3,61 @@ package com.example.vmmusic.app.utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+
+/**
+ * Created by admin on 2016/3/18.
+ */
+@SuppressWarnings("unused")
 public class JSONUtils {
-	private String code;
-	private JSONObject orignJSON;
-	
-	
-	
+
+	private Activity activity;
+
+	public JSONUtils() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public JSONUtils(Activity activity) {
+		this.activity = activity;
+	}
+
 	/**
-	 * 解析验证码
-	 * @param result 验证码result
-	 * @return String
+	 * 解析json
+	 *
+	 * @param str
+	 *            要解析的json
+	 * @param parems
+	 * @return String型的结果
 	 */
-	public String jsonCode(String result){
+	public static String JsonString(String str, String parems) {
+		String verify = null;
 		try {
-			orignJSON=new JSONObject(result);
-			int status=orignJSON.getInt("status");
-			
-			switch (status) {
-			case 1://成功
-				code=orignJSON.getString("radoms");
-				break;
-			case 2:
-				code="网络连接超时,请重新获取";
-				break;
-			default:
-				break;
-			}
+			JSONObject jsonObject = new JSONObject(str);
+			verify = jsonObject.getString(parems);
+			return verify;
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return code;
+		return verify;
 	}
+
+	/**
+	 * 解析json
+	 *
+	 * @param str
+	 * @param param
+	 * @return int型结果
+	 */
+	public static int JsonInt(String str, String param) {
+		int verify = 0;
+		try {
+			JSONObject jsonObject = new JSONObject(str);
+			verify = jsonObject.getInt(param);
+			return verify;
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return verify;
+	}
+
 }
