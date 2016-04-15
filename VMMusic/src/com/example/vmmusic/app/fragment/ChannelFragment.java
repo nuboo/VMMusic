@@ -2,6 +2,7 @@ package com.example.vmmusic.app.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,10 +23,13 @@ import com.example.vmmusic.app.customview.HeaderGridView;
 import com.example.vmmusic.app.customview.ReWriteGridView;
 import com.example.vmmusic.app.model.Channel;
 import com.example.vmmusic.app.model.Chippendale;
+import com.example.vmmusic.app.utils.HttpUtils;
 import com.example.vmmusic.app.utils.T;
 import com.example.vmmusic.app.utils.TopSettiings;
+import com.umeng.socialize.utils.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -36,7 +40,7 @@ public class ChannelFragment extends Fragment {
     GridView gridView;
     Activity activity;
     ReWriteGridView reWriteGridView;
-
+    private final String HTTP="music";
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,6 +48,8 @@ public class ChannelFragment extends Fragment {
         activity = getActivity();
         setGridView(view);
         topSetting(view);
+        MyTask task=new MyTask();
+        task.execute("");
         return view;
     }
 
@@ -156,5 +162,23 @@ public class ChannelFragment extends Fragment {
             list.add(channel);
         }
         return list;
+    }
+    
+    class MyTask extends AsyncTask<String, Void, String>{
+
+		@Override
+		protected String doInBackground(String... arg0) {
+			
+			HttpUtils httpUtils=new HttpUtils();
+			HashMap<String, String> map=new HashMap<String, String>();
+			String result=httpUtils.NewpostData(HTTP, map);
+			return result;
+		}
+    	@Override
+    	protected void onPostExecute(String result) {
+    		// TODO Auto-generated method stub
+    		Log.i("",result);
+    		super.onPostExecute(result);
+    	}
     }
 }

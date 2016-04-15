@@ -339,8 +339,24 @@ public class MusicService extends Service {
                 }
             }
         }
+        
+       
+        double per=((double)currentTime/(double)duration);
+      
+        Log.w("", ""+per+"current"+currentTime+"duration"+duration);
         return index;
     }
 
+    
+    /**
+     * 根据时间获取歌词显示的索引值
+     * @return
+     */
+    public double roundIndex(){
+      
+    	  double per=((double)currentTime/(double)duration);
+        return per;
+    }
 
+    
 }

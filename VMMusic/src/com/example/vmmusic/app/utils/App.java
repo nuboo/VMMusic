@@ -8,7 +8,7 @@ import com.umeng.socialize.PlatformConfig;
  * Created by awx19 on 2016/4/14.
  */
 public class App extends Application {
-    public  String url = " http://192.168.15.247:90/home/api/";
+    public  static final String url = " http://192.168.15.247:90/home/api/";
     @Override
     public void onCreate() {
         super.onCreate();

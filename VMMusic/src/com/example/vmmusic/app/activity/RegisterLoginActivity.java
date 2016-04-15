@@ -1,11 +1,19 @@
 package com.example.vmmusic.app.activity;
 
+import java.util.HashMap;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.example.vmmusic.R;
+import com.example.vmmusic.app.utils.HttpUtils;
+import com.example.vmmusic.app.utils.T;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,25 +22,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import java.util.HashMap;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.example.vmmusic.R;
-import com.example.vmmusic.app.utils.HttpUtils;
-import com.example.vmmusic.app.utils.JSONUtils;
-import com.example.vmmusic.app.utils.T;
-
 /**
  * 注册登录页面
  * Created by awx19 on 2016/4/7.
  */
 public class RegisterLoginActivity extends Activity {
 	
-	private static final String VERIFY="http://192.168.15.247:90/api/getverify";
-    private static final String REGISTER="http://192.168.15.247:90/api/register";
-    private static final String LOGIN="http://192.168.15.247:90/api/login";
+	private static final String VERIFY="getverify";
+    private static final String REGISTER="register";
+    private static final String LOGIN="login";
     private int type;//0注册，1登录，2获取验证码
     private JSONObject orignJSON;	
     private boolean success;//登录注册成功
@@ -232,7 +230,8 @@ public class RegisterLoginActivity extends Activity {
         	String password=getContent(editText_login_password);
         	map=new HashMap<String, String>();
         	
-        	map.put(user, password);
+        	map.put("tel", user);
+        	map.put("password", password);
         	type=0;
         	task=new MyTask();
         	task.execute(LOGIN);
@@ -335,7 +334,7 @@ public class RegisterLoginActivity extends Activity {
 		          //  finish();//登录成功后，关闭
 				}else{
 					T.showShort(RegisterLoginActivity.this, "登录失败");
-					 Intent play =new Intent(RegisterLoginActivity.this,MusicListActivity.class);
+					 Intent play =new Intent(RegisterLoginActivity.this,HomePageActivity.class);
 			            startActivity(play);
 				}
 				break;

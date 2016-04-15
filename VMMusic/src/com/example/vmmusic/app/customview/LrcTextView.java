@@ -27,8 +27,10 @@ public class LrcTextView extends TextView {
     private float textSize = 26;        //文本大小
     private int index = 0;      //list集合下标
     private int nowIndex;//当前播放进度
+    private boolean noLyrics=false;//没有歌词
     private  int DY = 50; // 每一行的间隔
     private boolean notDown=true;//没有按下
+    float now;//当前滑动位置
     private Canvas canvas;
     private List<LrcContent> mLrcList = new ArrayList<LrcContent>();
 
@@ -93,24 +95,25 @@ public class LrcTextView extends TextView {
     public boolean onTouchEvent(MotionEvent event) {
     	switch (event.getAction()) {
     	 case MotionEvent.ACTION_DOWN:
+    		 if(!noLyrics){//如果有歌词
     		 donwY = event.getY();//点击下去的位置
     		 nowIndex=index;
     			 notDown=false;
-    		 
+    		 }
     		 break;
 		case MotionEvent.ACTION_MOVE:
-			float now=event.getY();//移动中的位置
+			now=event.getY();//移动中的位置
 			if(now>donwY){//向下拉动
 				//移动距离除以行间距
-				nowIndex=nowIndex-(int)((now-donwY)/DY);
+				nowIndex=nowIndex-(int)((now-donwY)/(DY+textSize));
 				
 			}else{//向上拉动
 				
-				nowIndex=nowIndex+(int)((donwY-now)/DY);
+				nowIndex=nowIndex+(int)((donwY-now)/(DY+textSize));
 			}
 			break;
 		case MotionEvent.ACTION_UP:
-			notDown=true;
+			notDown=true;//重新根据播放进度绘制歌词
 			break;
 		default:
 			break;
@@ -125,28 +128,37 @@ public class LrcTextView extends TextView {
     private void moveLine(int index){
     	if(!notDown){
     		
-    		if(index<0){
+    		if(index<0){//如果已经到顶部
     			index=0;
+    			
     		}else if(index>mLrcList.size()){
     			index=mLrcList.size()-1;
     		}
+    		
             setText("");
             canvas.drawText(mLrcList.get(index).getLrcStr(), width / 2, height / 2, currentPaint);
 
         	float tempY = height / 2;
-            //画出本句之前的句子
-            for(int i = index - 1; i >= 0; i--) {
-                //向上推移
-                tempY = tempY - DY;
-                canvas.drawText(mLrcList.get(i).getLrcStr(), width / 2, tempY, notCurrentPaint);
-            }
-            tempY = height / 2;
+        	
+        		//画出本句之前的句子
+                for(int i = index - 1; i >= 0; i--) {
+                    //向上推移
+                    tempY = tempY - DY;
+                    canvas.drawText(mLrcList.get(i).getLrcStr(), width / 2, tempY, notCurrentPaint);
+                }
+               
+        	
+        	
             //画出本句之后的句子
+            if(index!=mLrcList.size()-1){//如果不是最后一行
+            	
+            	 tempY = height / 2;
             for(int i = index + 1; i < mLrcList.size(); i++) {
                 //往下推移
                 tempY = tempY + DY;
 
                 canvas.drawText(mLrcList.get(i).getLrcStr(), width / 2, tempY, notCurrentPaint);
+            	}
             }
 
 
@@ -186,7 +198,7 @@ public class LrcTextView extends TextView {
             } catch (Exception e) {
                 
                 canvas.drawText("未找到歌词文件", width / 2, height / 2, notCurrentPaint);
-
+                noLyrics=true;//没有歌词
             }
 
     	}

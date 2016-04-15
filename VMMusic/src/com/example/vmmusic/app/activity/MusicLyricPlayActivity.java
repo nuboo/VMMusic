@@ -111,6 +111,7 @@ public class MusicLyricPlayActivity extends Activity {
         public void onServiceDisconnected(ComponentName arg0) {
             // TODO Auto-generated method stub
             myService=null;
+            
         }
 
         @Override

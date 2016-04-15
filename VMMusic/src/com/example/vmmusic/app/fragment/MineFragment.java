@@ -167,7 +167,7 @@ public class MineFragment extends Fragment {
 		protected String doInBackground(String... arg0) {
 			// TODO Auto-generated method stub
 			HttpUtils httpUtils=new HttpUtils();
-			String result=httpUtils.postData(MINEHTTP, map);
+			String result=httpUtils.NewpostData(MINEHTTP, map);
 			return result;
 		}
     	@Override
