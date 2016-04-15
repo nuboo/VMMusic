@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
     package="com.example.vmmusic"
     android:versionCode="1"
     android:versionName="1.0" >
@@ -61,6 +62,12 @@
         <activity
             android:name="com.example.vmmusic.app.activity.MusicListActivity"
             android:launchMode="singleTop" >
+           <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+            
         </activity>
         <!-- 播放音乐服务 -->
         <service android:name=".app.utils.MusicService" >
@@ -71,6 +78,7 @@
         <activity
             android:name="com.example.vmmusic.app.activity.MoreListActivity"
             android:launchMode="singleTop" >
+      
         </activity>
         <!-- 音乐播放界面 -->
         <activity

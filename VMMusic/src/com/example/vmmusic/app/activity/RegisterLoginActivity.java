@@ -228,12 +228,12 @@ public class RegisterLoginActivity extends Activity {
         	//跳转
         	
         	
-        	String user="admin";
-        	String password="123456";
+        	String user=getContent(editText_user_name);
+        	String password=getContent(editText_login_password);
         	map=new HashMap<String, String>();
         	
         	map.put(user, password);
-        	type=1;
+        	type=0;
         	task=new MyTask();
         	task.execute(LOGIN);
          
@@ -332,8 +332,11 @@ public class RegisterLoginActivity extends Activity {
 					//跳转首页
 					   Intent intent =new Intent(RegisterLoginActivity.this,HomePageActivity.class);
 		            startActivity(intent);
+		          //  finish();//登录成功后，关闭
 				}else{
 					T.showShort(RegisterLoginActivity.this, "登录失败");
+					 Intent play =new Intent(RegisterLoginActivity.this,MusicListActivity.class);
+			            startActivity(play);
 				}
 				break;
 			case 1://注册
@@ -344,7 +347,7 @@ public class RegisterLoginActivity extends Activity {
 					   Intent intent =new Intent(RegisterLoginActivity.this,HomePageActivity.class);
 			            startActivity(intent);
 				}else{
-					T.showShort(RegisterLoginActivity.this, "登录失败");
+					T.showShort(RegisterLoginActivity.this, "注册失败");
 				}
 				break;
 			case 2://验证码

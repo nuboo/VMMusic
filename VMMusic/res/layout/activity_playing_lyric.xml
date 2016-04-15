@@ -101,7 +101,7 @@
             android:gravity="center"
             android:padding="10dp" />
         <!--随机播放-->
-        <TextView
+        <Button
             android:id="@+id/lyrics_play_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -109,6 +109,7 @@
             android:button="@null"
             android:drawableTop="@drawable/lyrics_play"
             android:gravity="center"
+            android:background="@null"
             android:padding="10dp" />
     </LinearLayout>
 </LinearLayout>
