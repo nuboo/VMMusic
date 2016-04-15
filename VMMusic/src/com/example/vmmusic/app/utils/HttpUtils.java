@@ -2,6 +2,10 @@ package com.example.vmmusic.app.utils;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,13 +15,18 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import java.util.Date;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.http.HttpResponse;
+
 import org.apache.http.client.ClientProtocolException;
+
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -27,11 +36,12 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.util.Log;
 
 public class HttpUtils {
 	private static int SOCKET_TIME_OUT = 20000;
-	
+
 	private HttpClient httpClient;
 	private HttpResponse httpResponse;
 	private HttpGet httpGet;
@@ -102,15 +112,15 @@ public class HttpUtils {
 
 		return result;
 	}
-	
-	
+
 	/**
 	 * 拼接hashmap字符串
+	 * 
 	 * @param params
 	 * @return
 	 */
-	public String hashMapString(HashMap<String,String> params){
-		UrlParam=new StringBuilder();
+	public String hashMapString(HashMap<String, String> params) {
+		UrlParam = new StringBuilder();
 		if (params != null && !params.isEmpty()) {// 如果有参数
 			for (String key : params.keySet()) {
 				// 拼接参数语句
@@ -118,10 +128,10 @@ public class HttpUtils {
 			}
 			UrlParam.replace(0, 1, "?");
 
-			
 		}
 		return UrlParam.toString();
 	}
+
 	/**
 	 * 转译字符串
 	 * 
@@ -139,8 +149,250 @@ public class HttpUtils {
 
 		return str;
 	}
-	
-	
+
+	/**
+	 * 无文件post
+	 * 
+	 * @param httpUrl
+	 * @param map
+	 * @return 返回的json result
+	 */
+	@SuppressWarnings("unchecked")
+	public String postData(String httpUrl, Map<String, String> map) {
+		StringBuilder stringBuilder = new StringBuilder();
+		BufferedReader in = null;
+
+		String end = "\r\n";
+		String twoHyphens = "--";
+		String boundary = "*****";
+
+		try {
+			URL url = new URL(httpUrl);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			connection.setUseCaches(false);
+			connection.setConnectTimeout(10000); // 杩炴帴瓒呮椂涓�10绉�
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);// 璁剧疆璇锋眰鏁版嵁绫诲瀷骞惰缃産oundary閮ㄥ垎锛�
+			connection.connect();
+			DataOutputStream ds = new DataOutputStream(connection.getOutputStream());
+
+			Set<Map.Entry<String, String>> paramEntrySet = map.entrySet();
+			Iterator paramIterator = paramEntrySet.iterator();
+			while (paramIterator.hasNext()) {
+				Map.Entry<String, String> entry = (Map.Entry<String, String>) paramIterator.next();
+				String key = entry.getKey();
+				String value = entry.getValue();
+				ds.writeBytes(twoHyphens + boundary + end);
+				// ds.writeBytes("Content-Disposition: form-data; " + "name=\""
+				// + key + "\"" + end + end + value + end+ boundary + end);
+				ds.writeBytes("Content-Disposition: form-data; " + "name=\"" + key + "\"" + end + end + value);
+				ds.writeBytes(end);
+				ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
+				ds.flush();
+			}
+			ds.writeBytes(twoHyphens + boundary + end);
+			ds.writeBytes(
+					"Content-Disposition: form-data; " + "name=\"file" + "\";filename=\"" + "image1.png" + "\"" + end);
+			ds.writeBytes(end);
+			Log.i("", ds.toString());
+			// 瀹氫箟BufferedReader杈撳叆娴佹潵璇诲彇URL鐨勫搷搴�
+			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			int statusCode = connection.getResponseCode();
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				char[] buf = new char[1024];
+				int len = -1;
+				while ((len = in.read(buf, 0, buf.length)) != -1) {
+					stringBuilder.append(buf, 0, len);
+				}
+			}
+
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Log.i("Post", "result===========>" + stringBuilder.toString());
+
+		return stringBuilder.toString();
+	}
+
+	public String NewpostData(String httpUrl, Map<String, String> map) {
+		StringBuilder stringBuilder = new StringBuilder();
+		BufferedReader in = null;
+		String result = "";
+		String end = "\r\n";
+		String twoHyphens = "--";
+		String boundary = "*****";
+		HttpURLConnection httpURLConnection = null;
+		try {
+			URL url = new URL(httpUrl);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			connection.setUseCaches(false);
+			connection.setConnectTimeout(10000); // 连接超时为10秒
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);// 设置请求数据类型并设置boundary部分；
+			connection.connect();
+			DataOutputStream ds = new DataOutputStream(connection.getOutputStream());
+
+			Set<Map.Entry<String, String>> paramEntrySet = map.entrySet();
+			Iterator paramIterator = paramEntrySet.iterator();
+			while (paramIterator.hasNext()) {
+				Map.Entry<String, String> entry = (Map.Entry<String, String>) paramIterator.next();
+				String key = entry.getKey();
+				String value = entry.getValue();
+				ds.writeBytes(twoHyphens + boundary + end);
+				// ds.writeBytes("Content-Disposition: form-data; " + "name=\""
+				// + key + "\"" + end + end + value + end+ boundary + end);
+				ds.writeBytes("Content-Disposition: form-data; " + "name=\"" + key + "\"" + end + end + value);
+				ds.writeBytes(end);
+				ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
+				ds.flush();
+			}
+			ds.writeBytes(twoHyphens + boundary + end);
+			ds.writeBytes(
+					"Content-Disposition: form-data; " + "name=\"file" + "\";filename=\"" + "image1.png" + "\"" + end);
+			ds.writeBytes(end);
+
+			// 定义BufferedReader输入流来读取URL的响应
+			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			int statusCode = connection.getResponseCode();
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				char[] buf = new char[1024];
+				int len = -1;
+				while ((len = in.read(buf, 0, buf.length)) != -1) {
+					stringBuilder.append(buf, 0, len);
+				}
+			}
+
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Log.i("Post", "result===========>" + stringBuilder.toString());
+		return stringBuilder.toString();
+	}
+
+	/**
+	 * 异步的Get请求
+	 *
+	 * @param urlStr
+	 * @param callBack
+	 */
+	public void doGetAsyn(Context context, final String urlStr, final CallBack callBack) {
+		if (Network.checkNetWork(context)) {// 判断网络
+			new Thread() {
+				public void run() {
+					try {
+						String result = doGet(urlStr);
+						if (callBack != null) {
+							callBack.onRequestComplete(result);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+				}
+			}.start();
+		} else {
+			T.showShort(context, "网络不可用");
+		}
+	}
+
+	/**
+	 * 异步的Post请求
+	 *
+	 * @param urlStr
+	 *            请求地址
+	 * @param params
+	 *            请求参数
+	 * @param callBack
+	 *            回调
+	 * @throws Exception
+	 */
+	public void doPostAsyn(Context context, final String urlStr, final String params, final CallBack callBack) {
+		if (Network.checkNetWork(context)) {// 判断网络
+			new Thread() {
+				public void run() {
+					try {
+						String result = doPost(urlStr, params);
+						if (callBack != null) {
+							callBack.onRequestComplete(result);
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}.start();
+
+		} else {
+			T.showShort(context, "网络不可用");
+		}
+	}
+
+	/**
+	 * Get请求，获得返回数据
+	 *
+	 * @param urlStr
+	 * @return
+	 * @throws Exception
+	 */
+	public String doGet(String urlStr) {
+		URL url = null;
+		HttpURLConnection conn = null;
+		InputStream is = null;
+		ByteArrayOutputStream baos = null;
+		try {
+			url = new URL(urlStr);
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setReadTimeout(TIMEOUT_IN_MILLIONS);
+			conn.setConnectTimeout(TIMEOUT_IN_MILLIONS);
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			if (conn.getResponseCode() == 200) {
+				is = conn.getInputStream();
+				baos = new ByteArrayOutputStream();
+				int len = -1;
+				byte[] buf = new byte[128];
+
+				while ((len = is.read(buf)) != -1) {
+					baos.write(buf, 0, len);
+				}
+				baos.flush();
+				return baos.toString();
+			} else {
+				throw new RuntimeException(" responseCode is not 200 ... ");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (is != null)
+					is.close();
+			} catch (IOException e) {
+			}
+			try {
+				if (baos != null)
+					baos.close();
+			} catch (IOException e) {
+			}
+			conn.disconnect();
+		}
+
+		return null;
+
+	}
+
 	/**
 	 * 向指定 URL 发送POST方法的请求
 	 *
@@ -205,150 +457,5 @@ public class HttpUtils {
 		}
 		return stringBuilder.toString();
 	}
-
-	
-	/**
-	 * 无文件post
-	 * 
-	 * @param httpUrl
-	 * @param map
-	 * @return 返回的json result
-	 */
-	@SuppressWarnings("unchecked")
-	public String postData(String httpUrl, Map<String, String> map) {
-		StringBuilder stringBuilder = new StringBuilder();
-		BufferedReader in = null;
-	
-		String end = "\r\n";
-		String twoHyphens = "--";
-		String boundary = "*****";
-		
-		try {
-			URL url = new URL(httpUrl);
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
-			connection.setUseCaches(false);
-			connection.setConnectTimeout(10000); // 杩炴帴瓒呮椂涓�10绉�
-			connection.setRequestMethod("POST");
-			connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);// 璁剧疆璇锋眰鏁版嵁绫诲瀷骞惰缃産oundary閮ㄥ垎锛�
-			connection.connect();
-			DataOutputStream ds = new DataOutputStream(connection.getOutputStream());
-
-			Set<Map.Entry<String, String>> paramEntrySet = map.entrySet();
-			Iterator paramIterator = paramEntrySet.iterator();
-			while (paramIterator.hasNext()) {
-				Map.Entry<String, String> entry = (Map.Entry<String, String>) paramIterator.next();
-				String key = entry.getKey();
-				String value = entry.getValue();
-				ds.writeBytes(twoHyphens + boundary + end);
-				// ds.writeBytes("Content-Disposition: form-data; " + "name=\""
-				// + key + "\"" + end + end + value + end+ boundary + end);
-				ds.writeBytes("Content-Disposition: form-data; " + "name=\"" + key + "\"" + end + end + value);
-				ds.writeBytes(end);
-				ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
-				ds.flush();
-			}
-			ds.writeBytes(twoHyphens + boundary + end);
-			ds.writeBytes(
-					"Content-Disposition: form-data; " + "name=\"file" + "\";filename=\"" + "image1.png" + "\"" + end);
-			ds.writeBytes(end);
-			Log.i("", ds.toString());
-			// 瀹氫箟BufferedReader杈撳叆娴佹潵璇诲彇URL鐨勫搷搴�
-			in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			int statusCode = connection.getResponseCode();
-			if (statusCode == HttpURLConnection.HTTP_OK) {
-				char[] buf = new char[1024];
-				int len = -1;
-				while ((len = in.read(buf, 0, buf.length)) != -1) {
-					stringBuilder.append(buf, 0, len);
-				}
-			}
-
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Log.i("Post", "result===========>" + stringBuilder.toString());
-		
-		return stringBuilder.toString();
-	}
-
-	
-	
-	public String NewpostData(String httpUrl, Map<String, String> map) {
-		StringBuilder stringBuilder = new StringBuilder();
-		BufferedReader in = null;
-		String result = "";
-		String end = "\r\n";
-		String twoHyphens = "--";
-		String boundary = "*****";
-		HttpURLConnection httpURLConnection = null;
-		try {
-			URL url = new URL(httpUrl);
-			HttpURLConnection connection = (HttpURLConnection) url
-					.openConnection();
-			connection.setDoOutput(true);
-			connection.setUseCaches(false);
-			connection.setConnectTimeout(10000); // 连接超时为10秒
-			connection.setRequestMethod("POST");
-			connection.setRequestProperty("Content-Type",
-					"multipart/form-data; boundary=" + boundary);// 设置请求数据类型并设置boundary部分；
-			connection.connect();
-			DataOutputStream ds = new DataOutputStream(
-					connection.getOutputStream());
-
-			Set<Map.Entry<String, String>> paramEntrySet = map.entrySet();
-			Iterator paramIterator = paramEntrySet.iterator();
-			while (paramIterator.hasNext()) {
-				Map.Entry<String, String> entry = (Map.Entry<String, String>) paramIterator
-						.next();
-				String key = entry.getKey();
-				String value = entry.getValue();
-				ds.writeBytes(twoHyphens + boundary + end);
-				// ds.writeBytes("Content-Disposition: form-data; " + "name=\""
-				// + key + "\"" + end + end + value + end+ boundary + end);
-				ds.writeBytes("Content-Disposition: form-data; " + "name=\""
-						+ key + "\"" + end + end + value);
-				ds.writeBytes(end);
-				ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
-				ds.flush();
-			}
-			ds.writeBytes(twoHyphens + boundary + end);
-			ds.writeBytes("Content-Disposition: form-data; " + "name=\"file"
-					+ "\";filename=\"" + "image1.png" + "\"" + end);
-			ds.writeBytes(end);
-			
-		
-			
-			// 定义BufferedReader输入流来读取URL的响应
-			in = new BufferedReader(new InputStreamReader(
-					connection.getInputStream()));
-			int statusCode = connection.getResponseCode();
-			if (statusCode == HttpURLConnection.HTTP_OK) {
-				char[] buf = new char[1024];
-				int len = -1;
-				while ((len = in.read(buf, 0, buf.length)) != -1) {
-					stringBuilder.append(buf, 0, len);
-				}
-			}
-
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		Log.i("Post", "result===========>" + stringBuilder.toString());
-		return stringBuilder.toString();
-	}
-
-
-	
 
 }
