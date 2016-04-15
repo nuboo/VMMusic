@@ -60,7 +60,7 @@ public class MusicLyricPlayActivity extends Activity {
         collect=(TextView)findViewById(R.id.lyrics_collection);
         share=(TextView)findViewById(R.id.lyrics_share);
         donwLoad=(TextView)findViewById(R.id.lyrics_download);
-        playType=(TextView)findViewById(R.id.lyrics_play_type);
+      //  playType=(TextView)findViewById(R.id.lyrics_play_type);
 
         collect.setSelected(true);
         share.setSelected(true);

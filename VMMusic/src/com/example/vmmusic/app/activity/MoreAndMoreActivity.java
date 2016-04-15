@@ -1,6 +1,7 @@
 package com.example.vmmusic.app.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -42,7 +43,8 @@ public class MoreAndMoreActivity extends Activity {
     private void initView() {
         topSettiings=new TopSettiings(this);
         topSettiings.setTitle("更多");
-        topSettiings.setRight(null, getResources().getDrawable(R.drawable.back),false);
+        TextView topLeft=topSettiings.setLeft(null, getResources().getDrawable(R.drawable.back),false);
+      
         more_img = (RoundImageView) findViewById(R.id.more_img);
         more_name = (TextView) findViewById(R.id.more_name);
         more_vip = (TextView) findViewById(R.id.more_vip);
@@ -61,6 +63,7 @@ public class MoreAndMoreActivity extends Activity {
         more_about_vm.setOnClickListener(onClickListener);
         more_update.setOnClickListener(onClickListener);
         more_login_out.setOnClickListener(onClickListener);
+        topLeft.setOnClickListener(onClickListener);
 
 
     }
@@ -82,6 +85,11 @@ public class MoreAndMoreActivity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.public_top_right:
+                	Intent intent=new Intent(MoreAndMoreActivity.this,MusicLyricPlayActivity.class);
+                	startActivity(intent);
+                    break;
+                case R.id.public_top_left:
+                	finish();
                     break;
                 case R.id.more_theme://主题
                     break;
