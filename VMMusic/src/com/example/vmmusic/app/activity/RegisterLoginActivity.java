@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -15,18 +16,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.listener.BaseUiListener;
+import com.example.vmmusic.app.utils.App;
 import com.example.vmmusic.app.utils.HttpUtils;
-import com.example.vmmusic.app.utils.JSONUtils;
 import com.example.vmmusic.app.utils.T;
-import com.umeng.socialize.UMAuthListener;
-import com.umeng.socialize.UMShareAPI;
-import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 
 /**
  * 注册登录页面
@@ -85,16 +86,22 @@ public class RegisterLoginActivity extends Activity {
     /**
      * 第三方登录
      */
-    private UMShareAPI mShareAPI = null;
+    Tencent mTencent;
+    App app;
+    private static boolean isServerSideLogin = false;
 
     private HashMap<String, String> map;//参访请求参数和value
     private MyTask task;//异步任务
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_and_login);
-        mShareAPI = UMShareAPI.get(this);
+        app = (App) getApplication();
+        //QQ互联
+        mTencent = Tencent.createInstance(app.APP_ID, this.getApplicationContext());
+
         initView();
     }
 
@@ -123,52 +130,35 @@ public class RegisterLoginActivity extends Activity {
     }
 
     /**
+     * QQ互联监听
+     */
+    IUiListener loginListener = new BaseUiListener(this) {
+        @Override
+        protected void doComplete(JSONObject values) {
+            Log.d("SDKQQAgentPref", "AuthorSwitch_SDK:" + SystemClock.elapsedRealtime());
+        }
+    };
+
+    /**
      * 第三方登录
      *
      * @param view
      */
     public void onClickAuth(View view) {
-        SHARE_MEDIA platform = null;
         if (view.getId() == R.id.wb_btn) {
-            platform = SHARE_MEDIA.SINA;
-
         } else if (view.getId() == R.id.qq_btn) {
-            platform = SHARE_MEDIA.QQ;
+            mTencent.login(this, "all", loginListener);
         } else if (view.getId() == R.id.wx_btn) {
-            platform = SHARE_MEDIA.WEIXIN;
 
         }
-        /**begin invoke umeng api**/
 
-        mShareAPI.doOauthVerify(RegisterLoginActivity.this, platform, umAuthListener);
+
     }
-
-    /**
-     * auth callback interface
-     **/
-    private UMAuthListener umAuthListener = new UMAuthListener() {
-        @Override
-        public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
-            T.showShort(getApplicationContext(), "Authorize succeed");
-
-        }
-
-        @Override
-        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
-            T.showShort(getApplicationContext(), "Authorize fail");
-        }
-
-        @Override
-        public void onCancel(SHARE_MEDIA platform, int action) {
-            T.showShort(getApplicationContext(), "Authorize cancel");
-        }
-    };
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mShareAPI.onActivityResult(requestCode, resultCode, data);
+        mTencent.onActivityResult(requestCode, resultCode, data);
     }
 
 
@@ -282,10 +272,7 @@ public class RegisterLoginActivity extends Activity {
      */
     @SuppressWarnings("unchecked")
     private void register() {
-
-
         if (checkEdit_register()) {//判断是否为空
-
             String phoneNum = getContent(editText_phone);//手机号
             String code = getContent(editText_code);//验证码
             String password = getContent(editText_register_password);

@@ -1,8 +1,16 @@
 package com.example.vmmusic.app.fragment;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.activity.MoreAndMoreActivity;
@@ -14,18 +22,11 @@ import com.example.vmmusic.app.customview.RoundImageView;
 import com.example.vmmusic.app.model.Chippendale;
 import com.example.vmmusic.app.utils.HttpUtils;
 import com.example.vmmusic.app.utils.TopSettiings;
-import com.umeng.socialize.utils.Log;
 
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TableRow;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by awx19 on 2016/4/8.
@@ -44,10 +45,11 @@ public class MineFragment extends Fragment {
     TextView mine_lately;//最近播放
     TableRow mine_guess_you_like;//猜你喜欢
     Intent intent;
-    public static final String LOCAL="local music";
-    private static final String MINEHTTP="http://192.168.15.247:90/api/personage";
-    private static final String NUM="18883766232";
-    private HashMap<String,String> map;
+    public static final String LOCAL = "local music";
+    private static final String MINEHTTP = "http://192.168.15.247:90/api/personage";
+    private static final String NUM = "18883766232";
+    private HashMap<String, String> map;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -100,10 +102,10 @@ public class MineFragment extends Fragment {
         HeaderGridView grid = (HeaderGridView) view.findViewById(R.id.mine_rewrite_grid_view);
         grid.addHeaderView(header);//添加headerView
         grid.setAdapter(chippendaleAdapter);
-        
-        map=new HashMap<String, String>();
+
+        map = new HashMap<String, String>();
         map.put("tel", NUM);
-        MyTask task=new MyTask();
+        MyTask task = new MyTask();
         task.execute("");
     }
 
@@ -115,13 +117,13 @@ public class MineFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.public_top_right:
-                	Intent intent = new Intent(getActivity(), MusicLyricPlayActivity.class);
-                	getActivity().startActivity(intent);
+                    Intent intent = new Intent(getActivity(), MusicLyricPlayActivity.class);
+                    getActivity().startActivity(intent);
                     break;
                 case R.id.local_music://本地音乐
-                	Intent local = new Intent(getActivity(), MusicListActivity.class);
-                	local.putExtra(LOCAL, true);
-                	getActivity().startActivity(local);	
+                    Intent local = new Intent(getActivity(), MusicListActivity.class);
+                    local.putExtra(LOCAL, true);
+                    getActivity().startActivity(local);
                     break;
                 case R.id.download_music://下载音乐
 
@@ -160,22 +162,23 @@ public class MineFragment extends Fragment {
         }
         return list;
     }
-    
-    class MyTask extends AsyncTask<String, Void, String>{
 
-		@Override
-		protected String doInBackground(String... arg0) {
-			// TODO Auto-generated method stub
-			HttpUtils httpUtils=new HttpUtils();
-			String result=httpUtils.postData(MINEHTTP, map);
-			return result;
-		}
-    	@Override
-    	protected void onPostExecute(String result) {
-    		// TODO Auto-generated method stub
-    		Log.w("resutl",result);
-    		super.onPostExecute(result);
-    	}
+    class MyTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... arg0) {
+            // TODO Auto-generated method stub
+            HttpUtils httpUtils = new HttpUtils();
+            String result = httpUtils.postData(MINEHTTP, map);
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            // TODO Auto-generated method stub
+            Log.w("resutl", result);
+            super.onPostExecute(result);
+        }
     }
 
 }

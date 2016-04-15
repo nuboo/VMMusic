@@ -110,7 +110,8 @@
                 android:drawableLeft="@drawable/phone"
                 android:drawablePadding="@dimen/fifteen"
                 android:hint="请输入手机号"
-                android:padding="@dimen/fifteen" />
+                android:padding="@dimen/fifteen"
+                android:inputType="number"/>
 
             <TextView
                 android:id="@+id/register_verification"
