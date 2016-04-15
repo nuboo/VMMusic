@@ -1,31 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
 
     package="com.example.vmmusic"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="21"
+        tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />
     <!-- 读写SD卡权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
-    </uses-permission>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- renren sso Permission for Unit Test -->
+    <!-- QQ、QQ空间所需权限 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
     <application
+        android:name=".app.utils.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar" >
+        android:theme="@android:style/Theme.NoTitleBar">
 
         <!-- 空白页入口 -->
         <activity
             android:name="com.example.vmmusic.app.activity.FirstPage"
-            android:launchMode="singleTop" >
+            android:launchMode="singleTop">
 
             <!--
                  <intent-filter>
@@ -40,8 +58,7 @@
         <activity
             android:name="com.example.vmmusic.app.activity.HomePageActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop" >
-        </activity>
+            android:launchMode="singleTop"></activity>
 
         <!-- 引导页面 -->
         <activity
@@ -50,7 +67,7 @@
         <!-- 登录注册 -->
         <activity
             android:name="com.example.vmmusic.app.activity.RegisterLoginActivity"
-            android:launchMode="singleTop" >
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,30 +78,28 @@
         <!-- 音乐列表 -->
         <activity
             android:name="com.example.vmmusic.app.activity.MusicListActivity"
-            android:launchMode="singleTop" >
-           <!--  <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:launchMode="singleTop">
+            <!--  <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> -->
-            
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter> -->
+
         </activity>
         <!-- 播放音乐服务 -->
-        <service android:name=".app.utils.MusicService" >
-        </service>
+        <service android:name=".app.utils.MusicService"></service>
 
         <!-- 专辑歌手分类详细 -->
 
         <activity
             android:name="com.example.vmmusic.app.activity.MoreListActivity"
-            android:launchMode="singleTop" >
-      
+            android:launchMode="singleTop">
+
         </activity>
         <!-- 音乐播放界面 -->
         <activity
             android:name="com.example.vmmusic.app.activity.MusicLyricPlayActivity"
-            android:launchMode="singleTop" >
-        </activity>
+            android:launchMode="singleTop"></activity>
         <!-- 搜索 -->
 
         <activity
@@ -97,6 +112,64 @@
         <activity
             android:name="com.example.vmmusic.app.activity.ChannelClassificationActivity"
             android:launchMode="singleTop" />
+
+
+        <!-- Share edit page -->
+
+        <!-- wechat callback -->
+        <activity
+            android:name=".app.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- renren need -->
+        <activity
+            android:name="com.renn.rennsdk.oauth.OAuthActivity"
+            android:configChanges="orientation|navigation|keyboardHidden" />
+        <!-- tencent -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100424468" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <uses-library
+            android:name="com.google.android.maps"
+            android:required="false" />
+        <uses-library android:name="android.test.runner" />
+        <!-- facebook -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- twitter -->
+        <activity
+            android:name="com.umeng.socialize.handler.TwitterWebActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- *************************     related to Share END **************************** -->
+        <!-- umengAppKey，replace to yours -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="561cae6ae0f55abd990035bf" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng" />
     </application>
 
 </manifest>

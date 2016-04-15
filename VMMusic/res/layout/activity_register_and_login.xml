@@ -18,10 +18,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:button="@null"
+            android:checked="true"
             android:text="登录"
             android:textColor="@drawable/radio_button"
-            android:textSize="25sp"
-            android:checked="true"/>
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="1dp"
@@ -80,9 +80,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/thirty"
-            android:padding="15dp"
             android:background="@drawable/code_shape"
             android:gravity="center"
+            android:padding="15dp"
             android:text="进入VM"
             android:textColor="@color/white" />
     </LinearLayout>
@@ -157,8 +157,8 @@
             android:layout_marginTop="@dimen/thirty"
             android:background="@drawable/code_shape"
             android:gravity="center"
-            android:text="VM注册"
             android:padding="15dp"
+            android:text="VM注册"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -184,30 +184,33 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/fifteen">
 
-            <TextView
+            <Button
                 android:id="@+id/qq_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/thirty"
                 android:background="@drawable/qq"
-                android:gravity="center" />
+                android:gravity="center"
+                android:onClick="onClickAuth"/>
 
-            <TextView
+            <Button
                 android:id="@+id/wb_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="@drawable/wb"
-                android:gravity="center" />
+                android:gravity="center"
+                android:onClick="onClickAuth"/>
 
-            <TextView
+            <Button
                 android:id="@+id/wx_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/thirty"
                 android:background="@drawable/wx"
-                android:gravity="center" />
+                android:gravity="center"
+                android:onClick="onClickAuth"/>
         </RelativeLayout>
     </LinearLayout>
 
