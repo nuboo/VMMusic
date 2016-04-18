@@ -6,14 +6,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.listener.BaseUiListener;
+import com.example.vmmusic.app.utils.App;
 import com.example.vmmusic.app.utils.HttpUtils;
 import com.example.vmmusic.app.utils.T;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,20 +28,24 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+
+
 /**
  * 注册登录页面
  * Created by awx19 on 2016/4/7.
  */
 public class RegisterLoginActivity extends Activity {
+
 	
 	private static final String VERIFY="getverify";
     private static final String REGISTER="register";
     private static final String LOGIN="login";
+
     private int type;//0注册，1登录，2获取验证码
-    private JSONObject orignJSON;	
+    private JSONObject orignJSON;
     private boolean success;//登录注册成功
-    
-	/**
+
+    /**
      * 登录注册选择按钮
      */
     RadioGroup radioGroup;
@@ -73,25 +83,28 @@ public class RegisterLoginActivity extends Activity {
      * 注册按钮
      */
     Button button_register;
-    /**
-     * 第三方登录按钮
-     */
-    TextView qq_btn;
-    TextView wb_btn;
-    TextView wx_btn;
-
     LinearLayout login_linear;
     LinearLayout register_linear;
     LinearLayout third_party_linear;
-    
-    
+    /**
+     * 第三方登录
+     */
+    Tencent mTencent;
+    App app;
+    private static boolean isServerSideLogin = false;
+
     private HashMap<String, String> map;//参访请求参数和value
     private MyTask task;//异步任务
-   
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_and_login);
+        app = (App) getApplication();
+        //QQ互联
+        mTencent = Tencent.createInstance(app.APP_ID, this.getApplicationContext());
+
         initView();
     }
 
@@ -110,9 +123,6 @@ public class RegisterLoginActivity extends Activity {
         textView_code = (TextView) findViewById(R.id.register_verification);
         button_login = (Button) findViewById(R.id.login_btn);
         button_register = (Button) findViewById(R.id.register_btn);
-        qq_btn = (TextView) findViewById(R.id.qq_btn);
-        wb_btn = (TextView) findViewById(R.id.wb_btn);
-        wx_btn = (TextView) findViewById(R.id.wx_btn);
         login_linear = (LinearLayout) findViewById(R.id.login_linear);
         register_linear = (LinearLayout) findViewById(R.id.register_linear);
         third_party_linear = (LinearLayout) findViewById(R.id.third_party_linear);
@@ -120,10 +130,40 @@ public class RegisterLoginActivity extends Activity {
         textView_code.setOnClickListener(onClickListener);
         button_login.setOnClickListener(onClickListener);
         button_register.setOnClickListener(onClickListener);
-        qq_btn.setOnClickListener(onClickListener);
-        wb_btn.setOnClickListener(onClickListener);
-        wx_btn.setOnClickListener(onClickListener);
     }
+
+    /**
+     * QQ互联监听
+     */
+    IUiListener loginListener = new BaseUiListener(this) {
+        @Override
+        protected void doComplete(JSONObject values) {
+            Log.d("SDKQQAgentPref", "AuthorSwitch_SDK:" + SystemClock.elapsedRealtime());
+        }
+    };
+
+    /**
+     * 第三方登录
+     *
+     * @param view
+     */
+    public void onClickAuth(View view) {
+        if (view.getId() == R.id.wb_btn) {
+        } else if (view.getId() == R.id.qq_btn) {
+            mTencent.login(this, "all", loginListener);
+        } else if (view.getId() == R.id.wx_btn) {
+
+        }
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mTencent.onActivityResult(requestCode, resultCode, data);
+    }
+
 
     /**
      * radioButton选择监听
@@ -133,16 +173,16 @@ public class RegisterLoginActivity extends Activity {
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             switch (group.getCheckedRadioButtonId()) {
                 case R.id.login:
-                	jumpToLogin();
-                   
+                    jumpToLogin();
+
                     break;
                 case R.id.register:
-                	jumpToRegister();
-                  
+                    jumpToRegister();
+
                     break;
                 case R.id.register_verification://获取验证码
-                	getCode();
-                	break;
+                    getCode();
+                    break;
                 default://默认情况下推荐RadioButton选中
                     radioButton_login.setChecked(true);
                     radioButton_register.setChecked(false);
@@ -150,6 +190,8 @@ public class RegisterLoginActivity extends Activity {
             }
         }
     };
+
+
     /**
      * 点击监听
      */
@@ -166,12 +208,6 @@ public class RegisterLoginActivity extends Activity {
                 case R.id.register_btn://注册
                     register();
                     break;
-                case R.id.qq_btn://QQ
-                    break;
-                case R.id.wb_btn://微博
-                    break;
-                case R.id.wx_btn://微信
-                    break;
             }
         }
     };
@@ -180,49 +216,49 @@ public class RegisterLoginActivity extends Activity {
      * 获得验证码
      */
     @SuppressWarnings("unchecked")
-	private void getCode() {
+    private void getCode() {
         if (!TextUtils.isEmpty(getContent(editText_phone))) {//判断是否为空
-        		String param=getContent(editText_phone);
-        		map=new HashMap<String, String>();
-        		map.put("tel", param);
-        		type=2;
-        		 task=new MyTask();
-        		task.execute(VERIFY);
+            String param = getContent(editText_phone);
+            map = new HashMap<String, String>();
+            map.put("tel", param);
+            type = 2;
+            task = new MyTask();
+            task.execute(VERIFY);
         } else {
             T.showShort(getApplicationContext(), "手机号不能为空");
         }
     }
+
     /**
      * 切换到注册页面
      */
     protected void jumpToRegister() {
-    	  login_linear.setVisibility(View.GONE);
-          third_party_linear.setVisibility(View.GONE);
-          register_linear.setVisibility(View.VISIBLE);
-          editText_user_name.setText("");
-          editText_login_password.setText("");
-	}
+        login_linear.setVisibility(View.GONE);
+        third_party_linear.setVisibility(View.GONE);
+        register_linear.setVisibility(View.VISIBLE);
+        editText_user_name.setText("");
+        editText_login_password.setText("");
+    }
 
-	/**
-     * 切换到
+    /**
+     * 切换到登录页面
      */
-	protected void jumpToLogin() {
-	    login_linear.setVisibility(View.VISIBLE);
+    protected void jumpToLogin() {
+        login_linear.setVisibility(View.VISIBLE);
         third_party_linear.setVisibility(View.VISIBLE);
         register_linear.setVisibility(View.GONE);
         editText_phone.setText("");
         editText_code.setText("");
         editText_register_password.setText("");
-		
-	}
 
-	/**
+    }
+
+    /**
      * 登录
      */
     private void login() {
-    	
-      
         if (checkEdit_login()) {//判断是否为空
+
         	//跳转
         	
         	
@@ -235,7 +271,8 @@ public class RegisterLoginActivity extends Activity {
         	type=0;
         	task=new MyTask();
         	task.execute(LOGIN);
-         
+
+        
         }
     }
 
@@ -243,22 +280,19 @@ public class RegisterLoginActivity extends Activity {
      * 注册
      */
     @SuppressWarnings("unchecked")
-	private void register() {
-  
-
-    	 if (checkEdit_register()) {//判断是否为空
-    		 
-    		  	String phoneNum=getContent(editText_phone);//手机号
-    			String code=getContent(editText_code);//验证码
-    			String password=getContent(editText_register_password);
-    			T.showShort(RegisterLoginActivity.this, "tel"+phoneNum+"  code"+code+"  pass"+password);
-    			map=new HashMap<String, String>();
-    			map.put("tel", phoneNum);
-    			map.put("verify", code);
-    			map.put("password", password);
-    			type=1;
-    			task=new MyTask();
-    			task.execute(REGISTER);       
+    private void register() {
+        if (checkEdit_register()) {//判断是否为空
+            String phoneNum = getContent(editText_phone);//手机号
+            String code = getContent(editText_code);//验证码
+            String password = getContent(editText_register_password);
+            T.showShort(RegisterLoginActivity.this, "tel" + phoneNum + "  code" + code + "  pass" + password);
+            map = new HashMap<String, String>();
+            map.put("tel", phoneNum);
+            map.put("verify", code);
+            map.put("password", password);
+            type = 1;
+            task = new MyTask();
+            task.execute(REGISTER);
         }
     }
 
@@ -275,7 +309,7 @@ public class RegisterLoginActivity extends Activity {
     /**
      * 判断登录输入是否为空
      *
-     * @return  不为空
+     * @return 不为空
      */
     private boolean checkEdit_login() {
         if (TextUtils.isEmpty(getContent(editText_user_name))) {
@@ -291,7 +325,7 @@ public class RegisterLoginActivity extends Activity {
     /**
      * 判断注册输入是否为空
      *
-     * @return  不为空
+     * @return 不为空
      */
     private boolean checkEdit_register() {
         if (TextUtils.isEmpty(getContent(editText_code))) {
@@ -303,12 +337,13 @@ public class RegisterLoginActivity extends Activity {
         }
         return false;
     }
-    
+
     /**
      * 获取验证码
-     * @author Administrator
      *
+     * @author Administrator
      */
+
     class MyTask extends AsyncTask< String, Void, String>{
 
 		@Override
@@ -369,55 +404,59 @@ public class RegisterLoginActivity extends Activity {
     };
     
     
+
     /**
-     *  解析验证码
+     * 解析验证码
+     *
      * @param str
      */
-    private  void jsonCode(String str){
-    	try {
-			orignJSON=new JSONObject(str);
-			int status=orignJSON.getInt("status");
-			
-			switch (status) {
-			case 1://成功
-				editText_code.setText(orignJSON.getString("mobile_code"));;
-				break;
-			case 2:
-				T.showShort(RegisterLoginActivity.this, "网络连接超时,请重新获取");
-				break;
-			default:
-				break;
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-   /**
-    *  登录注册是否成功
-    * @param str
-    * @return 是否成功
-    */
-    private boolean jsonRegisterAndLogin(String str){
-    	int status=2;
-    	try {
-			orignJSON =new JSONObject(str);
-			status=orignJSON.optInt("status", 2);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	switch (status) {
-		case 1:
-			success= true;
-			break;
-		case 2:
-			success= false;
-			break;
+    private void jsonCode(String str) {
+        try {
+            orignJSON = new JSONObject(str);
+            int status = orignJSON.getInt("status");
 
-		default:
-			break;
-		}
-    	return success;
+            switch (status) {
+                case 1://成功
+                    editText_code.setText(orignJSON.getString("mobile_code"));
+                    break;
+                case 2:
+                    T.showShort(RegisterLoginActivity.this, "网络连接超时,请重新获取");
+                    break;
+                default:
+                    break;
+            }
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 登录注册是否成功
+     *
+     * @param str
+     * @return 是否成功
+     */
+    private boolean jsonRegisterAndLogin(String str) {
+        int status = 2;
+        try {
+            orignJSON = new JSONObject(str);
+            status = orignJSON.optInt("status", 2);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        switch (status) {
+            case 1:
+                success = true;
+                break;
+            case 2:
+                success = false;
+                break;
+
+            default:
+                break;
+        }
+        return success;
     }
 }

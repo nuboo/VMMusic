@@ -40,6 +40,7 @@ import android.content.Context;
 import android.util.Log;
 
 public class HttpUtils {
+
 	private static int SOCKET_TIME_OUT = 20000;
 	private String url = " http://192.168.15.247:90/home/api/";
 	private HttpClient httpClient;

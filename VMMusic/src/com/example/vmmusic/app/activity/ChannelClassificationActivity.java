@@ -1,12 +1,7 @@
 package com.example.vmmusic.app.activity;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.LinearLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.adapter.ChannelClassificationAdapter;
@@ -17,8 +12,14 @@ import com.example.vmmusic.app.model.Chippendale;
 import com.example.vmmusic.app.utils.T;
 import com.example.vmmusic.app.utils.TopSettiings;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * 频道分类
@@ -42,16 +43,17 @@ public class ChannelClassificationActivity extends Activity {
      */
     private void topSetting() {
         TopSettiings topSettiings = new TopSettiings(this);
-        topSettiings.getTextLeft().setBackgroundResource(R.drawable.back);
+        TextView left=topSettiings.setLeft(null, getResources().getDrawable(R.drawable.back), false);
+        left.setOnClickListener(onClickListener);
         topSettiings.setTitle(getIntent().getStringExtra("name"));
-        topSettiings.getTextRight().setOnClickListener(onClickListener);
+        
 
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+        	finish();
         }
     };
 

@@ -1,8 +1,5 @@
 package com.example.vmmusic.app.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,14 +8,18 @@ import java.util.HashMap;
  * Created by Administrator on 2016/4/8 0008.
  */
 public class Music  implements Serializable {
-    private String singer;//歌手
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String singer;//歌手
     private String name;//歌曲名
     private String path;//本地路径
     private String url;//网络路径
     private String downTime;//下载时间
-    private boolean collection;//是否收藏
-    private String album;
-    private String time;
+    private int collection;//是否收藏  1为收藏 0不为收藏
+    private String album;//专辑
+    private String time;//时长
     private int id;//数据库ID
     private int sid;//系统ID
 
@@ -94,12 +95,24 @@ public class Music  implements Serializable {
         this.downTime = downTime;
     }
 
-    public boolean isCollection() {
+    public int getCollection() {
+    	
         return collection;
     }
-
-    public void setCollection(boolean collection) {
+    /**
+     *   1为收藏 0不为收藏
+     * @param collection
+     */
+    public void setCollection(int collection) {
         this.collection = collection;
+    }
+    public boolean isCollection(){
+    	if(collection==1){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    	
     }
 
     /**

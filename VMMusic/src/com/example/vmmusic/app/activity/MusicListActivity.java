@@ -10,7 +10,9 @@ import com.example.vmmusic.app.fragment.MineFragment;
 import com.example.vmmusic.app.model.Music;
 import com.example.vmmusic.app.utils.FileUtils;
 import com.example.vmmusic.app.utils.MusicService;
+import com.example.vmmusic.app.utils.SQLUtils;
 import com.example.vmmusic.app.utils.ServiceHelper;
+import com.example.vmmusic.app.utils.T;
 import com.example.vmmusic.app.utils.TopSettiings;
 
 import android.app.Activity;
@@ -18,11 +20,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -46,6 +50,7 @@ public class MusicListActivity extends Activity {
     private ArrayList<Music> aList, sList;//专辑，歌手
     private ViewPager viewPager;
     private boolean local;
+    
 
     public static final int FROM=1000;
 
@@ -53,7 +58,7 @@ public class MusicListActivity extends Activity {
     private HashMap<String, ArrayList<Music>> map, sMap;//专辑，歌手
     private ArrayList<View> viewList = new ArrayList<View>();
     private ArrayList<Music> list = new ArrayList<Music>();//所有歌曲
-    private ArrayList<Music> sortlist = new ArrayList<Music>();//单个分类下的歌曲
+ 
     public static final String MUSICLIST = "Albums and Songs";
     public static final String TITLE = "new title";
 
@@ -113,7 +118,7 @@ public class MusicListActivity extends Activity {
         songAdapter = new MusicListAdapter(this, list, true);
         songlist.setAdapter(songAdapter);
         songlist.setOnItemClickListener(itemClickListener);
-
+        songlist.setOnItemLongClickListener(longClickListener);
 
         albumlist.setOnItemClickListener(albumClickListener);
         singerlist.setOnItemClickListener(singerClickListener);
@@ -186,7 +191,7 @@ public class MusicListActivity extends Activity {
         sList = new ArrayList<Music>();
         for (String singer : sMap.keySet()) {
             music = new Music();
-            Log.i("singer", singer);
+           
             music.setName(singer);
             sList.add(music);
         }
@@ -212,6 +217,27 @@ public class MusicListActivity extends Activity {
             playMusic(i);
         }
     };
+    /**
+     * 长按收藏和取消收藏
+     */
+    OnItemLongClickListener longClickListener =new OnItemLongClickListener() {
+
+		@Override
+		public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+			music = list.get(arg2);
+			SQLUtils utils=new SQLUtils(MusicListActivity.this);
+			boolean collected=utils.isCollection(music);
+			if(collected){
+				music.setCollection(0);//取消收藏
+				T.showShort(MusicListActivity.this, "取消收藏");
+			}else{
+				music.setCollection(1);//添加收藏
+				T.showShort(MusicListActivity.this, "收藏成功");
+			}
+			utils.upDate(music);
+			return true;
+		}
+	};
 
     /**
      * 播放音乐
@@ -289,6 +315,7 @@ public class MusicListActivity extends Activity {
     private void getLocalFile() {
         fileUtils = new FileUtils();
         fileUtils.getMediaInfo(this, list);
+       
         songs.setText("单曲" + list.size());
         songs.setChecked(true);
 

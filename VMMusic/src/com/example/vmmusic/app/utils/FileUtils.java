@@ -33,7 +33,7 @@ public class FileUtils {
         int i = 0;
         ContentResolver contentResolver = context.getContentResolver();
         Cursor cursor = contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Audio.Media._ID);
-        SQLUtils sqlUtils = new SQLUtils(context);
+        SQLUtils sqlUtils=new SQLUtils(context);
         if (cursor != null) {
 
             while (cursor.moveToNext()) {
@@ -52,6 +52,7 @@ public class FileUtils {
                 String url = cursor.getString(urlNum);
                 int duNum = cursor.getColumnIndex(MediaStore.Audio.Media.DURATION);
                 String du = cursor.getString(duNum);
+               
                 music.setId(id);
                 i++;
                 //系统ID  歌名   专辑  歌手  时长  路径
@@ -61,8 +62,10 @@ public class FileUtils {
                 music.setSinger(singer);
                 music.setTime(du);
                 music.setPath(url);
+               
+                music= sqlUtils.addData(music);//如果第一次添加。添加成功则设置收藏不为零
                 list.add(music);
-                sqlUtils.addData(music);
+               
 
             }
             cursor.close();
@@ -109,6 +112,7 @@ public class FileUtils {
                 music.setSinger(singer);
                 music.setTime(du);
                 music.setPath(url);
+               
                 list.add(music);
 
 
@@ -118,51 +122,7 @@ public class FileUtils {
 
     }
 
-    /**
-     * 从数据库获取信息
-     *
-     * @param context
-     * @param list
-     */
-    public void getMediaInfoFromSql(Context context, ArrayList<Music> list) {
-        SQLUtils sqlUtils = new SQLUtils(context);
-        SQLiteDatabase database = sqlUtils.getDatabase();
-        Cursor cursor = database.query(LocalSQLHelper.TABLE_NAME, null, null, null, null, LocalSQLHelper.MUSIC_ID, null);
-        if (cursor != null) {
-
-            while (cursor.moveToNext()) {
-                music = new Music();
-                int idNum = cursor.getColumnIndex(LocalSQLHelper.MUSIC_ID);
-                int id = cursor.getInt(idNum);
-
-                int sidNum = cursor.getColumnIndex(LocalSQLHelper.MUSIC_SID);
-                int sid = cursor.getInt(sidNum);
-                int titleNum = cursor.getColumnIndex(LocalSQLHelper.MUSIC_NAME);
-                String title = cursor.getString(titleNum);
-                int albumNum = cursor.getColumnIndex(LocalSQLHelper.MUSIC_ALBUM);
-                String album = cursor.getString(albumNum);
-                int singerNum = cursor.getColumnIndex(LocalSQLHelper.MUSIC_SINGER);
-                String singer = cursor.getString(singerNum);
-                int urlNum = cursor.getColumnIndex(LocalSQLHelper.MUSIC_PATH);
-                String url = cursor.getString(urlNum);
-                int duNum = cursor.getColumnIndex(LocalSQLHelper.MUSIC_DURATION);
-                String du = cursor.getString(duNum);
-                music.setId(id);
-
-                //系统ID  歌名   专辑  歌手  时长  路径
-                music.setSid(sid);
-                music.setName(title);
-                music.setAlbum(album);
-                music.setSinger(singer);
-                music.setTime(du);
-                music.setPath(url);
-                list.add(music);
-
-            }
-            cursor.close();
-        }
-
-    }
+  
 
 
     /**

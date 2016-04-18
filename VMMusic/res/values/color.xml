@@ -8,7 +8,7 @@
     <color name="background_color">#f6f6f6</color>
     <color name="transparent_background">#00000000</color>
     <color name="green">#0ADCB7</color>
-     <drawable name="green_drawable_color">#0ADCB7</drawable>
+    <drawable name="green_drawable_color">#0ADCB7</drawable>
     <!--灰色-->
     <color name="gray">#9B9B9B</color>
     <color name="light_gray">#858585</color>

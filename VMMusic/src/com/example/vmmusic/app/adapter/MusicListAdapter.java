@@ -30,7 +30,7 @@ public class MusicListAdapter extends BaseAdapter {
      *
      * @param context  上下文
      * @param list  ArrayList<Music> list
-     * @param aBoolean 是否显示歌手
+     * @param aBoolean 是否显示歌手  true显示 false不显示
      */
     public  MusicListAdapter(Context context,ArrayList<Music> list,Boolean aBoolean){
         this.context=context;

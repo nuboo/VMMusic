@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -50,7 +51,7 @@ public class TopSettiings {
 
 	/**
 	 * 
-	 * 设置标题 并默认设置左上角跳转选择音乐界面 如需添加其他点击事件，可以通过setLeft获得textView对象
+	 * 设置标题 并默认设置右上角跳转选择音乐界面  如需添加其他点击事件，可以通过setLeft获得textView对象
 	 * 
 	 * @param title
 	 */
@@ -64,6 +65,7 @@ public class TopSettiings {
 				context.startActivity(intent);
 			}
 		});
+	
 	}
 
 	/**
@@ -99,7 +101,7 @@ public class TopSettiings {
 	 * @param drawLeft
 	 *            右上角背景 default null;
 	 * @param change
-	 *            是否改变背景图片设置为空 true;false/null
+	 *            是否改变背景图片设置为空 true;false(default)
 	 * @return TextView
 	 */
 	public TextView setLeft(String leftTitle, Drawable drawLeft, Boolean change) {

@@ -18,6 +18,7 @@ import com.example.vmmusic.R;
 import com.example.vmmusic.app.customview.LrcTextView;
 import com.example.vmmusic.app.model.Music;
 import com.example.vmmusic.app.utils.MusicService;
+import com.example.vmmusic.app.utils.SQLUtils;
 import com.example.vmmusic.app.utils.ServiceHelper;
 import com.example.vmmusic.app.utils.T;
 
@@ -31,7 +32,8 @@ public class MusicLyricPlayActivity extends Activity {
     private TextView title,singer,back,more;
     private TextView collect ,share,donwLoad,playType;//收藏，分享，下载，随机播放
     private IntentFilter intentFilter;
-
+    private Music music;
+    private SQLUtils sqlUtils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,9 +42,13 @@ public class MusicLyricPlayActivity extends Activity {
         inni();
 
     }
-
+    /**
+     * 初始化控件和页面
+     */
     private void inni(){
-
+    	if(sqlUtils==null){
+    		sqlUtils=new SQLUtils(this);
+    	}
         intentFilter=new IntentFilter();
         intentFilter.addAction(MusicService.NEWSONG);
         registerReceiver(updateReceiver, intentFilter);//注册广播，更新
@@ -55,15 +61,16 @@ public class MusicLyricPlayActivity extends Activity {
         singer.setSelected(true);
         back=(TextView)findViewById(R.id.lyrics_top_left);
         bindMyservice();
+       
         back.setOnClickListener(clickListener);
         more.setOnClickListener(clickListener);
         collect=(TextView)findViewById(R.id.lyrics_collection);
         share=(TextView)findViewById(R.id.lyrics_share);
         donwLoad=(TextView)findViewById(R.id.lyrics_download);
-      //  playType=(TextView)findViewById(R.id.lyrics_play_type);
-
-        collect.setSelected(true);
-        share.setSelected(true);
+        playType=(TextView)findViewById(R.id.lyrics_play_type);
+        
+        collect.setOnClickListener(clickListener);
+       
 
 
 
@@ -81,6 +88,9 @@ public class MusicLyricPlayActivity extends Activity {
                     Intent intent=new Intent(MusicLyricPlayActivity.this,MoreAndMoreActivity.class);
                     startActivity(intent);
                     break;
+                case R.id.lyrics_collection:
+                	inniSelected();
+                	break;
                 default:
                     break;
             }
@@ -96,7 +106,7 @@ public class MusicLyricPlayActivity extends Activity {
         Bundle bundle=new Bundle();
         bundle.putBoolean(MusicService.LYRICS,true);
 
-        Log.e("null","not");
+       
 
         intent.putExtras(bundle);
         this.bindService(intent, conn, Context.BIND_AUTO_CREATE);
@@ -118,7 +128,9 @@ public class MusicLyricPlayActivity extends Activity {
         public void onServiceConnected(ComponentName arg0, IBinder arg1) {
             // TODO Auto-generated method stub
             myService=((MusicService.MyServiceBinder)arg1).getService();
-            myService.initLrc(lrcView,title,singer);
+            myService.initLrc(lrcView);
+            music=myService.getNowPlay();
+            inniSong(music);
         }
     };
 
@@ -145,11 +157,48 @@ public class MusicLyricPlayActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals(MusicService.NEWSONG)){
-                Music music=(Music)intent.getSerializableExtra(MusicService.NEWSONG);
-                title.setText(music.getName());
-                singer.setText(music.getSinger());
-                myService.initLrc(lrcView,title,singer);//更换歌词
+               
+                myService.initLrc(lrcView);//更换歌词
+                music=myService.getNowPlay();
+                inniSong(music);
             }
         }
     };
+    
+    /**
+     * 更新标题 和收藏状态
+     * @param music
+     */
+    private void inniSong(Music music){
+    	 singer.setText(music.getSinger());
+         title.setText(music.getName());
+         if(music.getCollection()!=2){
+        	 boolean collected=sqlUtils.isCollection(music);
+        	 collect.setSelected(collected);
+         }
+         
+    }
+    
+    /**
+     * 收藏，取消收藏
+     */
+    private void inniSelected(){
+    
+    	boolean se=collect.isSelected();
+    	if(se){
+    		music.setCollection(0);
+    		sqlUtils.upDate(music);
+    		
+    		collect.setSelected(false);
+    		
+    		
+    	}else{
+    	
+    		music.setCollection(1);
+    		sqlUtils.upDate(music);
+    		collect.setSelected(true);
+    		T.showShort(this, "已添加到我的收藏");
+    		
+    	}
+    }
 }
