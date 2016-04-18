@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -21,10 +22,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.listener.AuthListener;
 import com.example.vmmusic.app.listener.BaseUiListener;
+import com.example.vmmusic.app.utils.AccessTokenKeeper;
 import com.example.vmmusic.app.utils.App;
 import com.example.vmmusic.app.utils.HttpUtils;
 import com.example.vmmusic.app.utils.T;
+import com.sina.weibo.sdk.auth.AuthInfo;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+import com.sina.weibo.sdk.auth.WeiboAuthListener;
+import com.sina.weibo.sdk.auth.sso.SsoHandler;
+import com.sina.weibo.sdk.exception.WeiboException;
+import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
@@ -87,8 +96,13 @@ public class RegisterLoginActivity extends Activity {
      * 第三方登录
      */
     Tencent mTencent;
+    private AuthInfo mAuthInfo;
+    /**
+     * 注意：SsoHandler 仅当 SDK 支持 SSO 时有效
+     */
+    private SsoHandler mSsoHandler;
+    private Oauth2AccessToken mAccessToken;
     App app;
-    private static boolean isServerSideLogin = false;
 
     private HashMap<String, String> map;//参访请求参数和value
     private MyTask task;//异步任务
@@ -101,7 +115,11 @@ public class RegisterLoginActivity extends Activity {
         app = (App) getApplication();
         //QQ互联
         mTencent = Tencent.createInstance(app.APP_ID, this.getApplicationContext());
-
+        // 创建微博实例
+        //mWeiboAuth = new WeiboAuth(this, Constants.APP_KEY, Constants.REDIRECT_URL, Constants.SCOPE);
+        // 快速授权时，请不要传入 SCOPE，否则可能会授权不成功
+        mAuthInfo = new AuthInfo(this, app.APP_KEY, app.REDIRECT_URL, app.SCOPE);
+        mSsoHandler = new SsoHandler(RegisterLoginActivity.this, mAuthInfo);
         initView();
     }
 
@@ -136,6 +154,12 @@ public class RegisterLoginActivity extends Activity {
         @Override
         protected void doComplete(JSONObject values) {
             Log.d("SDKQQAgentPref", "AuthorSwitch_SDK:" + SystemClock.elapsedRealtime());
+            initOpenidAndToken(values);
+            String token = mTencent.getAccessToken();
+            if (token != null) {
+                Intent intent = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
+                startActivity(intent);
+            }
         }
     };
 
@@ -146,8 +170,17 @@ public class RegisterLoginActivity extends Activity {
      */
     public void onClickAuth(View view) {
         if (view.getId() == R.id.wb_btn) {
+            mSsoHandler.authorizeClientSso(new AuthListener(this));
+            mAccessToken = AccessTokenKeeper.readAccessToken(getApplicationContext());
+            if (mAccessToken != null) {
+                Intent intent = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
+                startActivity(intent);
+            }
         } else if (view.getId() == R.id.qq_btn) {
-            mTencent.login(this, "all", loginListener);
+            mTencent = Tencent.createInstance(app.APP_ID, this.getApplicationContext());
+            if (!mTencent.isSessionValid()) {
+                mTencent.login(this, "all", loginListener);
+            }
         } else if (view.getId() == R.id.wx_btn) {
 
         }
@@ -155,10 +188,40 @@ public class RegisterLoginActivity extends Activity {
 
     }
 
+    /**
+     * 初始化 Openid和token
+     *
+     * @param jsonObject
+     */
+
+    public void initOpenidAndToken(JSONObject jsonObject) {
+        try {
+            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
+            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
+            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
+            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
+                    && !TextUtils.isEmpty(openId)) {
+                mTencent.setAccessToken(token, expires);
+                T.showShort(getApplicationContext(), token);
+                mTencent.setOpenId(openId);
+            }
+        } catch (Exception e) {
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mTencent.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.REQUEST_LOGIN ||
+                requestCode == Constants.REQUEST_APPBAR) {
+            Tencent.onActivityResultData(requestCode, resultCode, data, loginListener);
+        }
+
+        // SSO 授权回调
+        // 重要：发起 SSO 登陆的 Activity 必须重写 onActivityResults
+        if (mSsoHandler != null) {
+            mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
     }
 
 
@@ -171,14 +234,9 @@ public class RegisterLoginActivity extends Activity {
             switch (group.getCheckedRadioButtonId()) {
                 case R.id.login:
                     jumpToLogin();
-
                     break;
                 case R.id.register:
                     jumpToRegister();
-
-                    break;
-                case R.id.register_verification://获取验证码
-                    getCode();
                     break;
                 default://默认情况下推荐RadioButton选中
                     radioButton_login.setChecked(true);
@@ -340,7 +398,6 @@ public class RegisterLoginActivity extends Activity {
         protected String doInBackground(String... arg0) {
             // TODO Auto-generated method stub
             HttpUtils httpUtils = HttpUtils.getInstance();
-
             String result = httpUtils.NewpostData(arg0[0], map);
             return result;
         }

@@ -16,15 +16,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- renren sso Permission for Unit Test -->
     <!-- QQ、QQ空间所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.SET_DEBUG_APP" />
@@ -44,14 +41,10 @@
         <activity
             android:name="com.example.vmmusic.app.activity.FirstPage"
             android:launchMode="singleTop">
-
-            <!--
-                 <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
+            </intent-filter>-->
         </activity>
 
         <!-- 主页面 -->
@@ -70,7 +63,6 @@
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -78,14 +70,7 @@
         <!-- 音乐列表 -->
         <activity
             android:name="com.example.vmmusic.app.activity.MusicListActivity"
-            android:launchMode="singleTop">
-            <!--  <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter> -->
-
-        </activity>
+            android:launchMode="singleTop"></activity>
         <!-- 播放音乐服务 -->
         <service android:name=".app.utils.MusicService"></service>
 
@@ -114,15 +99,6 @@
             android:launchMode="singleTop" />
 
 
-        <!-- Share edit page -->
-
-        <!-- wechat callback -->
-        <activity
-            android:name=".app.wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- tencent -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
