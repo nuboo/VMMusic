@@ -41,10 +41,10 @@
         <activity
             android:name="com.example.vmmusic.app.activity.FirstPage"
             android:launchMode="singleTop">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
         <!-- 主页面 -->
@@ -60,12 +60,7 @@
         <!-- 登录注册 -->
         <activity
             android:name="com.example.vmmusic.app.activity.RegisterLoginActivity"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:launchMode="singleTop"></activity>
 
         <!-- 音乐列表 -->
         <activity
@@ -97,7 +92,6 @@
         <activity
             android:name="com.example.vmmusic.app.activity.ChannelClassificationActivity"
             android:launchMode="singleTop" />
-
 
         <!-- tencent -->
         <activity

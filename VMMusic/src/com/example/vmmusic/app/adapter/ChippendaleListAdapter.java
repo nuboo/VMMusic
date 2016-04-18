@@ -1,6 +1,8 @@
 package com.example.vmmusic.app.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.activity.RegisterLoginActivity;
 import com.example.vmmusic.app.customview.RoundImageView;
+import com.example.vmmusic.app.listener.ChippendaleListListenter;
 import com.example.vmmusic.app.model.Attention;
+import com.example.vmmusic.app.utils.T;
+import com.tencent.connect.share.QzoneShare;
+import com.tencent.open.utils.ThreadManager;
+import com.tencent.open.utils.Util;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.UiError;
 
 import java.util.List;
 
@@ -83,33 +93,20 @@ public class ChippendaleListAdapter extends BaseAdapter {
         headerView.item_chippendale_list_share.setText(mList.get(position).getShare());
 
         //设置监听
-        headerView.item_chippendale_list_collection.setOnClickListener(onClickListener);
-        headerView.item_chippendale_list_thumb_up.setOnClickListener(onClickListener);
-        headerView.item_chippendale_list_comments.setOnClickListener(onClickListener);
-        headerView.item_chippendale_list_share.setOnClickListener(onClickListener);
+        Bundle bundle = new Bundle();
+
+
+        ChippendaleListListenter chippendaleListListenter = new ChippendaleListListenter(mContext, bundle);
+        headerView.item_chippendale_list_collection.setOnClickListener(chippendaleListListenter);
+        headerView.item_chippendale_list_thumb_up.setOnClickListener(chippendaleListListenter);
+        headerView.item_chippendale_list_comments.setOnClickListener(chippendaleListListenter);
+        headerView.item_chippendale_list_share.setOnClickListener(chippendaleListListenter);
         headerView.item_chippendale_list_play.setOnCheckedChangeListener(onCheckedChangeListener);
         headerView.item_chippendale_list_seek_bar.setOnSeekBarChangeListener(onSeekBarChangeListener);
         return convertView;
     }
 
-    /**
-     * 监听事件
-     */
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.item_chippendale_list_collection://收藏
-                    break;
-                case R.id.item_chippendale_list_thumb_up://赞
-                    break;
-                case R.id.item_chippendale_list_comments://评论
-                    break;
-                case R.id.item_chippendale_list_share://分享
-                    break;
-            }
-        }
-    };
+
     /**
      * CheckBox选择监听
      */

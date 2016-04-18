@@ -95,7 +95,7 @@ public class RegisterLoginActivity extends Activity {
     /**
      * 第三方登录
      */
-    Tencent mTencent;
+   public static Tencent mTencent;
     private AuthInfo mAuthInfo;
     /**
      * 注意：SsoHandler 仅当 SDK 支持 SSO 时有效

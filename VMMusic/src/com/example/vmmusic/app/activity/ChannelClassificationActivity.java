@@ -1,12 +1,7 @@
 package com.example.vmmusic.app.activity;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.LinearLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.adapter.ChannelClassificationAdapter;
@@ -16,9 +11,13 @@ import com.example.vmmusic.app.model.Channel;
 import com.example.vmmusic.app.model.Chippendale;
 import com.example.vmmusic.app.utils.T;
 import com.example.vmmusic.app.utils.TopSettiings;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.LinearLayout;
 
 /**
  * 频道分类
