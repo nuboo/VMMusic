@@ -11,6 +11,9 @@ import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.exception.WeiboException;
 
 /**
+ *
+ *
+ *
  * Created by awx19 on 2016/4/18.
  */
 
@@ -36,7 +39,6 @@ public class AuthListener implements WeiboAuthListener {
             // 保存 Token 到 SharedPreferences
             AccessTokenKeeper.writeAccessToken(mContext, mAccessToken);
             T.showShort(mContext, "授权成功");
-
         } else {
             // 以下几种情况，您会收到 Code：
             // 1. 当您未在平台上注册的应用程序的包名与签名时；

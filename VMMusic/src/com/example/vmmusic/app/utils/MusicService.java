@@ -159,7 +159,6 @@ public class MusicService extends Service {
               try {
                   mediaPlayer.setDataSource(path);
                   mediaPlayer.prepare();
-
                   mediaPlayer.start();
                   sendMusicInfo();//发送广播，通知歌词界面更新标题
               } catch (IOException e) {

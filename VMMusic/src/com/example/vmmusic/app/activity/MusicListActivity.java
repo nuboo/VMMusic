@@ -186,7 +186,6 @@ public class MusicListActivity extends Activity {
         sList = new ArrayList<Music>();
         for (String singer : sMap.keySet()) {
             music = new Music();
-            Log.i("singer", singer);
             music.setName(singer);
             sList.add(music);
         }
@@ -219,16 +218,12 @@ public class MusicListActivity extends Activity {
      * @param postion 点击的位置
      */
     private void playMusic(int postion) {
-
         music = list.get(postion);
-
-
         serviceHelper=new ServiceHelper(MusicListActivity.this);
         Bundle bundle=new Bundle();
         bundle.putSerializable(MusicService.VMMUSIC,music);
         bundle.putInt(MusicService.LISTSIZE,list.size());
         bundle.putInt(MusicService.FROMWHERE,FROM);
-
         serviceHelper.startMyService(bundle);
     }
 
@@ -238,24 +233,17 @@ public class MusicListActivity extends Activity {
     AdapterView.OnItemClickListener singerClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                     Music music=sList.get(i);
-
                     String singer =music.getName();//歌手名
-
                     if(sMap.containsKey(singer)) {
                         Intent intent =new Intent(MusicListActivity.this,MoreListActivity.class);
                         Bundle bundle=new Bundle();
                         ArrayList<Music> singerList = sMap.get(singer);
-
                         bundle.putString(TITLE, singer);
                         bundle.putSerializable(MUSICLIST,singerList);
                         intent.putExtras(bundle);
                         startActivity(intent);
                     }
-
-
-
         }
     };
 
@@ -268,15 +256,12 @@ public class MusicListActivity extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             Music music = aList.get(i);
             String album = music.getName();//专辑名
-
             if (map.containsKey(album)) {
                 Intent intent = new Intent(MusicListActivity.this, MoreListActivity.class);
                 Bundle bundle = new Bundle();
                 ArrayList<Music> albumList = map.get(album);
-
                 bundle.putSerializable(MUSICLIST, albumList);
                 bundle.putString(TITLE, album);
-
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -352,16 +337,9 @@ public class MusicListActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-
         unregisterReceiver(musicListReceiver);
-
-
         serviceHelper=new ServiceHelper(MusicListActivity.this);
         Bundle bundle=new Bundle();
-
-
-
-
         bundle.putBoolean(MusicService.ISFINISH, true);
         serviceHelper.startMyService(bundle);
         super.onDestroy();
