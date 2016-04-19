@@ -1,13 +1,5 @@
 package com.example.vmmusic.app.utils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -29,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,6 +29,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vmmusic.R;
+import com.example.vmmusic.app.share.QZoneShare;
+import com.tencent.connect.share.QzonePublish;
+import com.tencent.connect.share.QzoneShare;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AndroidShare extends Dialog implements AdapterView.OnItemClickListener {
     private LinearLayout mLayout;
@@ -46,7 +50,7 @@ public class AndroidShare extends Dialog implements AdapterView.OnItemClickListe
     private int mScreenOrientation;
     private List<ShareItem> mListData;
     private Handler mHandler = new Handler();
-
+    Bundle mBundle;
     private Runnable work = new Runnable() {
         public void run() {
             int orient = getScreenOrientation();
@@ -66,6 +70,7 @@ public class AndroidShare extends Dialog implements AdapterView.OnItemClickListe
     public AndroidShare(Context context) {
         super(context, R.style.shareDialogTheme);
     }
+
 
     public AndroidShare(Context context, int theme, String msgText, final String imgUri) {
         super(context, theme);
@@ -108,21 +113,13 @@ public class AndroidShare extends Dialog implements AdapterView.OnItemClickListe
         dm = context.getResources().getDisplayMetrics();
         this.mDensity = dm.density;
         this.mListData = new ArrayList<ShareItem>();
-        this.mListData.add(new ShareItem("微信", R.drawable.logo_wechat,
-                "com.tencent.mm.ui.tools.ShareImgUI", "com.tencent.mm"));
-        this.mListData.add(new ShareItem("朋友圈", R.drawable.logo_wechatmoments,
-                "com.tencent.mm.ui.tools.ShareToTimeLineUI", "com.tencent.mm"));
-        this.mListData.add(new ShareItem("QQ", R.drawable.logo_qq,
-                "com.tencent.mobileqq.activity.JumpActivity", "com.tencent.mobileqq"));
-        this.mListData.add(new ShareItem("QQ空间", R.drawable.logo_qzone,
-                "com.qzone.ui.operation.QZonePublishMoodActivity", "com.qzone"));
-        this.mListData.add(new ShareItem("新浪微博", R.drawable.logo_sinaweibo,
-                "com.sina.weibo.EditActivity", "com.sina.weibo"));
-        this.mListData.add(new ShareItem("腾讯微博", R.drawable.logo_tencentweibo,
-                "com.tencent.WBlog.intentproxy.TencentWeiboIntent", "com.tencent.WBlog"));
-        this.mListData.add(new ShareItem("", R.drawable.logo_other,
-                "", ""));
-
+        this.mListData.add(new ShareItem("微信", R.drawable.logo_wechat, "com.tencent.mm.ui.tools.ShareImgUI", "com.tencent.mm"));
+        this.mListData.add(new ShareItem("朋友圈", R.drawable.logo_wechatmoments, "com.tencent.mm.ui.tools.ShareToTimeLineUI", "com.tencent.mm"));
+        this.mListData.add(new ShareItem("QQ", R.drawable.logo_qq, "com.tencent.mobileqq.activity.JumpActivity", "com.tencent.mobileqq"));
+        this.mListData.add(new ShareItem("QQ空间", R.drawable.logo_qzone, "com.qzone.ui.operation.QZonePublishMoodActivity", "com.qzone"));
+        this.mListData.add(new ShareItem("新浪微博", R.drawable.logo_sinaweibo, "com.sina.weibo.EditActivity", "com.sina.weibo"));
+        this.mListData.add(new ShareItem("腾讯微博", R.drawable.logo_tencentweibo, "com.tencent.WBlog.intentproxy.TencentWeiboIntent", "com.tencent.WBlog"));
+        this.mListData.add(new ShareItem("", R.drawable.logo_other, "", ""));
         this.mLayout = new LinearLayout(context);
         this.mLayout.setOrientation(1);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
@@ -130,7 +127,6 @@ public class AndroidShare extends Dialog implements AdapterView.OnItemClickListe
         params.rightMargin = ((int) (10.0F * this.mDensity));
         this.mLayout.setLayoutParams(params);
         this.mLayout.setBackgroundColor(Color.parseColor("#f6f6f6"));
-
         this.mGridView = new GridView(context);
         this.mGridView.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
         this.mGridView.setGravity(17);
@@ -146,7 +142,7 @@ public class AndroidShare extends Dialog implements AdapterView.OnItemClickListe
     public List<ComponentName> queryPackage() {
         List<ComponentName> cns = new ArrayList<ComponentName>();
         Intent i = new Intent("android.intent.action.SEND");
-        i.setType("image/*");
+        i.setType("audio/*");
         List<ResolveInfo> resolveInfo = getContext().getPackageManager().queryIntentActivities(i, 0);
         for (ResolveInfo info : resolveInfo) {
             ActivityInfo ac = info.activityInfo;
@@ -169,11 +165,9 @@ public class AndroidShare extends Dialog implements AdapterView.OnItemClickListe
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Context context = getContext();
         init(context);
         setContentView(this.mLayout);
-
         getWindow().setGravity(80);
 
         if (getScreenOrientation() == 0) {
@@ -185,7 +179,6 @@ public class AndroidShare extends Dialog implements AdapterView.OnItemClickListe
         }
         this.mGridView.setAdapter(new MyAdapter());
         this.mGridView.setOnItemClickListener(this);
-
         this.mHandler.postDelayed(this.work, 1000L);
 
         setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -220,7 +213,6 @@ public class AndroidShare extends Dialog implements AdapterView.OnItemClickListe
             Toast.makeText(getContext(), "请先安装" + share.title, Toast.LENGTH_SHORT).show();
             return;
         }
-
         Intent intent = new Intent("android.intent.action.SEND");
         if ((imgPath == null) || (imgPath.equals(""))) {
             intent.setType("text/plain");

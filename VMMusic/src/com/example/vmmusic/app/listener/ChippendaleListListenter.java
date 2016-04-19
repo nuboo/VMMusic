@@ -1,17 +1,11 @@
 package com.example.vmmusic.app.listener;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.vmmusic.R;
-import com.example.vmmusic.app.activity.RegisterLoginActivity;
 import com.example.vmmusic.app.utils.AndroidShare;
-import com.example.vmmusic.app.utils.T;
-import com.tencent.open.utils.ThreadManager;
-import com.tencent.tauth.IUiListener;
-import com.tencent.tauth.UiError;
 
 /**
  * Created by awx19 on 2016/4/18.
@@ -20,6 +14,11 @@ public class ChippendaleListListenter implements View.OnClickListener {
 
     Context mContext;
     Bundle mBundle;
+
+    public ChippendaleListListenter(Context context) {
+        mContext = context;
+
+    }
 
     public ChippendaleListListenter(Context context, Bundle bundle) {
         mContext = context;

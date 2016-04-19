@@ -44,4 +44,15 @@
         <item name="@android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
 
+    <attr format="reference" name="cardStyle"/>
+    <attr format="reference" name="accentColor"/>
+    <attr format="reference" name="iconColor"/>
+    <attr format="reference" name="windowBackground"/>
+    <attr format="reference" name="progressBackgroundColor"/>
+    <attr format="reference" name="progressDrawable"/>
+    <attr format="reference" name="progressDrawableWithBackground" />
+    <attr format="reference" name="stateSelector" />
+
+
+
 </resources>

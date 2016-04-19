@@ -11,11 +11,21 @@ public class Attention {
     int background;//歌曲背景图
     String song_name;//歌名
     String singer;//歌手
+    String path;//歌曲路径
     int seekBar;//歌曲进度
     String content;//关注内容
     String thumb_up;//赞
     String comments;//评论
     String share;//分享
+
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public int getBackground() {
         return background;

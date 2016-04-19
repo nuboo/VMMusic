@@ -1,20 +1,4 @@
-package com.example.vmmusic.app.fragment;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import com.example.vmmusic.R;
-import com.example.vmmusic.app.activity.ChannelClassificationActivity;
-import com.example.vmmusic.app.activity.MusicListActivity;
-import com.example.vmmusic.app.adapter.ChannelGridAdapter;
-import com.example.vmmusic.app.adapter.ChippendaleAdapter;
-import com.example.vmmusic.app.customview.ReWriteGridView;
-import com.example.vmmusic.app.model.Channel;
-import com.example.vmmusic.app.model.Chippendale;
-import com.example.vmmusic.app.utils.HttpUtils;
-import com.example.vmmusic.app.utils.T;
-import com.example.vmmusic.app.utils.TopSettiings;
+﻿package com.example.vmmusic.app.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -30,6 +14,37 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+
+
+import com.example.vmmusic.R;
+import com.example.vmmusic.app.activity.ChannelClassificationActivity;
+import com.example.vmmusic.app.activity.MusicListActivity;
+import com.example.vmmusic.app.adapter.ChannelGridAdapter;
+import com.example.vmmusic.app.adapter.ChippendaleAdapter;
+import com.example.vmmusic.app.customview.ReWriteGridView;
+import com.example.vmmusic.app.model.Channel;
+import com.example.vmmusic.app.model.Chippendale;
+import com.example.vmmusic.app.utils.HttpUtils;
+import com.example.vmmusic.app.utils.T;
+import com.example.vmmusic.app.utils.TopSettiings;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 频道

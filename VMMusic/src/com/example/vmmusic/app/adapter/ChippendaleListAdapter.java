@@ -93,10 +93,7 @@ public class ChippendaleListAdapter extends BaseAdapter {
         headerView.item_chippendale_list_share.setText(mList.get(position).getShare());
 
         //设置监听
-        Bundle bundle = new Bundle();
-
-
-        ChippendaleListListenter chippendaleListListenter = new ChippendaleListListenter(mContext, bundle);
+        ChippendaleListListenter chippendaleListListenter = new ChippendaleListListenter(mContext);
         headerView.item_chippendale_list_collection.setOnClickListener(chippendaleListListenter);
         headerView.item_chippendale_list_thumb_up.setOnClickListener(chippendaleListListenter);
         headerView.item_chippendale_list_comments.setOnClickListener(chippendaleListListenter);
