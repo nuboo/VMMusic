@@ -21,7 +21,7 @@ public class FileUtils {
     private String fileName = null;
     private String filePath = null;
     private Music music;
-
+    
 
     /**
      * 获取音乐文件信息    歌曲名，歌手，专辑，文件大小，文件路径，播放时长
@@ -183,6 +183,5 @@ public class FileUtils {
         }
         return music;
     }
-
-
+   
 }

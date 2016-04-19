@@ -113,6 +113,8 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name="com.example.vmmusic.app.activity.HistoryorCollectionActivity"
             android:launchMode="singleTop"></activity>
+        <activity android:name="com.example.vmmusic.app.activity.UploadActivity"
+            android:launchMode="singleTop"></activity>
     </application>
 
 </manifest>

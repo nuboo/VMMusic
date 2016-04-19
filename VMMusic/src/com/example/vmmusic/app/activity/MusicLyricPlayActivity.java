@@ -71,7 +71,7 @@ public class MusicLyricPlayActivity extends Activity {
         playType=(TextView)findViewById(R.id.lyrics_play_type);
         
         collect.setOnClickListener(clickListener);
-       
+        share.setOnClickListener(clickListener);
 
 
 
@@ -119,6 +119,7 @@ public class MusicLyricPlayActivity extends Activity {
      * 分享音乐
      */
     protected void shareMusic() {
+    	music=myService.getNowPlay();
 		AndroidShare share=new AndroidShare(this);
 		share.show();
 	}

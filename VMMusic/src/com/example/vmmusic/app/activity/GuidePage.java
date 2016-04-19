@@ -59,7 +59,7 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
 
-        // 停留2秒跳转到主页面
+     /*   // 停留2秒跳转到主页面
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -70,12 +70,12 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                Intent intent = new Intent(GuidePage.this, HomePageActivity.class);
+                Intent intent = new Intent(GuidePage.this, RegisterLoginActivity.class);
                 startActivity(intent);
                 finish();
             }
 
-        }).start();
+        }).start();*/
 
 
 
@@ -153,9 +153,12 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
         dots[currentIndex].setEnabled(true);
         currentIndex = positon;
         if(positon==(pics.length-1)){//设置底部文字
-            done.setText("开 启 体 验");
-            done.setGravity(Gravity.CENTER);
+          
             done.setTextColor(getResources().getColor(R.color.green));
+      
+            done.setText("立 即 体 验");
+            done.setTextSize(20f);
+            done.setGravity(Gravity.CENTER);
             done.setOnClickListener(listener);
         }
     }
@@ -202,6 +205,7 @@ public class GuidePage extends Activity implements View.OnClickListener, ViewPag
             editor.commit();
             Intent intent=new Intent(GuidePage.this,RegisterLoginActivity.class);
             startActivity(intent);
+            finish();
         }
     };
 }

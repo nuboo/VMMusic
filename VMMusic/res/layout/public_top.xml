@@ -66,6 +66,8 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="13dp"
         android:background="@drawable/top_left_diamond"
+         android:textSize="14sp"
+        android:textColor="@color/font_name"
         android:gravity="center" />
 
     <TextView
@@ -75,6 +77,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="13dp"
+        android:textSize="14sp"
+        android:textColor="@color/font_name"
         android:background="@drawable/top_right_cd" />
 
 </RelativeLayout>

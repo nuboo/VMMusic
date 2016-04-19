@@ -10,9 +10,6 @@ import com.example.vmmusic.app.utils.MusicService;
 import com.example.vmmusic.app.utils.SQLUtils;
 import com.example.vmmusic.app.utils.ServiceHelper;
 import com.example.vmmusic.app.utils.TopSettiings;
-import com.tencent.connect.avatar.b;
-import com.tencent.map.b.r;
-import com.umeng.socialize.utils.Log;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,7 +21,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;

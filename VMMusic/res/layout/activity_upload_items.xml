@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+   
+    android:orientation="vertical"
+    android:padding="10dp" 
+   	
+    >
+
+    <ImageView
+        android:id="@+id/grid_view_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pci" />
+
+    <TextView
+        android:id="@+id/grid_view_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:gravity="center"
+       
+        android:textColor="@drawable/public_button_text_color"
+        android:textSize="18sp" />
+
+</LinearLayout>

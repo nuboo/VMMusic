@@ -173,6 +173,8 @@ public class HomePageActivity extends FragmentActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.dialog_upload:
+                	 Intent upload = new Intent(HomePageActivity.this, UploadActivity.class);
+                     startActivity(upload);
                     break;
                 case R.id.dialog_search:
                     Intent intent = new Intent(HomePageActivity.this, SearchActivity.class);

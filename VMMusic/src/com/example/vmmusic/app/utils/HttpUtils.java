@@ -36,6 +36,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.vmmusic.app.model.Music;
+
 import android.content.Context;
 import android.util.Log;
 
@@ -399,5 +401,110 @@ public class HttpUtils {
 		}
 		return stringBuilder.toString();
 	}
+	
+		
+	
+	
+	
+	String boundary = "******";
+	String end = "\r\n";
+	String twoHyphens = "--";
+	/**
+	 * @param httpurl
+	 *            上传的post地址
+	 * @param Music music 对象
+	 *            文字数据
+	 * @param filePath
+	 *            图片路径
+	 * @return
+	 */
+	public String upLoadMusic(String httpurl, Music music, String filePath) {
+		StringBuilder stringBuilder = new StringBuilder();
+		BufferedReader in = null;
+		if (httpurl != null && filePath != null) {
+			try {
+				URL url = new URL(httpurl);
+				HttpURLConnection con = (HttpURLConnection) url.openConnection();
+				con.setConnectTimeout(10000);// 设置超时
+				con.setRequestMethod("POST");// post方法
+				con.setUseCaches(false);// 不适用缓存
+				con.setDoOutput(true);// 允许输出
+				con.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);// 构建表单
+				con.setRequestProperty("charset", "utf-8");
+				con.connect();
+				DataOutputStream ds = new DataOutputStream(con.getOutputStream());
+				//createTable(ds, music);
+				ds.writeBytes(twoHyphens + boundary + end);
+				// 编辑文件信息
+				Date date = new Date();
+				ds.writeBytes("Content-Disposition: form-data; " + "name=\"file" + "\";filename=\"" + date.toString()
+						+ ".jpg" + "\"" + end);
+				ds.writeBytes(end);
+				FileInputStream inputStream = new FileInputStream(new File(filePath));
+				byte[] bytes = new byte[1024];
+				int length = -1;
+				while ((length = inputStream.read(bytes)) != -1) {
+					ds.write(bytes, 0, length);
+					ds.flush();
+				}
+				ds.writeBytes(end);
+				ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
+				ds.flush();
+				ds.close();
+				inputStream.close();
+				in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+				int statusCode = con.getResponseCode();
+				if (statusCode == HttpURLConnection.HTTP_OK) {
+					char[] buf = new char[1024];
+					int len = -1;
+					while ((len = in.read(buf, 0, buf.length)) != -1) {
+						stringBuilder.append(buf, 0, len);
+					}
+				}
+				in.close();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return stringBuilder.toString();
+	}
+	/**
+	 * 根据hashmap拼接表单
+	 * @param ds
+	 * @param map
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void createTable(DataOutputStream ds, HashMap<String, String> map) {
+		if (ds != null && map != null && map.size() > 0) {
+			Set<Map.Entry<String, String>> paramEntrySet = map.entrySet();
+			Iterator paramIterator = paramEntrySet.iterator();
+			while (paramIterator.hasNext()) {
+				Map.Entry<String, String> entry = (Map.Entry<String, String>) paramIterator.next();
 
+				String key = entry.getKey();
+				String value = entry.getValue();
+
+				try {
+					ds.writeBytes(twoHyphens + boundary + end);
+					ds.writeBytes("Content-Disposition: form-data; " + "name=\"" + key + "\"" + end + end + value);
+
+					ds.writeBytes(end);
+
+					ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
+
+					ds.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		}
+
+	}
 }

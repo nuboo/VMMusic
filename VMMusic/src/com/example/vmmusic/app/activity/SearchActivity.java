@@ -84,7 +84,7 @@ public class SearchActivity extends Activity {
         if (TextUtils.isEmpty(searchContext)) {
             T.showShort(this, "输入框为空，请输入");
         } else {// 调用搜索的API方法
-
+        	
 
         }
     }

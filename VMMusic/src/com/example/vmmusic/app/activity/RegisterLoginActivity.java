@@ -151,7 +151,9 @@ public class RegisterLoginActivity extends Activity {
 			Log.d("SDKQQAgentPref", "AuthorSwitch_SDK:" + SystemClock.elapsedRealtime());
 			initOpenidAndToken(values);
 			String token = mTencent.getAccessToken();
+			
 			if (token != null) {
+				Log.i("QQtoken", token.toString());
 				Intent intent = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
 				startActivity(intent);
 			}
@@ -167,7 +169,9 @@ public class RegisterLoginActivity extends Activity {
 		if (view.getId() == R.id.wb_btn) {
 			mSsoHandler.authorizeClientSso(new AuthListener(this));
 			mAccessToken = AccessTokenKeeper.readAccessToken(getApplicationContext());
+			
 			if (mAccessToken != null) {
+				Log.i("mAccessToken", mAccessToken.toString());
 				Intent intent = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
 				startActivity(intent);
 			}
@@ -412,7 +416,7 @@ public class RegisterLoginActivity extends Activity {
 					// finish();//登录成功后，关闭
 				} else {
 					T.showShort(RegisterLoginActivity.this, "登录失败");
-					Intent play = new Intent(RegisterLoginActivity.this, MusicListActivity.class);
+					Intent play = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
 					startActivity(play);
 				}
 				break;

@@ -23,7 +23,7 @@ public class SQLUtils {
 	private HistorySQLHepler historyHelper;
 	private ContentValues contentValues;
 	private Music music;
-
+	private boolean isLocal;
 	public SQLUtils(Context context) {
 		this.context = context;
 	}
@@ -264,4 +264,24 @@ public class SQLUtils {
 		
 		return isNot;
 	}
+	
+	 /**
+     * 
+     * @param music
+     * @return
+     */
+    public boolean isLocalMusic(Music music){
+    	database=getDatabase();
+    	int sid = music.getSid();
+		Log.i("music", music.getSid() + "");
+		String[] args = { String.valueOf(sid) };
+    	Cursor cursor = database.query(LocalSQLHelper.TABLE_NAME, null, LocalSQLHelper.MUSIC_SID + "=?", args, null,
+				null, null);
+    	if(cursor.moveToFirst()){//如果数据库不存在
+    		isLocal=true;
+    	}else{
+    		isLocal=false;
+    	}
+    	return isLocal;
+    }
 }

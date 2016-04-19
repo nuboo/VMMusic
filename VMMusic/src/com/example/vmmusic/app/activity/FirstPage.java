@@ -26,18 +26,19 @@ public class FirstPage  extends Activity{
     }
 
     private void inni(){
-        first=isFirst();
+       /* first=isFirst();
         loginState=isLogin();
         Log.i("first", first+"1");
-        if(first){
+        if(first){*/
             intent=new Intent(this,GuidePage.class);
             startActivity(intent);
-        }else{
-         /* if(loginState) {//如果已经登陆*/
+            finish();
+     /*   }else{
+          if(loginState) {//如果已经登陆
              intent = new Intent(this, RegisterLoginActivity.class);
              startActivity(intent);
-           /*  }*/
-        }
+             }
+        }*/
     }
     /**
      * 是否第一次启动APP
