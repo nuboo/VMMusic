@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.adapter.UploadAdapter;
 import com.example.vmmusic.app.model.Music;
+import com.example.vmmusic.app.utils.AlbumImgHelper;
 import com.example.vmmusic.app.utils.FileUtils;
 import com.example.vmmusic.app.utils.TopSettiings;
 
@@ -22,7 +23,7 @@ public class UploadActivity extends Activity{
 	private UploadAdapter adapter;
 	private ArrayList<Music> list;
 	private Music music;
-	private FileUtils fileUtils;
+	private AlbumImgHelper imgHelper;
 	private TopSettiings topSettings;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +40,15 @@ public class UploadActivity extends Activity{
 			list=new ArrayList<Music>();
 		}
 		gridView=(GridView) findViewById(R.id.upload_girdview);
-		fileUtils=new FileUtils();
+		imgHelper=new AlbumImgHelper();
+		list=imgHelper.getMp3Infos(this);
 		topSettings=new TopSettiings(this);
-		topSettings.setTitle("选择要上传的音乐");
+		topSettings.setTitle("上传音乐");
 		TextView right=topSettings.setRight("完成", null, true);
 		TextView left=topSettings.setLeft(null, getResources().getDrawable(R.drawable.back), false);
 		left.setOnClickListener(listener);
 		right.setOnClickListener(listener);
-		fileUtils.getMediaInfo(this, list);
+		
 		adapter=new UploadAdapter(this, list);
 		gridView.setAdapter(adapter);
 		gridView.setOnItemClickListener(new OnItemClickListener() {

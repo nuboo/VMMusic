@@ -8,6 +8,7 @@ import com.example.vmmusic.app.adapter.MusicListAdapter;
 import com.example.vmmusic.app.adapter.ViewPagerAdapter;
 import com.example.vmmusic.app.fragment.MineFragment;
 import com.example.vmmusic.app.model.Music;
+import com.example.vmmusic.app.utils.AlbumImgHelper;
 import com.example.vmmusic.app.utils.FileUtils;
 import com.example.vmmusic.app.utils.MusicService;
 import com.example.vmmusic.app.utils.SQLUtils;
@@ -50,7 +51,7 @@ public class MusicListActivity extends Activity {
     private ArrayList<Music> aList, sList;//专辑，歌手
     private ViewPager viewPager;
     private boolean local;
-    
+ 
 
     public static final int FROM=1000;
 
@@ -61,7 +62,7 @@ public class MusicListActivity extends Activity {
  
     public static final String MUSICLIST = "Albums and Songs";
     public static final String TITLE = "new title";
-
+    private AlbumImgHelper albumImgHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,7 @@ public class MusicListActivity extends Activity {
         singers = (RadioButton) findViewById(R.id.music_list_singer);
         albums = (RadioButton) findViewById(R.id.music_list_cd);
         inniPager();
+        
         getLocalFile();
 
 
@@ -313,9 +315,12 @@ public class MusicListActivity extends Activity {
      * 获取本地mp3文件存入ArrayList中  获取单曲数量
      */
     private void getLocalFile() {
-        fileUtils = new FileUtils();
-        fileUtils.getMediaInfo(this, list);
-       
+    	if (list == null) {
+			list = new ArrayList<Music>();
+			
+		}
+    	AlbumImgHelper albumImgHelper = new AlbumImgHelper();
+		list=albumImgHelper.getMp3Infos(this);// 获取跟MusicListActivity一样的列表
         songs.setText("单曲" + list.size());
         songs.setChecked(true);
 

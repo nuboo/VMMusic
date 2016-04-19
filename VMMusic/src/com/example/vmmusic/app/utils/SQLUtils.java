@@ -63,7 +63,7 @@ public class SQLUtils {
 	public Music addData(Music music) {
 	
 		database = getDatabase();
-		int sid = music.getSid();
+		long sid = music.getSid();
 		Log.i("music", music.getSid() + "");
 		String[] args = { String.valueOf(sid) };
 		Cursor cursor = database.query(LocalSQLHelper.TABLE_NAME, null, LocalSQLHelper.MUSIC_SID + "=?", args, null,
@@ -272,7 +272,7 @@ public class SQLUtils {
      */
     public boolean isLocalMusic(Music music){
     	database=getDatabase();
-    	int sid = music.getSid();
+    	long sid = music.getSid();
 		Log.i("music", music.getSid() + "");
 		String[] args = { String.valueOf(sid) };
     	Cursor cursor = database.query(LocalSQLHelper.TABLE_NAME, null, LocalSQLHelper.MUSIC_SID + "=?", args, null,

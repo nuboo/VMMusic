@@ -5,8 +5,10 @@ import java.util.HashMap;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.model.Music;
+import com.example.vmmusic.app.utils.AlbumImgHelper;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +86,8 @@ public class UploadAdapter extends BaseAdapter {
 		Music music=list.get(arg0);
 		holder.name.setText(music.getName());
 		holder.name.setSelected(getMap().get(arg0));
+		Bitmap bm=AlbumImgHelper.getArtwork(context, music.getSid(), music.getAlbum_id(), true, true);
+		holder.album.setImageBitmap(bm);
 		return arg1;
 	}
 	

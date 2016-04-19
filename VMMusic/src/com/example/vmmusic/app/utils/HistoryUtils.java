@@ -112,7 +112,7 @@ public class HistoryUtils {
 	public void addHistoryData(Music music) {
 		historyHelper = new HistorySQLHepler(context);
 		database = historyHelper.getWritableDatabase();
-		int sid = music.getSid();
+		long sid = music.getSid();
 		Log.i("music", music.getSid() + "");
 		String[] args = { String.valueOf(sid) };
 		Cursor cursor = database.query(HistorySQLHepler.TABLE_NAME, null, HistorySQLHepler.MUSIC_SID + "=?", args, null,
@@ -131,7 +131,7 @@ public class HistoryUtils {
 	 * 
 	 * @param sid
 	 */
-	public void deleteHistory(int sid) {
+	public void deleteHistory(long sid) {
 		historyHelper = new HistorySQLHepler(context);
 		database = historyHelper.getWritableDatabase();
 		String[] args = { String.valueOf(sid) };

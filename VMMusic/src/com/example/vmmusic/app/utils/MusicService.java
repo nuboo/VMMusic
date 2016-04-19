@@ -11,6 +11,7 @@ import com.example.vmmusic.app.customview.LrcTextView;
 import com.example.vmmusic.app.model.LrcContent;
 import com.example.vmmusic.app.model.LrcProcess;
 import com.example.vmmusic.app.model.Music;
+import com.tencent.map.b.e;
 
 import android.app.Service;
 import android.content.Intent;
@@ -239,9 +240,10 @@ public class MusicService extends Service {
 	private void inniMusic() {
 		if (list == null) {
 			list = new ArrayList<Music>();
-			fileUtils = new FileUtils();
-			fileUtils.getMediaInfo(this, list);// 获取跟MusicListActivity一样的列表
+			
 		}
+		AlbumImgHelper albumImgHelper = new AlbumImgHelper();
+		list=albumImgHelper.getMp3Infos(this);// 获取跟MusicListActivity一样的列表
 
 	}
 
@@ -361,11 +363,11 @@ public class MusicService extends Service {
 		editor.putString("musicPath", music.getPath());
 		editor.putString("musicAlbum", music.getAlbum());
 		editor.putString("musicSinger", music.getSinger());
-		editor.putInt("musicSid", music.getSid());
+		editor.putLong("musicSid", music.getSid());
 		editor.putInt("musicAt", mediaPlayer.getCurrentPosition());
 		editor.putString("musicDuration", music.getTime());
 		editor.putInt("music_collect", music.getCollection());
-
+		editor.putLong("musicIcon", music.getAlbum_id());
 		editor.commit();
 		
 	}
@@ -380,15 +382,15 @@ public class MusicService extends Service {
 		if (!mediaPlayer.isPlaying() && sp != null) {// 如果当前没有播放音乐
 			if (defaultMusic != null) {
 				// 获取上次结束时的播放记录，没有记录则播放文件中第一首歌
-				Log.i("defaultMusic", defaultMusic.getName());
+				
 				
 				music.setName(sp.getString("musicName", defaultMusic.getName()));
 				music.setPath(sp.getString("musicPath", defaultMusic.getPath()));
 				music.setAlbum(sp.getString("musicAlbum", defaultMusic.getAlbum()));
 				music.setTime(sp.getString("musicDuration", defaultMusic.getTime()));
-
+				music.setAlbum_id(sp.getLong("musicIcon",defaultMusic.getAlbum_id()));
 				music.setSinger(sp.getString("musicSinger", defaultMusic.getSinger()));
-				music.setSid(sp.getInt("musicSid", defaultMusic.getSid()));
+				music.setSid(sp.getLong("musicSid", defaultMusic.getSid()));
 				music.setCollection(sp.getInt("music_collect", 0));
 				mediaPlayer.seekTo(sp.getInt("musicAt", mediaPlayer.getCurrentPosition()));
 			} else {// 如果music为空或者defaultmusic为空
