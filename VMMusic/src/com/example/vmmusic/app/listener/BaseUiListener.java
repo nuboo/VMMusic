@@ -9,6 +9,7 @@ import com.tencent.tauth.UiError;
 import org.json.JSONObject;
 
 /**
+ * QQ互联监听
  * Created by awx19 on 2016/4/15.
  */
 public class BaseUiListener implements IUiListener {

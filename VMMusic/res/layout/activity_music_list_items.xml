@@ -22,7 +22,7 @@
             android:singleLine="true"
             android:text="sleepless"
             android:textColor="@color/font_name"
-            android:textSize="25sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/music_list_item_singer"
@@ -31,7 +31,7 @@
             android:paddingTop="10dp"
             android:text="adam lambert"
             android:textColor="@color/gray"
-            android:textSize="15sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <ImageView

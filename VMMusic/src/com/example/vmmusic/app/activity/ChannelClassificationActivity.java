@@ -26,7 +26,7 @@ import android.widget.TextView;
  * Created by awx19 on 2016/4/13.
  */
 public class ChannelClassificationActivity extends Activity {
-    GridView gridView;
+	GridView gridView;
     ReWriteGridView reWriteGridView;
 
     @Override
@@ -35,13 +35,13 @@ public class ChannelClassificationActivity extends Activity {
         setContentView(R.layout.activity_channel_classification);
         setGridView();
         topSetting();
-
-    }
-
-    /**
-     * 顶部设置
-     */
-    private void topSetting() {
+        }
+    
+    	/**
+    	 * 顶部设置
+    	 */
+   
+    	private void topSetting() {
         TopSettiings topSettiings = new TopSettiings(this);
         TextView left=topSettiings.setLeft(null, getResources().getDrawable(R.drawable.back), false);
         left.setOnClickListener(onClickListener);
