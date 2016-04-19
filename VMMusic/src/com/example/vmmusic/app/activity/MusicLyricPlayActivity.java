@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.customview.LrcTextView;
 import com.example.vmmusic.app.model.Music;
+import com.example.vmmusic.app.utils.AndroidShare;
 import com.example.vmmusic.app.utils.MusicService;
 import com.example.vmmusic.app.utils.SQLUtils;
 import com.example.vmmusic.app.utils.ServiceHelper;
@@ -91,6 +92,9 @@ public class MusicLyricPlayActivity extends Activity {
                 case R.id.lyrics_collection:
                 	inniSelected();
                 	break;
+                case R.id.lyrics_share:
+                	shareMusic();
+                	break;
                 default:
                     break;
             }
@@ -111,8 +115,16 @@ public class MusicLyricPlayActivity extends Activity {
         intent.putExtras(bundle);
         this.bindService(intent, conn, Context.BIND_AUTO_CREATE);
     }
-
     /**
+     * 分享音乐
+     */
+    protected void shareMusic() {
+		AndroidShare share=new AndroidShare(this);
+		share.show();
+	}
+
+
+	/**
      * 设置serviceConnection
      */
     ServiceConnection conn =new ServiceConnection() {
