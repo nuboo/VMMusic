@@ -112,7 +112,7 @@ public class AlbumImgHelper {//获取专辑封面的Uri
 			int isMusic = cursor.getInt(cursor
 					.getColumnIndex(MediaStore.Audio.Media.IS_MUSIC)); // 是否为音乐
 			if (isMusic != 0) { // 只把音乐添加到集合当中
-				
+				Log.i("set",id + "");
 				music.setSid(id);
 				music.setName(title);
 				music.setAlbum_id(albumId);
@@ -261,12 +261,12 @@ public class AlbumImgHelper {//获取专辑封面的Uri
 				/** 我们的目标是在你N pixel的画面上显示。 所以需要调用computeSampleSize得到图片缩放的比例 **/
 				/** 这里的target为800是根据默认专辑图片大小决定的，800只是测试数字但是试验后发现完美的结合 **/
 				if(small){
-					//options.inSampleSize = computeSampleSize(options, 100);
-					options.inSampleSize = 2;
+					options.inSampleSize = computeSampleSize(options, 40);
+					Log.i("small", "");
 					
 				} else{
-					options.inSampleSize = 2;
-					//options.inSampleSize = computeSampleSize(options, 100);
+					
+					options.inSampleSize = computeSampleSize(options, 600);
 				}
 				// 我们得到了缩放比例，现在开始正式读入Bitmap数据
 				options.inJustDecodeBounds = false;
@@ -309,6 +309,7 @@ public class AlbumImgHelper {//获取专辑封面的Uri
 	public static int computeSampleSize(Options options, int target) {
 		int w = options.outWidth;
 		int h = options.outHeight;
+		Log.i("options", w+"w...."+h+"h....." );
 		int candidateW = w / target;
 		int candidateH = h / target;
 		int candidate = Math.max(candidateW, candidateH);

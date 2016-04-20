@@ -16,10 +16,11 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class UploadActivity extends Activity{
-	private GridView gridView;
+	private ListView gridView;
 	private UploadAdapter adapter;
 	private ArrayList<Music> list;
 	private Music music;
@@ -39,7 +40,7 @@ public class UploadActivity extends Activity{
 		if(list==null){
 			list=new ArrayList<Music>();
 		}
-		gridView=(GridView) findViewById(R.id.upload_girdview);
+		gridView=(ListView) findViewById(R.id.upload_girdview);
 		imgHelper=new AlbumImgHelper();
 		list=imgHelper.getMp3Infos(this);
 		topSettings=new TopSettiings(this);

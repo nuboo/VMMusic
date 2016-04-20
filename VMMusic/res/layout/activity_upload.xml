@@ -2,22 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-  		 >
-    <include layout="@layout/public_top"
+    android:orientation="vertical" >
+
+    <include
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></include>
-    <GridView 
+        android:layout_height="wrap_content"
+        layout="@layout/public_top" >
+    </include>
+
+    <ListView
+        android:id="@+id/upload_girdview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/upload_girdview"
-        android:numColumns="2"
         android:background="@color/white"
-        android:padding="10dp"
-       	 android:choiceMode="singleChoice"
-        
+        android:choiceMode="singleChoice"
+        android:divider="@null"
         android:listSelector="@drawable/girdview_selector"
-  	    android:scrollbars="none"></GridView>"
-    
+        android:padding="10dp"
+        android:scrollbars="none" >
+    </ListView>
 
 </LinearLayout>
