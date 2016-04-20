@@ -64,7 +64,7 @@ public class ChannelClassificationActivity extends Activity {
         gridView = (GridView) findViewById(R.id.classification_horizontal_grid);
         List<Channel> list = getDate();
         int size = list.size();
-        int length = 100;
+        int length = 55;
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         float density = dm.density;
@@ -73,7 +73,7 @@ public class ChannelClassificationActivity extends Activity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(gridviewWidth, LinearLayout.LayoutParams.MATCH_PARENT);
         gridView.setLayoutParams(params); // 设置GirdView布局参数,横向布局的关键
         gridView.setColumnWidth(itemWidth); // 设置列表项宽
-        gridView.setHorizontalSpacing(-105); // 设置列表项水平间距
+        gridView.setHorizontalSpacing(5); // 设置列表项水平间距
         gridView.setStretchMode(GridView.NO_STRETCH);
         gridView.setNumColumns(size); // 设置列数量=列表集合数
         ChannelClassificationAdapter channelClassificationAdapter = new ChannelClassificationAdapter(list, getApplicationContext());

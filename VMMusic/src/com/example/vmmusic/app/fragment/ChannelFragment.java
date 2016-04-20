@@ -1,4 +1,4 @@
-﻿package com.example.vmmusic.app.fragment;
+package com.example.vmmusic.app.fragment;
 
 import android.app.Activity;
 import android.content.Intent;

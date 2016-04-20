@@ -22,8 +22,21 @@
 
             <com.example.vmmusic.app.customview.CircularSeekBar
                 android:id="@+id/mine_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                app:layout_heightPercent="95%"
+                app:layout_widthPercent="95%"
+                android:background="@android:color/transparent"
+                android:maxHeight="1dp"
+                android:progress="30"
+                app:circle_color="#33000000"
+                app:circle_progress_color="?attr/accentColor"
+                app:circle_stroke_width="2dp"
+                app:pointer_color="?attr/accentColor"
+                app:pointer_halo_border_width="1.5dp"
+                app:pointer_halo_color="?attr/accentColor"
+                app:pointer_halo_width="0.5dp" />
 
 
             <TableRow
