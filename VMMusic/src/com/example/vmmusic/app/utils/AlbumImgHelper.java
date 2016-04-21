@@ -168,9 +168,9 @@ public class AlbumImgHelper {//获取专辑封面的Uri
 		BitmapFactory.Options opts = new BitmapFactory.Options();
 		opts.inPreferredConfig = Bitmap.Config.RGB_565;
 		if(small){	//返回小图片
-			return BitmapFactory.decodeStream(context.getResources().openRawResource(R.drawable.ic_launcher), null, opts);
+			return BitmapFactory.decodeStream(context.getResources().openRawResource(R.drawable.channel_all_06), null, opts);
 		}
-		return BitmapFactory.decodeStream(context.getResources().openRawResource(R.drawable.ic_launcher), null, opts);
+		return BitmapFactory.decodeStream(context.getResources().openRawResource(R.drawable.channel_all_06), null, opts);
 	}
 	
 	

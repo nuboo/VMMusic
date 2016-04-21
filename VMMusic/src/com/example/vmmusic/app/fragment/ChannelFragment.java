@@ -53,6 +53,11 @@ import java.util.List;
 public class ChannelFragment extends Fragment {
     GridView gridView;
     Activity activity;
+    private int[] draws={R.drawable.channel_classify_01,R.drawable.channel_classify_02,R.drawable.proxy,R.drawable.channel_classify_03,R.drawable.channel_classify_01};
+    private String[] classify={"音乐类型","场景","情绪","原创","影视"};
+    private String[] musicName={"Try Everything","You're Not Alone","RAIN","秘密","恋无可恋","陪你度过的漫长岁月","吸引力","Cinderella","Another you","All of me","初初","Wi Ing Wi ling"};
+    private String[] singers={"Shakira Trything","Chicago Chicago","金泰妍","金泰妍","古巨基","陈奕迅","金高恩","November real To Reel","Cascada.Everytime We Touch","朴灿烈","古巨基","朴灿烈"};
+    private int[] all={R.drawable.channel_all_01,R.drawable.channel_all_02,R.drawable.channel_all_03,R.drawable.channel_all_04,R.drawable.channel_all_05,R.drawable.channel_all_06,R.drawable.channel_all_07,R.drawable.channel_all_08,R.drawable.channel_all_09,R.drawable.channel_all_10,R.drawable.channel_all_11,R.drawable.channel_all_12};
     ReWriteGridView reWriteGridView;
     private final String HTTP="music";
     @Nullable
@@ -152,11 +157,11 @@ public class ChannelFragment extends Fragment {
      */
     private List<Chippendale> getdate() {
         List<Chippendale> list = new ArrayList<Chippendale>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < all.length; i++) {
             Chippendale chippendale = new Chippendale();
-            chippendale.setImg(R.drawable.pci);
-            chippendale.setMusic_name("遥远的她");
-            chippendale.setSinger("Eeason");
+            chippendale.setImg(all[i]);
+            chippendale.setMusic_name(musicName[i]);
+            chippendale.setSinger(singers[i]);
             list.add(chippendale);
         }
         return list;
@@ -169,10 +174,10 @@ public class ChannelFragment extends Fragment {
      */
     private List<Channel> getDate() {
         List<Channel> list = new ArrayList<Channel>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < draws.length ; i++) {
             Channel channel = new Channel();
-            channel.setItem_channel_grid_img(R.drawable.proxy);
-            channel.setItem_channel_grid_name("音乐分类");
+            channel.setItem_channel_grid_img(draws[i]);
+            channel.setItem_channel_grid_name(classify[i]);
             list.add(channel);
         }
         return list;
