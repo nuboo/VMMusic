@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:id="@+id/gesture"></LinearLayout>
+    <Button
+            android:id="@+id/gesture_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           
+            android:background="@drawable/code_shape"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="重新输入"
+            android:textColor="@color/white" 
+             android:layout_margin="@dimen/thirty"/>
+     <Button
+            android:id="@+id/gesture_done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            
+            android:background="@drawable/code_shape"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="确认"
+            android:textColor="@color/white" 
+            android:layout_marginRight="@dimen/thirty"
+             android:layout_marginLeft="@dimen/thirty"/>
+
+</LinearLayout>
