@@ -58,9 +58,19 @@ public class ChippendaleAdapter extends BaseAdapter {
         } else {
             handView = (HandView) convertView.getTag();
         }
+
+
         handView.item_chippendale_grid_img.setBackgroundResource(mList.get(position).getImg());
-        handView.music_name.setText(mList.get(position).getMusic_name());
-        handView.singer.setText(mList.get(position).getSinger());
+        if (mList.get(position).getMusic_name().equals("")) {
+            handView.music_name.setVisibility(View.GONE);
+        } else {
+            handView.music_name.setText(mList.get(position).getMusic_name());
+        }
+        if (mList.get(position).getSinger().equals("")) {
+            handView.singer.setVisibility(View.GONE);
+        } else {
+            handView.singer.setText(mList.get(position).getSinger());
+        }
         return convertView;
     }
 

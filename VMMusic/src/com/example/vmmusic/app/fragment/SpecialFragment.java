@@ -63,8 +63,8 @@ public class SpecialFragment extends Fragment {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-        	Intent intent = new Intent(getActivity(), MusicListActivity.class);
-        	getActivity().startActivity(intent);
+            Intent intent = new Intent(getActivity(), MusicListActivity.class);
+            getActivity().startActivity(intent);
         }
     };
 
@@ -75,13 +75,36 @@ public class SpecialFragment extends Fragment {
      */
     private List<Special> getDate() {
         List<Special> list = new ArrayList<Special>();
-        for (int i = 0; i < 10; i++) {
-            Special special = new Special();
-            special.setSpecial_img(R.drawable.topic);
-            special.setSpecial_name("前奏无敌 简单的调调");
-            special.setSpecial_type("#摇滚");
-            list.add(special);
-        }
+        Special special = new Special();
+        special.setSpecial_img(R.drawable.topic);
+        special.setSpecial_name("前奏无敌 简单的调调");
+        special.setSpecial_type("#摇滚");
+        list.add(special);
+        Special special_one = new Special();
+        special_one.setSpecial_img(R.drawable.topci_one);
+        special_one.setSpecial_name("疯狂动物城，听完不舍离场的片尾曲");
+        special_one.setSpecial_type("#电影");
+        list.add(special_one);
+        Special special_two = new Special();
+        special_two.setSpecial_img(R.drawable.topci_two);
+        special_two.setSpecial_name("磁性女声英翻");
+        special_two.setSpecial_type("#摇滚");
+        list.add(special_two);
+        Special special_three = new Special();
+        special_three.setSpecial_img(R.drawable.topci_five);
+        special_three.setSpecial_name("动听女生-电音Mire");
+        special_three.setSpecial_type("#爵士");
+        list.add(special_three);
+        Special special_four = new Special();
+        special_four.setSpecial_img(R.drawable.topci_three);
+        special_four.setSpecial_name("那些独立的小清新");
+        special_four.setSpecial_type("#情绪");
+        list.add(special_four);
+        Special special_five = new Special();
+        special_five.setSpecial_img(R.drawable.topci_four);
+        special_five.setSpecial_name("那些好听的明星翻唱");
+        special_five.setSpecial_type("#流行");
+        list.add(special_five);
         return list;
     }
 }

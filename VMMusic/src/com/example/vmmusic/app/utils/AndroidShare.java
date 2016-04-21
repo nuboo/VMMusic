@@ -1,5 +1,15 @@
 package com.example.vmmusic.app.utils;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.vmmusic.R;
+
 import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -21,25 +31,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.vmmusic.R;
-import com.example.vmmusic.app.share.QZoneShare;
-import com.tencent.connect.share.QzonePublish;
-import com.tencent.connect.share.QzoneShare;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AndroidShare extends Dialog implements AdapterView.OnItemClickListener {
     private LinearLayout mLayout;
