@@ -79,8 +79,7 @@ public class HistoryorCollectionActivity extends Activity {
         }
         TextView right = topSettiings.setRight(null, null, false);
         TextView back = topSettiings.setLeft(null, null, false);
-        back.setOnClickListener(listener);
-        right.setOnClickListener(listener);
+       
         listView = (ListView) findViewById(R.id.history_list_view);
         if (isCollection == 0) {
             historyPage();
@@ -88,7 +87,8 @@ public class HistoryorCollectionActivity extends Activity {
         } else {
             collectionPage();
         }
-
+        back.setOnClickListener(listener);
+        right.setOnClickListener(listener);
         listView.setOnItemClickListener(itemListener);
 
     }

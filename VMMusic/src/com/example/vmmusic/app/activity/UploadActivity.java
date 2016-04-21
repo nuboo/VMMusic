@@ -52,15 +52,7 @@ public class UploadActivity extends Activity{
 		
 		adapter=new UploadAdapter(this, list);
 		gridView.setAdapter(adapter);
-		gridView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				adapter.inni();
-				adapter.getMap().put(arg2, true);
-				adapter.notifyDataSetChanged();
-			}
-		});
+	
 	}
 	
 	OnClickListener listener=new OnClickListener() {
