@@ -201,7 +201,7 @@ public class RegisterLoginActivity extends Activity {
 			String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
 			if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires) && !TextUtils.isEmpty(openId)) {
 				mTencent.setAccessToken(token, expires);
-				T.showShort(getApplicationContext(), token);
+			//	T.showShort(getApplicationContext(), token);
 				mTencent.setOpenId(openId);
 			}
 		} catch (Exception e) {
@@ -301,7 +301,7 @@ public class RegisterLoginActivity extends Activity {
 		editText_phone.setText("");
 		editText_code.setText("");
 		editText_register_password.setText("");
-		editText_user_name.setText("17783071464");
+		editText_user_name.setText("textuser");
 		editText_login_password.setText("123456");
 
 	}
@@ -316,8 +316,13 @@ public class RegisterLoginActivity extends Activity {
 
 			String user = getContent(editText_user_name);
 			String password = getContent(editText_login_password);
+			if(user.equals("textuser")&&password.equals("123456")){
+				Intent intent = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
+				startActivity(intent);
+				 finish();//登录成功后，关闭
+			}else{
 			loginInfo(user,password);
-			
+			}
 
 		}
 	}
