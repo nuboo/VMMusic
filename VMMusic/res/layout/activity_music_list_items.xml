@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_weight="1"
         android:orientation="vertical"
        	android:paddingBottom="1dp"
@@ -18,10 +18,12 @@
         <TextView
             android:id="@+id/music_list_item_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:ellipsize="marquee"
+            android:gravity="center_vertical"
             android:marqueeRepeatLimit="marquee_forever"
-            android:paddingTop="12dp"
+            
             android:singleLine="true"
             android:text="sleepless"
             android:textColor="@color/font_name"
@@ -31,16 +33,18 @@
             android:id="@+id/music_list_item_singer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
+           
             android:text="adam lambert"
             android:textColor="@color/gray"
             android:textSize="12sp" 
+           
+             android:layout_marginBottom="12dp"
             />
         <TextView android:id="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/gray"
-             android:layout_marginTop="12dp"/>
+            />
     </LinearLayout>
 
     <ImageView

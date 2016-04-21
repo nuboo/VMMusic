@@ -3,7 +3,7 @@ package com.example.vmmusic.app.activity;
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.customview.GesturePassword;
 
-import android.R.layout;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
