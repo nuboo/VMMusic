@@ -6,7 +6,7 @@
     android:background="@color/background_color"
     android:orientation="vertical">
     <!--我的页面header-->
-    <RelativeLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/green_drawable_color">
@@ -19,12 +19,11 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-
-            <com.example.vmmusic.app.customview.CircularSeekBar
-                android:id="@+id/mine_icon"
+            <com.example.vmmusic.app.customview.RoundImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon"
+                android:id="@+id/mine_icon"/>
 
             <TableRow
                 android:layout_width="wrap_content"

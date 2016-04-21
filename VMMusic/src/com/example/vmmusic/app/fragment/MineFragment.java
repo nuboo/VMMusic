@@ -33,7 +33,7 @@ import java.util.List;
  * Created by awx19 on 2016/4/8.
  */
 public class MineFragment extends Fragment {
-    CircularSeekBar mine_icon;// 用户头像
+    RoundImageView mine_icon;// 用户头像
     TextView mine_name;// 用户名
     TextView mine_vip;// 会员
     TextView mine_fans;// 粉丝
@@ -80,7 +80,7 @@ public class MineFragment extends Fragment {
     private void initView(View view) {
         View header = LayoutInflater.from(getContext()).inflate(R.layout.header_mine, null);
         // 从header中获得id
-        mine_icon = (CircularSeekBar) header.findViewById(R.id.mine_icon);
+        mine_icon = (RoundImageView) header.findViewById(R.id.mine_icon);
         mine_name = (TextView) header.findViewById(R.id.mine_name);
         mine_vip = (TextView) header.findViewById(R.id.mine_vip);
         mine_fans = (TextView) header.findViewById(R.id.mine_fans);
@@ -105,9 +105,6 @@ public class MineFragment extends Fragment {
         grid.addHeaderView(header);// 添加headerView
         grid.setAdapter(chippendaleAdapter);
 
-
-        mine_icon.setBackgroundResource(R.drawable.icon);
-        mine_icon.setMax(200);
         map = new HashMap<String, String>();
         map.put("tel", NUM);
         MyTask task = new MyTask();
@@ -162,13 +159,16 @@ public class MineFragment extends Fragment {
      */
     private List<Chippendale> getdate() {
         List<Chippendale> list = new ArrayList<Chippendale>();
-        for (int i = 0; i < 6; i++) {
-            Chippendale chippendale = new Chippendale();
-            chippendale.setImg(R.drawable.pci);
-            chippendale.setMusic_name("遥远的她");
-            chippendale.setSinger("Eeason");
-            list.add(chippendale);
-        }
+        Chippendale chippendale = new Chippendale();
+        chippendale.setImg(R.drawable.hot_one);
+        chippendale.setMusic_name("");
+        chippendale.setSinger("");
+        list.add(chippendale);
+        Chippendale chippendale_one = new Chippendale();
+        chippendale_one.setImg(R.drawable.hot_two);
+        chippendale_one.setMusic_name("");
+        chippendale_one.setSinger("");
+        list.add(chippendale_one);
         return list;
     }
 
