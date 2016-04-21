@@ -119,6 +119,8 @@
         <activity
             android:name="com.example.vmmusic.app.activity.UploadActivity"
             android:launchMode="singleTop"></activity>
+        <activity android:name="com.example.vmmusic.app.activity.GestureActivity"
+            android:launchMode="singleTop"></activity>
     </application>
 
 </manifest>
