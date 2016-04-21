@@ -83,7 +83,7 @@ public class MusicService extends Service {
 	 */
 	@Override
 	public void onStart(Intent intent, int startId) {
-		if (intent.getExtras() != null) {
+		if (intent!=null&&intent.getExtras() != null) {
 			Bundle bundle = intent.getExtras();
 
 			isBinded = bundle.getBoolean(LYRICS, false);
