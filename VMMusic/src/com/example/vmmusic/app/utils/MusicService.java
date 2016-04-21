@@ -243,7 +243,7 @@ public class MusicService extends Service {
 			
 		}
 		AlbumImgHelper albumImgHelper = new AlbumImgHelper();
-		list=albumImgHelper.getMp3Infos(this);// 获取跟MusicListActivity一样的列表
+		list=albumImgHelper.getMp3InfosFromSql(this);// 获取跟MusicListActivity一样的列表
 
 	}
 
@@ -363,7 +363,7 @@ public class MusicService extends Service {
 		editor.putString("musicPath", music.getPath());
 		editor.putString("musicAlbum", music.getAlbum());
 		editor.putString("musicSinger", music.getSinger());
-		editor.putLong("musicSid", music.getSid());
+		//editor.putLong("musicSid", music.getSid());
 		editor.putInt("musicAt", mediaPlayer.getCurrentPosition());
 		editor.putString("musicDuration", music.getTime());
 		editor.putInt("music_collect", music.getCollection());
@@ -390,7 +390,8 @@ public class MusicService extends Service {
 				music.setTime(sp.getString("musicDuration", defaultMusic.getTime()));
 				music.setAlbum_id(sp.getLong("musicIcon",defaultMusic.getAlbum_id()));
 				music.setSinger(sp.getString("musicSinger", defaultMusic.getSinger()));
-				music.setSid(sp.getLong("musicSid", defaultMusic.getSid()));
+			
+			//	music.setSid(sp.getLong("musicSid", defaultMusic.getSid()));
 				music.setCollection(sp.getInt("music_collect", 0));
 				mediaPlayer.seekTo(sp.getInt("musicAt", mediaPlayer.getCurrentPosition()));
 			} else {// 如果music为空或者defaultmusic为空

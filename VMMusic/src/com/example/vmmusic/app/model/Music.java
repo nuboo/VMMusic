@@ -22,10 +22,19 @@ public class Music  implements Serializable {
     private String time;//时长
     private long size;//文件大小
     private int id;//数据库ID
-    private long sid;//系统ID
+  
     private long album_id;
+    private long sid;
     
-    public long getSize() {
+    public long getSid() {
+		return sid;
+	}
+
+	public void setSid(long sid) {
+		this.sid = sid;
+	}
+
+	public long getSize() {
 		return size;
 	}
 
@@ -41,13 +50,7 @@ public class Music  implements Serializable {
 		this.album_id = album_id;
 	}
 
-	public long getSid() {
-        return sid;
-    }
-
-    public void setSid(long sid) {
-        this.sid = sid;
-    }
+	
 
     public int getId() {
         return id;

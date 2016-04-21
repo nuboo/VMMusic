@@ -2,12 +2,14 @@ package com.example.vmmusic.app.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.vmmusic.R;
 import com.example.vmmusic.app.customview.RoundImageView;
+import com.example.vmmusic.app.utils.HttpUtils;
 import com.example.vmmusic.app.utils.TopSettiings;
 
 /**
@@ -28,7 +30,7 @@ public class MoreAndMoreActivity extends Activity {
     TextView more_about_vm;//关于VM
     TextView more_update;//版本更新
     TextView more_login_out;//退出登录
-
+    private final static String HTTP="more";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,4 +110,16 @@ public class MoreAndMoreActivity extends Activity {
             }
         }
     };
+    
+    class MyTask extends AsyncTask<String, Void, String>{
+
+		@Override
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			HttpUtils httpUtils=new HttpUtils();
+			String result=httpUtils.NewpostData(HTTP, null);
+			return result;
+		}
+    	
+    }
 }

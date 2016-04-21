@@ -14,7 +14,7 @@ public class App extends Application {
      * 网络请求地址
      */
     public  static final String url = " http://192.168.15.247:90/api/";
-
+    public static final String TOKEN="VM_user_token";
     
    
     /**

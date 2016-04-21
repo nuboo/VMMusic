@@ -20,6 +20,7 @@ import com.tencent.tauth.Tencent;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -41,10 +42,11 @@ public class RegisterLoginActivity extends Activity {
 	private static final String VERIFY = "getverify";
 	private static final String REGISTER = "register";
 	private static final String LOGIN = "login";
-
+	public static final String TOKEN="token";
 	private int type;// 0注册，1登录，2获取验证码
 	private JSONObject orignJSON;
-	private boolean success;// 登录注册成功
+	private int status;
+	// 登录注册成功
 
 	/**
 	 * 登录注册选择按钮
@@ -299,6 +301,8 @@ public class RegisterLoginActivity extends Activity {
 		editText_phone.setText("");
 		editText_code.setText("");
 		editText_register_password.setText("");
+		editText_user_name.setText("17783071464");
+		editText_login_password.setText("123456");
 
 	}
 
@@ -312,15 +316,25 @@ public class RegisterLoginActivity extends Activity {
 
 			String user = getContent(editText_user_name);
 			String password = getContent(editText_login_password);
-			map = new HashMap<String, String>();
-
-			map.put("tel", user);
-			map.put("password", password);
-			type = 0;
-			task = new MyTask();
-			task.execute(LOGIN);
+			loginInfo(user,password);
+			
 
 		}
+	}
+	/**
+	 * 登录
+	 * @param user
+	 * @param password
+	 */
+	private void loginInfo(String user, String password) {
+		map = new HashMap<String, String>();
+
+		map.put("tel", user);
+		map.put("password", password);
+		type = 0;
+		task = new MyTask();
+		task.execute(LOGIN);
+		
 	}
 
 	/**
@@ -332,7 +346,7 @@ public class RegisterLoginActivity extends Activity {
 			String phoneNum = getContent(editText_phone);// 手机号
 			String code = getContent(editText_code);// 验证码
 			String password = getContent(editText_register_password);
-			T.showShort(RegisterLoginActivity.this, "tel" + phoneNum + "  code" + code + "  pass" + password);
+			
 			map = new HashMap<String, String>();
 			map.put("tel", phoneNum);
 			map.put("verify", code);
@@ -404,31 +418,41 @@ public class RegisterLoginActivity extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
-			T.showShort(RegisterLoginActivity.this, result);
+			
 			switch (type) {
 			case 0:// 登录
-				success = jsonRegisterAndLogin(result);
-				if (success) {
-
+				status = jsonRegisterAndLogin(result);
+				if (status==1) {
+					spToken(result);
 					// 跳转首页
 					Intent intent = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
 					startActivity(intent);
-					// finish();//登录成功后，关闭
-				} else {
-					T.showShort(RegisterLoginActivity.this, "登录失败");
-					Intent play = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
-					startActivity(play);
+					 finish();//登录成功后，关闭
+				} else if(status==2){
+					T.showShort(RegisterLoginActivity.this, "密码错误");
+					
+				}else if(status==0){
+					T.showShort(RegisterLoginActivity.this, "网络错误");
+					
+				}else{
+					T.showShort(RegisterLoginActivity.this, "用户不存在");
 				}
 				break;
 			case 1:// 注册
-				success = jsonRegisterAndLogin(result);
-				if (success) {
+				status = jsonRegisterAndLogin(result);
+				if (status==1) {
 					// jumpToLogin();//跳转登录页面
-
-					Intent intent = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
-					startActivity(intent);
-				} else {
-					T.showShort(RegisterLoginActivity.this, "注册失败");
+					T.showShort(RegisterLoginActivity.this, "注册成功");
+					//成功后自动登录
+					loginInfo(getContent(editText_user_name), getContent(editText_register_password));				
+					
+				} else if(status==2){
+					T.showShort(RegisterLoginActivity.this, "验证码错误或已过期");
+				}else if(status==3){
+				
+					T.showShort(RegisterLoginActivity.this, "用户已存在");
+				}else{
+					T.showShort(RegisterLoginActivity.this, "网络错误");
 				}
 				break;
 			case 2:// 验证码
@@ -460,7 +484,7 @@ public class RegisterLoginActivity extends Activity {
 				editText_code.setText(orignJSON.getString("mobile_code"));
 				break;
 			case 2:
-				T.showShort(RegisterLoginActivity.this, "网络连接超时,请重新获取");
+				T.showShort(RegisterLoginActivity.this, "请间隔5分钟获取验证码");
 				break;
 			default:
 				break;
@@ -477,26 +501,33 @@ public class RegisterLoginActivity extends Activity {
 	 * @param str
 	 * @return 是否成功
 	 */
-	private boolean jsonRegisterAndLogin(String str) {
-		int status = 2;
+	private int jsonRegisterAndLogin(String str) {
+		int status=0 ;
 		try {
 			orignJSON = new JSONObject(str);
-			status = orignJSON.optInt("status", 2);
+			status = orignJSON.optInt("status", 0);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		switch (status) {
-		case 1:
-			success = true;
-			break;
-		case 2:
-			success = false;
-			break;
-
-		default:
-			break;
+		
+		return status;
+	}
+	
+	private void spToken(String result){
+		SharedPreferences sp=getSharedPreferences(App.TOKEN, MODE_PRIVATE);
+		SharedPreferences.Editor editor=sp.edit();
+		JSONObject jsonObject;
+		try {
+			jsonObject = new JSONObject(result);
+			String token=jsonObject.getString(TOKEN);
+			editor.putString(App.TOKEN, token);
+			editor.putBoolean(TOKEN, true);
+			editor.commit();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return success;
+		
 	}
 }

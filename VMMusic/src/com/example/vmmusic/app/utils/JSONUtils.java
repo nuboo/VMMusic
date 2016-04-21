@@ -3,6 +3,8 @@ package com.example.vmmusic.app.utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.vmmusic.app.model.User;
+
 import android.app.Activity;
 
 /**
@@ -59,5 +61,32 @@ public class JSONUtils {
 		}
 		return verify;
 	}
-
+	
+	private static final String[] USERINFO={
+		"logo","username","fans","attention","voice",
+		
+	};
+	/**
+	 * 解析用户数据
+	 * @param result
+	 * @return
+	 */
+    public User jsonPerson(String result){
+    	User user =new User();
+    	try {
+			JSONObject jsonObject=new JSONObject(result);
+			user.setLogo(jsonObject.optString(USERINFO[0], "VM"));
+			user.setName(jsonObject.optString(USERINFO[1], "Vmuser"));
+			user.setFans(jsonObject.optInt(USERINFO[2], 0));
+			user.setAttention(jsonObject.optInt(USERINFO[3], 0));
+			user.setVoice(jsonObject.optInt(USERINFO[4], 0));
+	    	
+    	
+    	} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return user;
+    }
+	
 }

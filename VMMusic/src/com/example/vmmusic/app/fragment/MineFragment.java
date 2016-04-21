@@ -47,7 +47,7 @@ public class MineFragment extends Fragment {
     TableRow mine_guess_you_like;// 猜你喜欢
     Intent intent;
     public static final String LOCAL = "local music";
-    private static final String MINEHTTP = "http://192.168.15.247:90/api/personage";
+    private static final String MINEHTTP = "personage";
     private static final String NUM = "18883766232";
     private HashMap<String, String> map;
 
@@ -178,7 +178,7 @@ public class MineFragment extends Fragment {
         protected String doInBackground(String... arg0) {
             // TODO Auto-generated method stub
             HttpUtils httpUtils = new HttpUtils();
-            String result = httpUtils.NewpostData(MINEHTTP, map);
+            String result = httpUtils.NewpostData(MINEHTTP, null);
             return result;
         }
 
@@ -190,5 +190,7 @@ public class MineFragment extends Fragment {
         }
 
     }
+    
+   
 
 }
