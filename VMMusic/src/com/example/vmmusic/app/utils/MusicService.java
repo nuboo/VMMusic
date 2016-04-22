@@ -83,7 +83,7 @@ public class MusicService extends Service {
 	 */
 	@Override
 	public void onStart(Intent intent, int startId) {
-		if (intent!=null&&intent.getExtras() != null) {
+		if (intent != null && intent.getExtras() != null) {
 			Bundle bundle = intent.getExtras();
 
 			isBinded = bundle.getBoolean(LYRICS, false);
@@ -104,11 +104,14 @@ public class MusicService extends Service {
 
 							playMusic(music.getPath());
 
-						} /*
-							 * else{ if(mediaPlayer.isPlaying()){//如果正在播放，则暂停
-							 * mediaPlayer.pause(); }else{
-							 * mediaPlayer.start();////如果暂停，则播放 } }
-							 */
+						} else {
+							if (mediaPlayer.isPlaying()) {// 如果正在播放，则暂停
+								mediaPlayer.pause();
+							} else {
+								mediaPlayer.start();//// 如果暂停，则播放
+							}
+						}
+
 					}
 
 				}
@@ -132,7 +135,7 @@ public class MusicService extends Service {
 	 * @param path
 	 */
 	private void playMusic(String path) {
-		
+
 		this.path = path;
 		if (path != null && !path.equals("")) {
 
@@ -240,10 +243,10 @@ public class MusicService extends Service {
 	private void inniMusic() {
 		if (list == null) {
 			list = new ArrayList<Music>();
-			
+
 		}
 		AlbumImgHelper albumImgHelper = new AlbumImgHelper();
-		list=albumImgHelper.getMp3InfosFromSql(this);// 获取跟MusicListActivity一样的列表
+		list = albumImgHelper.getMp3InfosFromSql(this);// 获取跟MusicListActivity一样的列表
 
 	}
 
@@ -265,7 +268,7 @@ public class MusicService extends Service {
 
 		mLrcProcess = new LrcProcess();
 		// 读取歌词文件
-		music=getNowPlay();
+		music = getNowPlay();
 		mLrcProcess.readLRC(music.getPath());
 		// 传回处理后的歌词文件
 		lrcList = mLrcProcess.getLrcList();
@@ -363,18 +366,18 @@ public class MusicService extends Service {
 		editor.putString("musicPath", music.getPath());
 		editor.putString("musicAlbum", music.getAlbum());
 		editor.putString("musicSinger", music.getSinger());
-		//editor.putLong("musicSid", music.getSid());
+		// editor.putLong("musicSid", music.getSid());
 		editor.putInt("musicAt", mediaPlayer.getCurrentPosition());
 		editor.putString("musicDuration", music.getTime());
 		editor.putInt("music_collect", music.getCollection());
 		editor.putLong("musicIcon", music.getAlbum_id());
 		editor.commit();
-		
+
 	}
 
 	public Music getNowPlay() {
-		if(music==null){
-			music=new Music();
+		if (music == null) {
+			music = new Music();
 		}
 		SharedPreferences sp = getSharedPreferences(LASTPLAY, MODE_PRIVATE);
 		inniMusic();
@@ -382,27 +385,24 @@ public class MusicService extends Service {
 		if (!mediaPlayer.isPlaying() && sp != null) {// 如果当前没有播放音乐
 			if (defaultMusic != null) {
 				// 获取上次结束时的播放记录，没有记录则播放文件中第一首歌
-				
-				
+
 				music.setName(sp.getString("musicName", defaultMusic.getName()));
 				music.setPath(sp.getString("musicPath", defaultMusic.getPath()));
 				music.setAlbum(sp.getString("musicAlbum", defaultMusic.getAlbum()));
 				music.setTime(sp.getString("musicDuration", defaultMusic.getTime()));
-				music.setAlbum_id(sp.getLong("musicIcon",defaultMusic.getAlbum_id()));
+				music.setAlbum_id(sp.getLong("musicIcon", defaultMusic.getAlbum_id()));
 				music.setSinger(sp.getString("musicSinger", defaultMusic.getSinger()));
-			
-			//	music.setSid(sp.getLong("musicSid", defaultMusic.getSid()));
+
+				// music.setSid(sp.getLong("musicSid", defaultMusic.getSid()));
 				music.setCollection(sp.getInt("music_collect", 0));
 				mediaPlayer.seekTo(sp.getInt("musicAt", mediaPlayer.getCurrentPosition()));
 			} else {// 如果music为空或者defaultmusic为空
-				
+
 				music.setName("当前没有播放音乐");
 				music.setSinger("VMplayer");
 				music.setPath("none");
 				music.setCollection(2);
-				
-			
-				
+
 			}
 
 		}
