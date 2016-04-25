@@ -31,8 +31,8 @@ import java.util.List;
  * Created by awx19 on 2016/4/7.
  */
 public class ChippendaleFragment extends Fragment {
-    ListView chippendale_list_view;//关注listView
-    HeaderGridView grid;//推荐gridView
+     public ListView chippendale_list_view;//关注listView
+     public HeaderGridView grid;//推荐gridView
 
     @Nullable
     @Override
@@ -48,15 +48,7 @@ public class ChippendaleFragment extends Fragment {
      * @param view 视图
      */
     private void initView(View view) {
-        //顶部设置
-        TopSettiings topSettiings = new TopSettiings(view);
-        topSettiings.setTopRadioGroup("关注", "推荐");
-        topSettiings.getTextLeft().setVisibility(View.GONE);
-        topSettiings.getChoiceRight().setChecked(true);
-        topSettiings.getChoice().setOnCheckedChangeListener(onCheckedChangeListener);
-        topSettiings.getTextRight().setOnClickListener(onClickListener);
-
-
+    
         //设置listView
         chippendale_list_view = (ListView) view.findViewById(R.id.chippendale_list_view);
         ChippendaleListAdapter chippendaleListAdapter = new ChippendaleListAdapter(getContext(), getListDate());
@@ -72,35 +64,6 @@ public class ChippendaleFragment extends Fragment {
         grid.setOnItemClickListener(onItemClickListener);
     }
 
-    /**
-     * 选择监听
-     */
-    RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-            switch (group.getCheckedRadioButtonId()) {
-                case R.id.public_top_radio_left:
-                    chippendale_list_view.setVisibility(View.VISIBLE);
-                    grid.setVisibility(View.GONE);
-                    break;
-                case R.id.public_top_radio_right:
-                    chippendale_list_view.setVisibility(View.GONE);
-                    grid.setVisibility(View.VISIBLE);
-                    break;
-            }
-        }
-    };
-    /**
-     * 顶部右边监听
-     */
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), MusicListActivity.class);
-            getActivity().startActivity(intent);
-        }
-    };
 
 
     /**
@@ -110,7 +73,7 @@ public class ChippendaleFragment extends Fragment {
     AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            T.showShort(getContext(), "点击了" + position);
+           
         }
     };
 

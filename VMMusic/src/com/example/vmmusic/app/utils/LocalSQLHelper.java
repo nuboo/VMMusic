@@ -9,7 +9,7 @@ import android.util.Log;
  * Created by Administrator on 2016/4/11 0011.
  */
 public class LocalSQLHelper extends SQLiteOpenHelper{
-    public static final String TABLE_NAME="ICON_ALL_MUSIC";//表格名称
+    public static final String TABLE_NAME="FINAL_VM_SQL";//表格名称
     public static final int VIRVIOSN=1;//版本号
 
 

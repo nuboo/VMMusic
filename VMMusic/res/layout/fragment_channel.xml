@@ -7,10 +7,10 @@
 
     <!-- 频道页面 -->
 
-    <include
+   <!--  <include
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/public_top" />
+        layout="@layout/public_top" /> -->
 
     <ScrollView
         android:layout_width="match_parent"

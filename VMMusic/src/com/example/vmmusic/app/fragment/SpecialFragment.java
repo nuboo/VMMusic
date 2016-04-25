@@ -30,7 +30,7 @@ public class SpecialFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_special, null);
         initView(view);
-        topSetting(view);
+      //  topSetting(view);
         return view;
     }
 
@@ -46,28 +46,7 @@ public class SpecialFragment extends Fragment {
     }
 
     /**
-     * 顶部设置
-     *
-     * @param view
-     */
-    private void topSetting(View view) {
-        TopSettiings topSettiings = new TopSettiings(view);
-        topSettiings.getTextLeft().setVisibility(View.GONE);
-        topSettiings.setTitle("热门专题");
-        topSettiings.getTextRight().setOnClickListener(onClickListener);
-    }
-
-    /**
-     * 顶部监听
-     */
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), MusicListActivity.class);
-            getActivity().startActivity(intent);
-        }
-    };
-
+  
     /**
      * 假数据
      *

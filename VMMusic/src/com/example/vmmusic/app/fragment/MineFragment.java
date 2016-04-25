@@ -57,21 +57,21 @@ public class MineFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, null);
         initView(view);
-        topSetting(view);
+       // topSetting(view);
         return view;
     }
 
-    /**
+   /* *//**
      * 顶部设置
      *
      * @param view
-     */
+     *//*
     private void topSetting(View view) {
         TopSettiings topSettiings = new TopSettiings(view);
         topSettiings.setTitle("我的");
         topSettiings.getTextRight().setOnClickListener(onClickListener);
     }
-
+*/
     /**
      * 初始化控件
      *

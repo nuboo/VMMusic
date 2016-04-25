@@ -5,11 +5,11 @@
     android:background="@color/background_color"
     android:orientation="vertical">
     <!--音乐馆-->
-    <include
+   <!--  <include
         layout="@layout/public_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+ -->
 
     <!--关注-->
     <ListView

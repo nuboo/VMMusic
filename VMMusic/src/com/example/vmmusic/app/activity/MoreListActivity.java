@@ -106,6 +106,7 @@ public class MoreListActivity extends Activity {
         bundle.putSerializable(MusicService.VMMUSIC,music);
         bundle.putInt(MusicService.LISTSIZE, musics.size());
         bundle.putInt(MusicService.FROMWHERE, FROM);
+        bundle.putInt(MusicService.NOWPOSITION,position);
         serviceHelper.startMyService(bundle);
     }
 
