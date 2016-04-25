@@ -227,4 +227,5 @@ public class LrcTextView extends TextView {
     public void setDY(int DY) {
         this.DY = DY;
     }
+   
 }

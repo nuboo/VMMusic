@@ -51,13 +51,20 @@ public class TopSettiings {
 
 	/**
 	 * 
-	 * 设置标题 并默认设置右上角跳转选择音乐界面  如需添加其他点击事件，可以通过setLeft获得textView对象
+	 * 设置标题 并默认设置右上角跳转选择音乐界面 如需添加其他点击事件，可以通过setLeft获得textView对象
 	 * 
 	 * @param title
 	 */
 	public void setTitle(String title) {
 		this.title.setText(title);
 		this.title.setSelected(true);
+
+		if (this.title.getVisibility() == View.GONE) {
+			this.title.setVisibility(View.VISIBLE);
+		}
+		if (choice.getVisibility() == View.VISIBLE) {
+			choice.setVisibility(View.GONE);
+		}
 		right.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -65,7 +72,7 @@ public class TopSettiings {
 				context.startActivity(intent);
 			}
 		});
-	
+
 	}
 
 	/**
@@ -125,15 +132,25 @@ public class TopSettiings {
 	 * @param right
 	 */
 	public void setTopRadioGroup(String left, String right) {
-
-		title.setVisibility(View.GONE);
-		choice.setVisibility(View.VISIBLE);
+		if (title.getVisibility() == View.VISIBLE) {
+			title.setVisibility(View.GONE);
+		}
+		if (choice.getVisibility() == View.GONE) {
+			choice.setVisibility(View.VISIBLE);
+		}
 		if (left != null && !left.equals("")) {
 			choiceLeft.setText(left);
 		}
 		if (right != null && !right.equals("")) {
 			choiceRight.setText(right);
 		}
+		this.right.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(context, MusicListActivity.class);
+				context.startActivity(intent);
+			}
+		});
 	}
 
 	/**
@@ -177,7 +194,7 @@ public class TopSettiings {
 	}
 
 	/**
-	 * 获得左边TextView
+	 * 获得右边TextView
 	 *
 	 * @return
 	 */

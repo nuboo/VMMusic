@@ -62,7 +62,7 @@ public class AlbumImgHelper {//获取专辑封面的Uri
             int isMusic = cursor.getInt(cursor
                     .getColumnIndex(MediaStore.Audio.Media.IS_MUSIC)); // 是否为音乐
             if (isMusic != 0) { // 只把音乐添加到集合当中
-
+            	music.setId(i);
                 music.setSid(id);
                 music.setName(title);
                 music.setAlbum_id(albumId);
@@ -77,6 +77,7 @@ public class AlbumImgHelper {//获取专辑封面的Uri
 
             }
         }
+        cursor.close();
         return list;
     }
 
@@ -108,7 +109,8 @@ public class AlbumImgHelper {//获取专辑封面的Uri
             int isMusic = cursor.getInt(cursor
                     .getColumnIndex(MediaStore.Audio.Media.IS_MUSIC)); // 是否为音乐
             if (isMusic != 0) { // 只把音乐添加到集合当中
-                Log.i("set", id + "");
+               
+                music.setId(i);
                 music.setSid(id);
                 music.setName(title);
                 music.setAlbum_id(albumId);
@@ -117,12 +119,13 @@ public class AlbumImgHelper {//获取专辑封面的Uri
                 music.setPath(url);
                 music.setSinger(artist);
                 music.setSize(size);
-
+               Log.w("music", i+title);
                 list.add(music);
 
 
             }
         }
+        cursor.close();
         return list;
     }
 

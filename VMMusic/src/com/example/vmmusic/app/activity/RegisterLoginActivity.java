@@ -116,7 +116,7 @@ public class RegisterLoginActivity extends Activity {
 		// Constants.REDIRECT_URL, Constants.SCOPE);
 		// 快速授权时，请不要传入 SCOPE，否则可能会授权不成功
 		mAuthInfo = new AuthInfo(this, app.APP_KEY, app.REDIRECT_URL, app.SCOPE);
-		mSsoHandler = new SsoHandler(RegisterLoginActivity.this, mAuthInfo);
+		//mSsoHandler = new SsoHandler(RegisterLoginActivity.this, mAuthInfo);
 		initView();
 	}
 
@@ -169,14 +169,14 @@ public class RegisterLoginActivity extends Activity {
 	 */
 	public void onClickAuth(View view) {
 		if (view.getId() == R.id.wb_btn) {
-			mSsoHandler.authorizeClientSso(new AuthListener(this));
+		/*	mSsoHandler.authorizeClientSso(new AuthListener(this));
 			mAccessToken = AccessTokenKeeper.readAccessToken(getApplicationContext());
 			
 			if (mAccessToken != null) {
 				Log.i("mAccessToken", mAccessToken.toString());
-				Intent intent = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
+		*/		Intent intent = new Intent(RegisterLoginActivity.this, HomePageActivity.class);
 				startActivity(intent);
-			}
+		//	}
 		} else if (view.getId() == R.id.qq_btn) {
 			mTencent = Tencent.createInstance(app.APP_ID, this.getApplicationContext());
 			if (!mTencent.isSessionValid()) {

@@ -14,6 +14,7 @@ import com.example.vmmusic.app.model.Music;
 import com.tencent.map.b.e;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -31,7 +32,7 @@ public class MusicService extends Service {
 	public static final String NEWSONG = "updateInfo";// 通知更新
 	public static final String NEXTSONG = "complete";// 完成播放下一首(所有单曲列表)
 	public static final String NEXTHIS = "history";// 完成播放下一首(history)
-
+	public static final String NOWPOSITION = "now_positon";// 完成播放下一首(history)
 	public static final String NEXT = "notListcomplete";// 完成播放下一首
 	public static final String VMMUSIC = "VmMusic";// 开启service
 	public static final String LISTSIZE = "listSize";
@@ -44,7 +45,7 @@ public class MusicService extends Service {
 	private MediaPlayer mediaPlayer;// 音乐播放器
 	private String path = null;// 当前播放文件路径 用于判断点击歌曲是否是播放中歌曲 也可以使用sid判断
 	private int listSize;// 当前播放的list大小
-	private int postion;// 播放歌曲在list当中的位置
+	private int postion=0;// 播放歌曲在list当中的位置
 	private boolean isFinish, isBinded;// 是否为单曲列表,Activity是否已经关闭,是否已绑定
 	private ArrayList<Music> list;// 用于后台播放
 
@@ -251,7 +252,9 @@ public class MusicService extends Service {
 	 * 刷新播放歌曲位置 顺序和随机2种模式
 	 */
 	private void inniPosition() {
-		Log.i("inni", postion + "~~~listSize" + listSize);
+		 SharedPreferences sp=getSharedPreferences("playType", Context.MODE_PRIVATE);
+         boolean playMode=sp.getBoolean("playType", false);
+		
 		postion++;// 下一首
 		postion = postion % listSize;// postion除以listSize的余数刚好为在list中的位置
 
@@ -260,12 +263,12 @@ public class MusicService extends Service {
 	/**
 	 * 初始化歌词配置
 	 */
-	public void initLrc(LrcTextView lrcView) {
+	public void initLrc(LrcTextView lrcView,Music music) {
 		this.lrcView = lrcView;
 
 		mLrcProcess = new LrcProcess();
 		// 读取歌词文件
-		music=getNowPlay();
+	
 		mLrcProcess.readLRC(music.getPath());
 		// 传回处理后的歌词文件
 		lrcList = mLrcProcess.getLrcList();
@@ -335,7 +338,7 @@ public class MusicService extends Service {
 	 */
 	@Override
 	public void onDestroy() {
-		saveAsSp();
+		
 
 		super.onDestroy();
 	}
@@ -353,60 +356,11 @@ public class MusicService extends Service {
 
 	}
 
-	/**
-	 * 将进度存入SP
-	 */
-	public void saveAsSp() {
-		SharedPreferences sp = getSharedPreferences(LASTPLAY, MODE_PRIVATE);
-		SharedPreferences.Editor editor = sp.edit();
-		editor.putString("musicName", music.getName());
-		editor.putString("musicPath", music.getPath());
-		editor.putString("musicAlbum", music.getAlbum());
-		editor.putString("musicSinger", music.getSinger());
-		//editor.putLong("musicSid", music.getSid());
-		editor.putInt("musicAt", mediaPlayer.getCurrentPosition());
-		editor.putString("musicDuration", music.getTime());
-		editor.putInt("music_collect", music.getCollection());
-		editor.putLong("musicIcon", music.getAlbum_id());
-		editor.commit();
+
+	
+	
+	public int getPosition(){
 		
-	}
-
-	public Music getNowPlay() {
-		if(music==null){
-			music=new Music();
-		}
-		SharedPreferences sp = getSharedPreferences(LASTPLAY, MODE_PRIVATE);
-		inniMusic();
-		Music defaultMusic = list.get(0);
-		if (!mediaPlayer.isPlaying() && sp != null) {// 如果当前没有播放音乐
-			if (defaultMusic != null) {
-				// 获取上次结束时的播放记录，没有记录则播放文件中第一首歌
-				
-				
-				music.setName(sp.getString("musicName", defaultMusic.getName()));
-				music.setPath(sp.getString("musicPath", defaultMusic.getPath()));
-				music.setAlbum(sp.getString("musicAlbum", defaultMusic.getAlbum()));
-				music.setTime(sp.getString("musicDuration", defaultMusic.getTime()));
-				music.setAlbum_id(sp.getLong("musicIcon",defaultMusic.getAlbum_id()));
-				music.setSinger(sp.getString("musicSinger", defaultMusic.getSinger()));
-			
-			//	music.setSid(sp.getLong("musicSid", defaultMusic.getSid()));
-				music.setCollection(sp.getInt("music_collect", 0));
-				mediaPlayer.seekTo(sp.getInt("musicAt", mediaPlayer.getCurrentPosition()));
-			} else {// 如果music为空或者defaultmusic为空
-				
-				music.setName("当前没有播放音乐");
-				music.setSinger("VMplayer");
-				music.setPath("none");
-				music.setCollection(2);
-				
-			
-				
-			}
-
-		}
-
-		return music;
+		return postion;
 	}
 }

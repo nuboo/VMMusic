@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <!-- 我的页面 -->
-    <include
+   <!--  <include
         layout="@layout/public_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" /> -->
 
     <com.example.vmmusic.app.customview.HeaderGridView
         android:id="@+id/mine_rewrite_grid_view"
