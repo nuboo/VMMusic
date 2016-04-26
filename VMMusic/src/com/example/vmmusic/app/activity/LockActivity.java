@@ -17,13 +17,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -64,6 +62,7 @@ public class LockActivity extends Activity{
 		imgHelper=new AlbumImgHelper();
 		list=imgHelper.getMp3InfosFromSql(this);
 		bindMyservice();
+	
 		next.setOnClickListener(listener);
 		last.setOnClickListener(listener);
 		bar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -102,17 +101,19 @@ public class LockActivity extends Activity{
 			switch (v.getId()) {
 			case R.id.lock_last:
 				i++;
+				Log.w("i+++++", i+"");
 				playMusic(i);
-				 inniSong(list.get(i));
+				 
 				break;
 			case R.id.lock_next:
 				if(i==0){
 					i=list.size();
+					Log.w("i----", i+"");
 				}
 				i--;
-				
+				Log.w("------i----", i+"");
 				playMusic(i);
-				 inniSong(list.get(i));
+				
 				break;
 			case R.id.lock_song:
 			
@@ -160,8 +161,9 @@ public class LockActivity extends Activity{
             i=myService.getPosition();
             music=list.get(i);
             inniSong(music);
+            lrc.inni();
             myService.initLrc(lrc, music);
-          
+            myService.inniSeek(bar);
            
            
         }
@@ -196,7 +198,9 @@ public class LockActivity extends Activity{
                 int i=myService.getPosition();//获取歌曲列表的位置
                 music=list.get(i);
                 inniSong(music);
+                lrc.inni();
                 myService.initLrc(lrc, music);
+                myService.inniSeek(bar);
              /*   music=myService.getNowPlay();
                 inniSong(music);*/
                
@@ -230,5 +234,11 @@ public class LockActivity extends Activity{
         bundle.putInt(MusicService.FROMWHERE,MusicListActivity.FROM);
         bundle.putInt(MusicService.NOWPOSITION,postion);
         serviceHelper.startMyService(bundle);
+        inniSong(list.get(i));
+        lrc.inni();
+		  myService.initLrc(lrc, music);
+          myService.inniSeek(bar);
     }
+    
+   
 }

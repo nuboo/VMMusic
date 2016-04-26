@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/lyrics_background"
+    android:padding="10dp" >
      <TextView
             android:id="@+id/lock_title"
             android:layout_width="200dp"
@@ -23,22 +25,27 @@
             android:gravity="center"
            	android:singleLine="true"
            	android:ellipsize="marquee"
+           	android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
            	android:marqueeRepeatLimit="marquee_forever"
             android:textColor="@color/white"
-            
-            android:textSize="30sp" />
+            android:alpha="0.7"
+            android:textSize="16sp" />
+      
      <RelativeLayout android:layout_width="match_parent"
          android:layout_height="0dp"
          android:layout_weight="1"
-       	android:layout_marginBottom="25dp"
-       	 android:paddingTop="35dp"
+       	
+       	 
          >
-         <com.example.vmmusic.app.customview.LrcTextView 
-	    android:layout_width="match_parent"
-        android:layout_height="match_parent"
        
+            <com.example.vmmusic.app.customview.LrcTextView 
+	    android:layout_width="match_parent"
+       
+      
         android:id="@+id/lock_lyrics"
+        android:layout_height="match_parent"
+        
        
        />
          <TextView android:layout_height="wrap_content"
@@ -64,5 +71,6 @@
 	     style="@android:style/Widget.ProgressBar.Horizontal"
 	     android:id="@+id/lock_progress"
 	     android:max="100"
+	     
 	    android:progress="0"/>
 </LinearLayout>

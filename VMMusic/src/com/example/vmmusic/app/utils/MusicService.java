@@ -20,8 +20,10 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.SeekBar;
 
 /**
  * 播放音乐的service Created by Administrator on 2016/4/11 0011.
@@ -39,7 +41,7 @@ public class MusicService extends Service {
 	public static final String FROMWHERE = "isSongList";// 来自于哪个activity
 	public static final String LASTPLAY = "pauseAt";// 播放进度
 	private int where;
-	private android.os.Handler handler;
+	private android.os.Handler handler,handlerBar;
 	private Music music;// 当前播放的music
 	private MediaPlayer mediaPlayer;// 音乐播放器
 	private String path = null;// 当前播放文件路径 用于判断点击歌曲是否是播放中歌曲 也可以使用sid判断
@@ -47,7 +49,7 @@ public class MusicService extends Service {
 	private int postion=0;// 播放歌曲在list当中的位置
 	private boolean isFinish, isBinded;// 是否为单曲列表,Activity是否已经关闭,是否已绑定
 	private ArrayList<Music> list;// 用于后台播放
-
+	private SeekBar bar;
 	
 	private LrcTextView lrcView;
 
@@ -380,4 +382,29 @@ public class MusicService extends Service {
 	public boolean playing(){
 		return mediaPlayer.isPlaying();
 	}
+	
+	
+	
+	
+	 
+	    public void inniSeek(SeekBar bar){
+	    	this.bar=bar;
+	    	if(handlerBar==null){
+	    		handlerBar=new Handler();
+	    	}
+	    	handlerBar.post(runnable);
+	    }
+	    
+	    
+	   
+	    
+	    
+	    Runnable runnable=new Runnable() {
+			
+			@Override
+			public void run() {
+				bar.setSecondaryProgress((int)((roundIndex())*100));
+				handlerBar.postDelayed(runnable, 100);
+			}
+		};
 }

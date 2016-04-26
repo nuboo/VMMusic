@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/lyrics_background"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="10dp">
 
     <!-- 顶部共用 -->
     <RelativeLayout
@@ -70,7 +70,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+       
         android:orientation="horizontal">
         <!--收藏-->
         <TextView

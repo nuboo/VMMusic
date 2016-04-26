@@ -157,6 +157,7 @@ public class MusicLyricPlayActivity extends Activity {
 			playMusic(where-1);
 			po=where-1;
 			inniSong(music);
+			lrcViewNow.inni();
 			myService.initLrc(lrcViewNow,music);
 		}
 		
@@ -302,7 +303,7 @@ public class MusicLyricPlayActivity extends Activity {
      
         unregisterReceiver(updateReceiver);
         unbindMyService();
-        Log.w("unbind", "```````");
+     
         	
         
     

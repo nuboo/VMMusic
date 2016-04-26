@@ -118,7 +118,7 @@ public class LrcTextView extends TextView {
 		default:
 			break;
 		}
-    	return true;
+    	return false;
     }
     
     /**
@@ -227,5 +227,10 @@ public class LrcTextView extends TextView {
     public void setDY(int DY) {
         this.DY = DY;
     }
-   
+    /**
+     * 初始化歌词可滑动状态
+     */
+    public void inni(){
+    	noLyrics=false;
+    }
 }
