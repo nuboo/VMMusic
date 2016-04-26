@@ -27,7 +27,7 @@ public class LrcTextView extends TextView {
     private float textSize = 26;        //文本大小
     private int index = 0;      //list集合下标
     private int nowIndex;//当前播放进度
-    private boolean noLyrics;//没有歌词
+    private boolean noLyrics=false;//没有歌词
     private  int DY = 50; // 每一行的间隔
     private boolean notDown=true;//没有按下
     float now;//当前滑动位置
@@ -36,7 +36,8 @@ public class LrcTextView extends TextView {
 
     public void setmLrcList(List<LrcContent> mLrcList) {
         this.mLrcList = mLrcList;
-        noLyrics=false;
+        
+       
     }
 
     public LrcTextView(Context context) {
@@ -194,12 +195,12 @@ public class LrcTextView extends TextView {
 
                     canvas.drawText(mLrcList.get(i).getLrcStr(), width / 2, tempY, notCurrentPaint);
                 }
-
+                noLyrics=false;
                
             } catch (Exception e) {
                 
                 canvas.drawText("未找到歌词文件", width / 2, height / 2, notCurrentPaint);
-                noLyrics=true;//没有歌词
+                noLyrics=true;
             }
 
     	}
@@ -221,15 +222,9 @@ public class LrcTextView extends TextView {
     public  int getDy() {
         return DY;
     }
-    /**
-     * 设置行间距
-     * @param DY
-     */
-    public void setDY(int DY) {
-        this.DY = DY;
-    }
   
-
+  
+    
 	
     
 }

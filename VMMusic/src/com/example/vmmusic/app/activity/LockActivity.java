@@ -102,18 +102,18 @@ public class LockActivity extends Activity {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.lock_last:
-				i++;
-				Log.w("i+++++", i + "");
-				playMusic(i);
-
-				break;
-			case R.id.lock_next:
+				
 				if (i == 0) {
 					i = list.size();
 					Log.w("i----", i + "");
 				}
 				i--;
 				Log.w("------i----", i + "");
+				playMusic(i);
+				break;
+			case R.id.lock_next:
+				i++;
+				Log.w("i+++++", i + "");
 				playMusic(i);
 
 				break;
@@ -233,7 +233,7 @@ public class LockActivity extends Activity {
 		bundle.putInt(MusicService.NOWPOSITION, postion);
 		serviceHelper.startMyService(bundle);
 		inniSong(list.get(i));
-
+		
 		myService.initLrc(lrc, music);
 		myService.inniSeek(bar);
 	}
