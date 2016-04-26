@@ -209,12 +209,7 @@ public class MusicListActivity extends Activity {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
             music = list.get(i);
-            serviceHelper = new ServiceHelper(MusicListActivity.this);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(MusicService.VMMUSIC, music);
-            bundle.putInt(MusicService.LISTSIZE, list.size());
-            serviceHelper.startMyService(bundle);
-            songAdapter.notifyDataSetChanged();
+           
             listPostion = i;
             playMusic(i);
         }
@@ -385,17 +380,19 @@ public class MusicListActivity extends Activity {
     @Override
     protected void onDestroy() {
 
-        unregisterReceiver(musicListReceiver);
+       
 
 
         serviceHelper=new ServiceHelper(MusicListActivity.this);
         Bundle bundle=new Bundle();
 
 
-
-
+        
+        
         bundle.putBoolean(MusicService.ISFINISH, true);
         serviceHelper.startMyService(bundle);
+        
+        unregisterReceiver(musicListReceiver);
         super.onDestroy();
 
     }

@@ -104,6 +104,7 @@ public class MoreAndMoreActivity extends Activity {
                 case R.id.more_update://更新
                     break;
                 case R.id.more_login_out://退出登录
+                	System.exit(0);
                     break;
 
 

@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-     android:background="@color/white" >
+     android:background="@color/background_color" >
     <include layout="@layout/public_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>"
 	    <ListView
+	        android:layout_marginTop="0.5dp"
         android:id="@+id/history_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

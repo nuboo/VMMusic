@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Administrator on 2016/4/11 0011.
  */
 public class HistorySQLHepler extends SQLiteOpenHelper{
-	 public static final String TABLE_NAME="vm_play_history";//表格名称
+	 public static final String TABLE_NAME="history";//表格名称
 	    public static final int VIRVIOSN=1;//版本号
 
 

@@ -7,6 +7,7 @@ import java.util.List;
 import com.example.vmmusic.app.activity.HistoryorCollectionActivity;
 import com.example.vmmusic.app.activity.MoreListActivity;
 import com.example.vmmusic.app.activity.MusicListActivity;
+import com.example.vmmusic.app.activity.MusicLyricPlayActivity;
 import com.example.vmmusic.app.customview.LrcTextView;
 import com.example.vmmusic.app.model.LrcContent;
 import com.example.vmmusic.app.model.LrcProcess;
@@ -47,7 +48,7 @@ public class MusicService extends Service {
 	private boolean isFinish, isBinded;// 是否为单曲列表,Activity是否已经关闭,是否已绑定
 	private ArrayList<Music> list;// 用于后台播放
 
-	private FileUtils fileUtils;// 用于后台播放
+	
 	private LrcTextView lrcView;
 
 	private LrcProcess mLrcProcess; // 歌词处理
@@ -71,6 +72,7 @@ public class MusicService extends Service {
 		} else {
 			mediaPlayer = new MediaPlayer();// 实例化player
 		}
+		
 		super.onCreate();
 	}
 
@@ -89,10 +91,12 @@ public class MusicService extends Service {
 			if (isBinded) {
 
 			} else {
-
 				isFinish = bundle.getBoolean(ISFINISH, false);
+				Log.w("isFinish",""+isFinish);
+				if(!isFinish){
+				
 
-				if (!isFinish) {
+				
 
 					music = (Music) bundle.getSerializable(VMMUSIC);
 					postion = music.getId();// ID和listView中位置一致
@@ -101,18 +105,14 @@ public class MusicService extends Service {
 					if (music != null && listSize != 0) {
 						if (!music.getPath().equals(path)) {// 如果不是同一首歌，则播放
 
-							playMusic(music.getPath());
+							playMusic(music);
 
-						} else {
-							if (mediaPlayer.isPlaying()) {// 如果正在播放，则暂停
-								mediaPlayer.pause();
-							} else {
-								mediaPlayer.start();//// 如果暂停，则播放
-							}
-						}
+						} 
 
 					}
 
+				}else{
+					inniMusic();
 				}
 
 			}
@@ -133,9 +133,9 @@ public class MusicService extends Service {
 	 * 
 	 * @param path
 	 */
-	private void playMusic(String path) {
+	private void playMusic(final Music music) {
 
-		this.path = path;
+		path = music.getPath();
 		if (path != null && !path.equals("")) {
 
 			mediaPlayer.reset();
@@ -177,8 +177,9 @@ public class MusicService extends Service {
 	 * 发送广播，播放下一首歌
 	 */
 	private void sendNextSong() {
+		inniPosition();// 刷新播放位置
 		if (!isFinish) {// 如果activity还在运行
-			inniPosition();// 刷新播放位置
+			
 			Intent intent = new Intent();
 
 			switch (where) {
@@ -203,7 +204,8 @@ public class MusicService extends Service {
 			}
 
 		} else {// 如果activity还在不存在，进行后台播放
-			inniMusic();
+			
+			
 			playBackground();
 		}
 	}
@@ -213,6 +215,7 @@ public class MusicService extends Service {
 	 *
 	 */
 	private void playBackground() {
+		
 		music = list.get(postion);
 		path = music.getPath();// 更新当前播放歌曲路径
 		if (path != null && !path.equals("")) {
@@ -242,11 +245,11 @@ public class MusicService extends Service {
 	private void inniMusic() {
 		if (list == null) {
 			list = new ArrayList<Music>();
+			AlbumImgHelper albumImgHelper = new AlbumImgHelper();
+			list = albumImgHelper.getMp3InfosFromSql(this);// 获取跟MusicListActivity一样的列表
 
 		}
-		AlbumImgHelper albumImgHelper = new AlbumImgHelper();
-		list = albumImgHelper.getMp3InfosFromSql(this);// 获取跟MusicListActivity一样的列表
-
+		
 	}
 
 	/**
@@ -340,7 +343,7 @@ public class MusicService extends Service {
 	@Override
 	public void onDestroy() {
 		
-
+		Log.w("service", "22222");
 		super.onDestroy();
 	}
 
@@ -358,11 +361,20 @@ public class MusicService extends Service {
 	}
 
 
-	
+	public void playPause(){
+		if(mediaPlayer.isPlaying()){
+			mediaPlayer.pause();
+		}else{
+			mediaPlayer.start();
+		}
+	}
 	
 	public int getPosition(){
 		
 		return postion;
 
+	}
+	public boolean playing(){
+		return mediaPlayer.isPlaying();
 	}
 }

@@ -21,7 +21,9 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
+	
+    
+    
     <!-- QQ、QQ空间所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.SET_DEBUG_APP" />
@@ -121,6 +123,17 @@
             android:launchMode="singleTop"></activity>
         <activity android:name="com.example.vmmusic.app.activity.GestureActivity"
             android:launchMode="singleTop"></activity>
+        <activity android:name="com.example.vmmusic.app.activity.LockActivity"
+            android:launchMode="singleTop">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+
+        </activity>
     </application>
 
 </manifest>

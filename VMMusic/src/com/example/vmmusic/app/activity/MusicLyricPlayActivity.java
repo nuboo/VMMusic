@@ -51,9 +51,11 @@ public class MusicLyricPlayActivity extends Activity {
     private AlbumImgHelper imgHelper;
     private int count;
     private View view;
-    private boolean first=true;
-    private int inniPosition=-1;
+    private boolean first=true;//是否第一次更新
+    private int po;
     boolean playMode;
+    boolean play=true;
+    public static final int FROM=5002;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -131,7 +133,7 @@ public class MusicLyricPlayActivity extends Activity {
     		viewList.add(view);
     		
     	}
-    	Log.w("viewList", viewList.size()+"size"+musics.size());
+    
     	viewPager.setAdapter(new ViewPagerAdapter(viewList));
     	viewPager.setOnPageChangeListener(pageListener);
     }
@@ -153,8 +155,8 @@ public class MusicLyricPlayActivity extends Activity {
 			lrcViewNow=(LrcTextView) lrcList.get(arg0);
 			music=musics.get(where-1);
 			playMusic(where-1);
+			po=where-1;
 			inniSong(music);
-				Log.e("selected", (where-1)+"where++++++arg0"+arg0+"music"+musics.get(where-1).getName()+musics.get(where-1).getId());
 			myService.initLrc(lrcViewNow,music);
 		}
 		
@@ -200,7 +202,8 @@ public class MusicLyricPlayActivity extends Activity {
                 	shareMusic();
                 	break;
                 case R.id.lyrics_play_type:
-                	changePlayMode();
+                	myService.playPause();
+                	
                 	break;
                 case R.id.lyrics_download:
                 	T.showShort(MusicLyricPlayActivity.this, "歌曲已存在");
@@ -271,6 +274,7 @@ public class MusicLyricPlayActivity extends Activity {
             myService=((MusicService.MyServiceBinder)arg1).getService();
             if(first){//设置初始页面
             int i=myService.getPosition();
+            po=i;
             viewPager.setCurrentItem(i+1);
            
             first=false;
@@ -295,8 +299,14 @@ public class MusicLyricPlayActivity extends Activity {
     @Override
     protected void onDestroy() {
 
-       unbindMyService();
+     
         unregisterReceiver(updateReceiver);
+        unbindMyService();
+        Log.w("unbind", "```````");
+        	
+        
+    
+       
         super.onDestroy();
     }
 
@@ -306,7 +316,7 @@ public class MusicLyricPlayActivity extends Activity {
             if(intent.getAction().equals(MusicService.NEWSONG)){
                
                
-                int i=myService.getPosition();
+                int i=myService.getPosition();//获取歌曲列表的位置
                 viewPager.setCurrentItem(i+1);
               
              /*   music=myService.getNowPlay();
@@ -370,11 +380,21 @@ public class MusicLyricPlayActivity extends Activity {
         Bundle bundle=new Bundle();
         bundle.putSerializable(MusicService.VMMUSIC,music);
         bundle.putInt(MusicService.LISTSIZE,musics.size());
+       
         bundle.putInt(MusicService.FROMWHERE,MusicListActivity.FROM);
+        
+        	
+       
+        
+        
         bundle.putInt(MusicService.NOWPOSITION,postion);
         serviceHelper.startMyService(bundle);
     }
-    
+    /**
+     * 换算歌曲列表和viewpager的对应位置
+     * @param arg0
+     * @return
+     */
     private int switchPosition(int arg0){
     	int where;
     	if(arg0==0){
