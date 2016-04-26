@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/white" >
     <LinearLayout android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -15,10 +16,11 @@
            
             android:background="@drawable/code_shape"
             android:gravity="center"
-            android:padding="15dp"
+            android:padding="10dp"
             android:text="重新输入"
             android:textColor="@color/white" 
              android:layout_margin="@dimen/thirty"/>
+    	
      <Button
             android:id="@+id/gesture_done"
             android:layout_width="match_parent"
@@ -26,10 +28,18 @@
             
             android:background="@drawable/code_shape"
             android:gravity="center"
-            android:padding="15dp"
+            android:padding="10dp"
             android:text="确认"
             android:textColor="@color/white" 
             android:layout_marginRight="@dimen/thirty"
              android:layout_marginLeft="@dimen/thirty"/>
-
+	<TextView android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="重置密码"
+	    android:id="@+id/reset_password"
+	    android:layout_gravity="right"
+	    android:visibility="invisible"
+	    android:alpha="0.7"
+	    android:textColor="@color/font_name"
+	    android:padding="10dp"/>
 </LinearLayout>

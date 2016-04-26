@@ -259,9 +259,12 @@ public class MusicService extends Service {
 		 SharedPreferences sp=getSharedPreferences("playType", Context.MODE_PRIVATE);
          boolean playMode=sp.getBoolean("playType", false);
 		
-		postion++;// 下一首
-		postion = postion % listSize;// postion除以listSize的余数刚好为在list中的位置
-
+         postion++;// 下一首
+         if(!isFinish){
+         postion = postion % listSize;// postion除以listSize的余数刚好为在list中的位置
+         }else{
+        	 postion=(postion%(list.size()));
+         }
 	}
 
 	/**

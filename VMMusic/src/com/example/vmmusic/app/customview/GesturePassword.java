@@ -56,7 +56,7 @@ public class GesturePassword  extends View{
 		marginY = (height / 5);// 圆心离边界的Y距离
 		paint=new Paint();
 		mPaint=new Paint();
-		paint.setColor(getResources().getColor(R.color.black));
+		paint.setColor(getResources().getColor(R.color.green));
 		mPaint.setColor(getResources().getColor(R.color.green));
 		mPaint.setAntiAlias(true);
 		mPaint.setStyle(Style.STROKE);
@@ -240,6 +240,16 @@ public class GesturePassword  extends View{
 		editor.putBoolean(SAVESP, true);
 		editor.commit();
 	}
+	/**
+	 * 保存密码
+	 */
+	public void resetPassword() {
+		SharedPreferences sp=context.getSharedPreferences(SAVESP, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor=sp.edit();
+		editor.putString(SAVESP, "");
+		editor.putBoolean(SAVESP, false);
+		editor.commit();
+	}
 
 	/**
 	 * 重置手势密码
@@ -252,5 +262,16 @@ public class GesturePassword  extends View{
 		}
 		
 	}
-	
+	public boolean isPass(){
+		boolean passOrNot=false;
+		SharedPreferences sp=context.getSharedPreferences(SAVESP, Context.MODE_PRIVATE);
+		String password=sp.getString(SAVESP, "");
+		if(!password.equals("")){
+			if(password.equals(pass.toString())){
+				passOrNot=true;
+			}
+		}
+		
+		return passOrNot;
+	}
 }
