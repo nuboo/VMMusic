@@ -17,6 +17,7 @@ import android.view.View;
 
 public class GesturePassword  extends View{
 	public static final String SAVESP="gesturePassword";
+	public static final String PASSWORD="gesture";
 	float width;//屏幕宽度
 	float height;//屏幕高度
 	float radius;//圆半径
@@ -236,7 +237,7 @@ public class GesturePassword  extends View{
 	private void savePassword() {
 		SharedPreferences sp=context.getSharedPreferences(SAVESP, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor=sp.edit();
-		editor.putString(SAVESP, pass.toString());
+		editor.putString(PASSWORD, pass.toString());
 		editor.putBoolean(SAVESP, true);
 		editor.commit();
 	}
@@ -246,7 +247,7 @@ public class GesturePassword  extends View{
 	public void resetPassword() {
 		SharedPreferences sp=context.getSharedPreferences(SAVESP, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor=sp.edit();
-		editor.putString(SAVESP, "");
+		
 		editor.putBoolean(SAVESP, false);
 		editor.commit();
 	}
@@ -265,7 +266,7 @@ public class GesturePassword  extends View{
 	public boolean isPass(){
 		boolean passOrNot=false;
 		SharedPreferences sp=context.getSharedPreferences(SAVESP, Context.MODE_PRIVATE);
-		String password=sp.getString(SAVESP, "");
+		String password=sp.getString(PASSWORD, "");
 		if(!password.equals("")){
 			if(password.equals(pass.toString())){
 				passOrNot=true;

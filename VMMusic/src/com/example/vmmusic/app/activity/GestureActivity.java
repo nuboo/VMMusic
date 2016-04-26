@@ -30,8 +30,12 @@ public class GestureActivity extends Activity {
 
 	private void inni() {
 		layout = (LinearLayout) findViewById(R.id.gesture);
+		if(gesturePassword==null){
 		gesturePassword = new GesturePassword(this);
+		
+		
 		layout.addView(gesturePassword);
+		}
 		newPass=(TextView) findViewById(R.id.reset_password);
 		done = (Button) findViewById(R.id.gesture_done);
 		reset = (Button) findViewById(R.id.gesture_reset);
@@ -59,12 +63,14 @@ public class GestureActivity extends Activity {
 				break;
 			case R.id.gesture_done:
 				if(gesturePassword.donePassword()){
-				
+					gesturePassword.reset();
 				inni();
+				
 				}
 				break;
 			case R.id.reset_password:
 				gesturePassword.resetPassword();
+				gesturePassword.reset();
 				inni();
 				break;
 			default:
