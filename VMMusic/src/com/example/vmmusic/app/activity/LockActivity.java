@@ -85,10 +85,11 @@ public class LockActivity extends Activity {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 				if (bar.getProgress() == 100) {
-					Intent intent = new Intent(LockActivity.this, HomePageActivity.class);
-					startActivity(intent);
+					
 					unregisterReceiver(updateReceiver);
 					unbindMyService();
+					Intent intent = new Intent(LockActivity.this, HomePageActivity.class);
+					startActivity(intent);
 					finish();
 				}
 
@@ -180,7 +181,14 @@ public class LockActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
+			ServiceHelper serviceHelper=new ServiceHelper(LockActivity.this);
+	        Bundle bundle=new Bundle();
 
+
+	        
+	        
+	        bundle.putBoolean(MusicService.ISFINISH, true);
+	        serviceHelper.startMyService(bundle);
 		unregisterReceiver(updateReceiver);
 		unbindMyService();
 

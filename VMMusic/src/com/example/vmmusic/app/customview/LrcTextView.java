@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
@@ -36,7 +37,7 @@ public class LrcTextView extends TextView {
 
     public void setmLrcList(List<LrcContent> mLrcList) {
         this.mLrcList = mLrcList;
-        
+        Log.w("list", mLrcList.size()+"~~~~~");
        
     }
 
@@ -75,6 +76,7 @@ public class LrcTextView extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if(canvas == null) {
+        	
             return;
         }
         this.canvas=canvas;
@@ -97,11 +99,11 @@ public class LrcTextView extends TextView {
     public boolean onTouchEvent(MotionEvent event) {
     	switch (event.getAction()) {
     	 case MotionEvent.ACTION_DOWN:
-    		 if(!noLyrics){//如果有歌词
+    		 
     		 donwY = event.getY();//点击下去的位置
     		 nowIndex=index;
     			 notDown=false;
-    		 }
+    		
     		 break;
 		case MotionEvent.ACTION_MOVE:
 			now=event.getY();//移动中的位置
@@ -120,7 +122,7 @@ public class LrcTextView extends TextView {
 		default:
 			break;
 		}
-    	return false;
+    	return true;
     }
     
     /**
@@ -129,7 +131,11 @@ public class LrcTextView extends TextView {
      */
     private void moveLine(int index){
     	if(!notDown){
-    		
+    		if(mLrcList.size()==0){
+    			 canvas.drawText("未找到歌词文件", width / 2, height / 2, notCurrentPaint);
+    			 Log.w("", "=======0");
+    			 return;
+    		}
     		if(index<0){//如果已经到顶部
     			index=0;
     			
@@ -195,12 +201,12 @@ public class LrcTextView extends TextView {
 
                     canvas.drawText(mLrcList.get(i).getLrcStr(), width / 2, tempY, notCurrentPaint);
                 }
-                noLyrics=false;
+                
                
             } catch (Exception e) {
                 
                 canvas.drawText("未找到歌词文件", width / 2, height / 2, notCurrentPaint);
-                noLyrics=true;
+                
             }
 
     	}

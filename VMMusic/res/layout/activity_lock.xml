@@ -34,7 +34,7 @@
            <com.example.vmmusic.app.customview.LrcTextView 
 	    android:layout_width="match_parent"
        
-      
+      	
         android:id="@+id/lock_lyrics"
         android:layout_height="0dp"
         android:layout_weight="1"
