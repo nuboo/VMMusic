@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.vmmusic.app.customview.layout.SwipeRefreshLayoutFinal xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_ly"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:background="@color/white">
     <!--专题-->
-   <!--  <include
-        layout="@layout/public_top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" /> -->
-
-    <ListView
+    <cn.finalteam.loadingviewfinal.RecyclerViewFinal
         android:id="@+id/special_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-</LinearLayout>
+
+</com.example.vmmusic.app.customview.layout.SwipeRefreshLayoutFinal>

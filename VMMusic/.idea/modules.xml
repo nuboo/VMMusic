@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/VMMusic.iml" filepath="$PROJECT_DIR$/VMMusic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loading_more_view/loading_more_view.iml" filepath="$PROJECT_DIR$/loading_more_view/loading_more_view.iml" />
     </modules>
   </component>
 </project>

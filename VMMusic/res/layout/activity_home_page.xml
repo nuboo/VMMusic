@@ -4,9 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
-    <include layout="@layout/public_top"
+
+    <include
+        layout="@layout/public_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></include>
+        android:layout_height="wrap_content" />
     <!--主页-->
     <android.support.v4.view.ViewPager
         android:id="@+id/home_view_pager"
